@@ -1,0 +1,32 @@
+{
+  "name": "EIDA-NG-WFCatalog",
+  "version": "1.3.0",
+  "description": "NodeJS front end implementation of the EIDA-NG WFCatalog Service",
+  "main": "cluster.js",
+  "dependencies": {
+    "bunyan": "~1.8.1",
+    "express": "~4.13.4",
+    "mongodb": "~2.1.6",
+    "bunyan-elasticsearch": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node runtests.js",
+    "start": "node cluster.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jollyfant/EIDAWS.git"
+  },
+  "keywords": [
+    "EIDA-NG",
+    "FDSN",
+    "WFCatalog",
+    "EIDA"
+  ],
+  "author": "Mathijs Koymans",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/Jollyfant/EIDAWS/issues"
+  }
+}

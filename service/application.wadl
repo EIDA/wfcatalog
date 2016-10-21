@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <doc title="EIDA Web Service WFCATALOG service 1.0.018"/>
+  <grammars/>
+  <resources base="ENTER_HERE">
+    <resource path="/">
+      <method name="GET" id="root">
+        <response>
+          <representation mediaType="text/html"/>
+        </response>
+      </method>
+      <resource path="query">
+        <method name="GET" id="query">
+          <request>
+            <!-- ISO 8601 -->
+            <param name="starttime" style="query" required="true" type="xsd:string"/>
+            <!-- ISO 8601 -->
+            <param name="endtime" style="query" required="true" type="xsd:string"/>
+            <param name="network" style="query" type="xsd:string"/>
+            <param name="station" style="query" type="xsd:string"/>
+            <param name="location" style="query" type="xsd:string"/>
+            <param name="channel" style="query" type="xsd:string"/>
+
+            <param name="quality" style="query" type="xsd:string">
+              <option value="D"/>
+              <option value="R"/>
+              <option value="Q"/>
+              <option value="M"/>
+              <option value="B"/>
+            </param>
+
+            <param name="output" style="query" default="json" type="xsd:string">
+              <option value="json"/>
+            </param>
+
+            <param name="include" style="query" default="default" type="xsd:string">
+              <option value="default"/>
+              <option value="sample"/>
+              <option value="header"/>
+              <option value="all"/>
+            </param>
+
+            <param name="granularity" style="query" default="day" type="xsd:string">
+              <option value="day"/>
+            </param>
+
+            <param name="minimumlength" style="query" type="xsd:float"/>
+            <param name="longestonly" style="query" default="false" type="xsd:boolean"/>
+            <param name="csegments" style="query" default="false" type="xsd:boolean"/>
+ 
+            <!-- Metrics may be appended with a logical operator -->
+            <param name="sample_rate" style="query" type="xsd:float"/>
+            <param name="record_length" style="query" type="xsd:float"/>
+
+            <!-- Sample Metrics -->
+            <param name="num_samples" style="query" type="xsd:int"/>
+            <param name="sample_max" style="query" type="xsd:int"/>
+            <param name="sample_min" style="query" type="xsd:int"/>
+            <param name="sample_rms" style="query" type="xsd:float"/>
+            <param name="sample_stdev" style="query" type="xsd:float"/>
+            <param name="sample_mean" style="query" type="xsd:float"/>
+            <param name="sample_median" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile" style="query" type="xsd:float"/>
+
+            <!-- Gap and Overlap Info -->
+            <param name="num_gaps" style="query" type="xsd:int"/>
+            <param name="num_overlaps" style="query" type="xsd:int"/>
+            <param name="max_gap" style="query" type="xsd:float"/>
+            <param name="max_overlap" style="query" type="xsd:float"/>
+            <param name="sum_overlaps" style="query" type="xsd:float"/>
+            <param name="gaps" style="query" type="xsd:float"/>
+
+            <param name="percent_availability" style="query" type="xsd:float"/>
+
+            <!-- Timing Qualities -->
+            <param name="timing_quality" style="query" type="xsd:float"/>
+            <param name="timing_quality_median" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile" style="query" type="xsd:float"/>
+            <param name="timing_quality_min" style="query" type="xsd:float"/>
+            <param name="timing_quality_max" style="query" type="xsd:float"/>
+
+            <param name="timing_correction" style="query" type="xsd:float"/>
+
+            <!-- Miniseed Header Flags -->
+            <!-- Data Quality Flags -->
+            <param name="amplifier_saturation" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping" style="query" type="xsd:float"/>
+            <param name="spikes" style="query" type="xsd:float"/>
+            <param name="glitches" style="query" type="xsd:float"/>
+            <param name="missing_padded_data" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag" style="query" type="xsd:float"/>
+
+            <!-- Activity Flags -->
+            <param name="calibration_signal" style="query" type="xsd:float"/>
+            <param name="time_correction_applied" style="query" type="xsd:float"/>
+            <param name="event_begin" style="query" type="xsd:float"/>
+            <param name="event_end" style="query" type="xsd:float"/>
+            <param name="positive_leap" style="query" type="xsd:float"/>
+            <param name="negative_leap" style="query" type="xsd:float"/>
+            <param name="event_in_progress" style="query" type="xsd:float"/>
+
+            <!-- IO and Clock flags -->
+            <param name="station_volume" style="query" type="xsd:float"/>
+            <param name="long_record_read" style="query" type="xsd:float"/>
+            <param name="short_record_read" style="query" type="xsd:float"/>
+            <param name="start_time_series" style="query" type="xsd:float"/>
+            <param name="end_time_series" style="query" type="xsd:float"/>
+            <param name="clock_locked" style="query" type="xsd:float"/>
+          </request>
+          <response>
+            <representation mediaType="text/plain"/>
+            <representation mediaType="application/json"/>
+          </response>
+        </method>
+        <method name="POST" id="postQuery">
+          <request>
+            <representation mediaType="*/*"/>
+          </request>
+          <response>
+            <representatation mediaType="application/json"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="version">
+        <method name="GET" id="version">
+          <response>
+            <representatation mediaType="text/plain"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="application.wadl">
+        <method name="GET" id="application.wadl">
+          <response>
+            <representation mediaType="application/xml"/>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>

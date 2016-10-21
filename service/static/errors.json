@@ -1,0 +1,120 @@
+{
+  "STATUS_CODES": {
+    "200": "OK",
+    "204": "No Content",
+    "304": "Not Modified",
+    "400": "Bad Request",
+    "404": "Not Found",
+    "413": "Payload Too Large",
+    "500": "Internal Server Error",
+    "503": "Service Unavailable"
+  },
+  "SERVICE_CLOSED": {
+    "code": 503, 
+    "msg": "The WFCatalog service is closed for maintenance"
+  },
+  "EMPTY_QUERY": {
+    "code": 400,
+    "msg": "The submitted query string is empty"
+  },
+  "QUERY_LENGTH_EXCEEDED": {
+    "code": 400,
+    "msg": "The maximum query length has been exceeded"
+  },
+  "POST_LENGTH_EXCEEDED": {
+    "code": 400,
+    "msg": "The maximum POST body length has been exceeded"
+  },
+  "POST_BODY_EMPTY": {
+    "code": 400,
+    "msg": "The submitted POST body is empty"
+  },
+  "POST_EMPTY_SEGMENTS": {
+    "code": 400,
+    "msg": "The submitted POST body contains no valid segments"
+  },
+  "POST_SEGMENTS_EXCEEDED": {
+    "code": 413,
+    "msg": "The submitted POST body exceeds the number of allowed segments"
+  },
+  "POST_BODY_INVALID": {
+    "code": 400,
+    "msg": "The submitted POST body is invalid"
+  },
+  "POST_SEGMENT_INVALID": {
+    "code": 400,
+    "msg": "The submitted segment key may not be specified as a key=value pair: %s"
+  },
+  "INVALID_QUERY": {
+    "code": 400,
+    "msg": "The submitted query string is invalid"
+  },
+  "DOUBLE_PARAMETER_POST": {
+    "code": 400,
+    "msg": "The submitted POST body contains a double parameter: %s"
+  },
+  "DOUBLE_PARAMETER_GET": {
+    "code": 400,
+    "msg": "The submitted query string contains a double parameter: %s"
+  },
+  "INVALID_PARAMETER_GET": {
+    "code": 400,
+    "msg": "The submitted query string contains an unknown key: %s"
+  },
+  "INVALID_PARAMETER_POST": {
+    "code": 400,
+    "msg": "The submitted POST body contains an unknown key: %s"
+  },
+  "WRONG_TYPE": {
+    "code": 400,
+    "msg": "The submitted value type is incorrect for key: %s"
+  },
+  "FORMAT_UNSUPPORTED": {
+    "code": 400,
+    "msg": "The requested output is not supported: %s"
+  },
+  "GRANULARITY_UNSUPPORTED": {
+    "code": 400,
+    "msg": "The requested granularity is not supported: %s"
+  },
+  "INCLUDE_UNSUPPORTED": {
+    "code": 400,
+    "msg": "The requested include options is not supported: %s"
+  },
+  "START_INVALID": {
+    "code": 400,
+    "msg": "The submitted start time is invalid"
+  },
+  "END_INVALID": {
+    "code": 400,
+    "msg": "The submitted end time is invalid"
+  },
+  "START_BEYOND_END": {
+    "code": 400,
+    "msg": "The submitted start time is beyond the end time"
+  },
+  "START_BEYOND_NOW": {
+    "code": 400,
+    "msg": "The submitted start time lies in the future Please come back later"
+  },
+  "QUALITY_INVALID": {
+    "code": 400,
+    "msg": "The requested data quality (D, R, Q, M, B) is invalid %s"
+  },
+  "MONGO_CONNECTION_FAILED": {
+    "code": 500,
+    "msg": "The connection to the database could not be established"
+  },
+  "START_REQUIRED": {
+    "code": 400,
+    "msg": "Start time is required"
+  },
+  "END_REQUIRED": {
+    "code": 400,
+    "msg": "End time is required"
+  },
+  "MAXIMUM_PAYLOAD_EXCEEDED": {
+    "code": 413,
+   "msg": "The requested payload exceeds the service limitation"
+  }
+}

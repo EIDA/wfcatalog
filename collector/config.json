@@ -1,0 +1,21 @@
+{
+  "VERSION": "0.3.0",
+  "VERSION_DATE": "2016-08-26",
+  "ARCHIVE": "EIDA NODE",
+  "PUBLISHER": "OBSPY MSEED-QC",
+  "STRUCTURE": "SDS",
+  "MONGO": {
+    "ENABLED": true,
+    "DB_HOST": "mongodb://localhost:27017/",
+    "DB_NAME": "wfrepo",
+    "ALLOW_DOUBLE": false
+  },
+  "ARCHIVE_ROOT": "/nobackup/users/koymans/SDSNL/",
+  "DEFAULT_LOG_FILE": "WFCatalog-collector.log",
+  "PROCESSING_TIMEOUT": 120,
+  "ENABLE_DUBLIN_CORE": false,
+  "FILTERS": {
+    "WHITE": ["*"],
+    "BLACK": []
+  }
+}
