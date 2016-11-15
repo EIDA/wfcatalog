@@ -29,7 +29,7 @@
               <option value="B"/>
             </param>
 
-            <param name="output" style="query" default="json" type="xsd:string">
+            <param name="format" style="query" default="json" type="xsd:string">
               <option value="json"/>
             </param>
 
