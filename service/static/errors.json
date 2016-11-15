@@ -6,6 +6,7 @@
     "400": "Bad Request",
     "404": "Not Found",
     "413": "Payload Too Large",
+    "414": "URI Too Long",
     "500": "Internal Server Error",
     "503": "Service Unavailable"
   },
@@ -18,7 +19,7 @@
     "msg": "The submitted query string is empty"
   },
   "QUERY_LENGTH_EXCEEDED": {
-    "code": 400,
+    "code": 414,
     "msg": "The maximum query length has been exceeded"
   },
   "POST_LENGTH_EXCEEDED": {
