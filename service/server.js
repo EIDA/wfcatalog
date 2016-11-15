@@ -1011,7 +1011,7 @@ module.exports = function(CONFIG, WFCatalogCallback) {
       'num_samples': doc['nsamp'],
       'start_time': doc['ts'],
       'end_time': doc['te'],
-      'format': doc['format'],
+      'format': 'miniSEED',
       'quality': doc['qlt']
     }
 
