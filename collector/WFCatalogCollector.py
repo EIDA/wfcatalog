@@ -554,20 +554,22 @@ class WFCatalogCollector():
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(CONFIG['PROCESSING_TIMEOUT'])
 
-    # Catch mSEED reading warnings
-    with warnings.catch_warnings(record=True) as w:
-      warnings.simplefilter('always')
+    try:
+      # Catch mSEED reading warnings
+      with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter('always')
 
-      # Skip continuous segments for hourly granules
-      if granule == 'daily':
-        metadata = MSEEDMetadata(files, starttime=start, endtime=end, add_flags=self.args['flags'], add_c_segments=self.args['csegs'])
-      elif granule == 'hourly':
-        metadata = MSEEDMetadata(files, starttime=start, endtime=end, add_flags=self.args['flags'], add_c_segments=False)
+        # Skip continuous segments for hourly granules
+        if granule == 'daily':
+          metadata = MSEEDMetadata(files, starttime=start, endtime=end, add_flags=self.args['flags'], add_c_segments=self.args['csegs'])
+        elif granule == 'hourly':
+          metadata = MSEEDMetadata(files, starttime=start, endtime=end, add_flags=self.args['flags'], add_c_segments=False)
 
-      metadata.meta.update({'warnings': len(w) > 0})
+        metadata.meta.update({'warnings': len(w) > 0})
 
-    # Disable alarm
-    signal.alarm(0)
+    finally:
+      # Disable alarm
+      signal.alarm(0)
 
     return metadata.meta
 
