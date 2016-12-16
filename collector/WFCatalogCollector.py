@@ -75,6 +75,7 @@ Authors:
   [--logfile] specify a custom logfile
 
 """
+from __future__ import print_function
 
 import os
 import json
@@ -95,7 +96,7 @@ from logging.handlers import TimedRotatingFileHandler
 # ObsPy mSEED-QC is required
 try:
   from obspy.signal.quality_control import MSEEDMetadata
-except ImportError, ex:
+except ImportError as ex:
   raise ImportError('Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.')
 
 # Load configuration from JSON
@@ -124,7 +125,7 @@ class WFCatalogCollector():
       try:
         self.mongo._connect()
         self.log.info("Connection to the database has been established")
-      except Exception, ex:
+      except Exception as ex:
         self.log.critical("Could not establish connection to the database"); sys.exit(0)
     else:
       self.log.info("Connection to the database is disabled");
@@ -186,7 +187,7 @@ class WFCatalogCollector():
     WFCatalog.showVersion
     > shows current Collector version
     """
-    print CONFIG["VERSION"];
+    print(CONFIG["VERSION"])
  
 
   def process(self, options):
@@ -223,7 +224,7 @@ class WFCatalogCollector():
 
       try:
         self._collectMetadata(file)
-      except Exception, ex:
+      except Exception as ex:
         self.log.error("Could not compute metadata")
         self.log.error(ex)
         continue
@@ -581,7 +582,7 @@ class WFCatalogCollector():
     # Get the neighbouring files and windows for a given file
     try:
       fas = self._collectFilesAndSegments(file)
-    except Exception, ex:
+    except Exception as ex:
       self.log.error("Could not get neighbouring files")
       self.log.error(ex)
       return
@@ -591,7 +592,7 @@ class WFCatalogCollector():
       granule = fas['segments']['daily']
       daily_meta = self._callObsPyMetadata(fas['files'], granule['start'], granule['end'], 'daily')
       daily_meta.update({'fileId': os.path.basename(file)})
-    except Exception, ex:
+    except Exception as ex:
       self.log.error("Could not get daily metadata for %s" % os.path.basename(file)) 
       self.log.error(ex) 
       return
@@ -603,7 +604,7 @@ class WFCatalogCollector():
         hourly_meta = self._callObsPyMetadata(fas['files'], granule['start'], granule['end'], 'hourly')
         hourly_meta.update({'fileId': os.path.basename(file)})
         hourly_meta_array.append(hourly_meta)
-      except Exception, ex:
+      except Exception as ex:
         if(str(ex) != "No data within the temporal constraints."):
           self.log.error("Could not get hourly metadata for %s" % os.path.basename(file)) 
           self.log.error(ex) 
@@ -638,7 +639,7 @@ class WFCatalogCollector():
           mongo_id = document['_id']
           self.mongo.removeDocumentsById(mongo_id)
           self.log.info("Succesfully removed document related to id %s." % mongo_id)
-      except Exception, ex:
+      except Exception as ex:
         self.log.error("Could not remove documents with id %s." % mongo_id)
         self.log.exception(ex)
         return
@@ -654,7 +655,7 @@ class WFCatalogCollector():
       qc_metadata_daily = self._getDatabaseKeyMap(documents['daily'], None)
       id = self.mongo._storeGranule(qc_metadata_daily, 'daily')
       self.log.info("Succesfully stored daily granule %s" % id)
-    except Exception, ex:
+    except Exception as ex:
       self.log.error("Could not store daily granule document to database")
       self.log.exception(ex)
       return
@@ -666,7 +667,7 @@ class WFCatalogCollector():
           qc_metadata = self._getDatabaseKeyMap(granule, id)
           self.mongo._storeGranule(qc_metadata, 'hourly')
           self.log.info("[%d/%d] Succesfully stored hourly granule" % (i + 1, len(documents['hourly'])))
-        except Exception, ex:
+        except Exception as ex:
           self.log.error("Could not store hourly granule document to database")
           self.log.exception(ex)
 
@@ -676,7 +677,7 @@ class WFCatalogCollector():
         try:
           qc_metadata = self._getDatabaseKeyMapContinuous(segment, id)
           self.mongo.storeContinuousSegment(qc_metadata)
-        except Exception, ex:
+        except Exception as ex:
           self.log.exception("Could not store continuous segment to database")
       self.log.info("Succesfully stored %d continuous segment(s) to database" % len(documents['daily']['c_segments']))
 
@@ -949,7 +950,7 @@ class WFCatalogCollector():
         while len(buf) > 0:
           hasher.update(buf)
           buf = afile.read(BLOCKSIZE)
-    except Exception, ex:
+    except Exception as ex:
       self.log.error(ex)
       raise
 
@@ -1097,7 +1098,7 @@ class WFCatalogCollector():
     > dumps script configuration to screen
     """
 
-    print json.dumps(CONFIG, indent=2)
+    print(json.dumps(CONFIG, indent=2))
 
 
   def _collectFilesAndSegments(self, file):
