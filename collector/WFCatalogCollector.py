@@ -792,9 +792,11 @@ class WFCatalogCollector():
     Get the id of the data object or store a new one
     """
 
+    # If the extension exists in the table
     for document in self.mongo.getFileDataObject(file):
       return document['_id']
-    
+
+    # Otherwise create it
     return self.mongo._storeFileDataObject(self._createDataObject(file))
   
 
@@ -805,6 +807,7 @@ class WFCatalogCollector():
     """
 
     # Create data object literal with additional metadata
+    # !!! MODIFY !!!
     document = {
       'fileId': os.path.basename(file),
       'dc:identifier': 'actionable pid',
@@ -1154,7 +1157,7 @@ class MongoDatabase():
     """
     MongoDatabase.getFileDataObject
     """
-    return self.db.file_metadata.find({'fileId': os.path.basename(file)})
+    return self.db.wf_do.find({'fileId': os.path.basename(file)})
 
   def _storeFileDataObject(self, obj):
     """
