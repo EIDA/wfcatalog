@@ -1156,6 +1156,9 @@ class MongoDatabase():
     self.client.server_info()
     self.db = self.client[CONFIG['MONGO']['DB_NAME']]
 
+    if CONFIG['MONGO']['AUTHENTICATE']:
+      self.db.authenticate(CONFIG['MONGO']['USER'], CONFIG['MONGO']['PASS'])
+
   def getFileDataObject(self, file):
     """
     MongoDatabase.getFileDataObject

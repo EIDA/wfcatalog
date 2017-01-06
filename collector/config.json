@@ -8,6 +8,9 @@
     "ENABLED": true,
     "DB_HOST": "mongodb://localhost:27017/",
     "DB_NAME": "wfrepo",
+    "USER": "user",
+    "PASS": "pass",
+    "AUTHENTICATE": false,
     "ALLOW_DOUBLE": false
   },
   "ARCHIVE_ROOT": "/nobackup/users/koymans/SDSNL/",
