@@ -150,6 +150,7 @@ class WFCatalogCollector():
       'csegs': False,
       'flags': False,
       'hourly': False,
+      'delete': False,
       'update': False,
       'force': False,
       'config': False,
@@ -205,10 +206,31 @@ class WFCatalogCollector():
     # 3. process them
     self._getFiles()
     self._filterFiles()
-    self._processFiles()
+
+    # Delete or process files
+    if self.args['delete']:
+      self._deleteFiles()
+    else:
+      self._processFiles()
 
     self.log.info("WFCollector synchronization completed in %s." % (datetime.datetime.now() - self.timeInitialized))
       
+
+  def _deleteFiles(self):
+    """
+    WFCatalogCollector._deleteFiles
+    Removes files from database
+    """
+    for file in self.files:
+      for document in self.mongo.getDocumentByFilename(file):
+        try:
+          mongo_id = document['_id']
+          self.mongo.removeDocumentsById(mongo_id)
+          self.log.info("Succesfully removed document related to id %s." % mongo_id)
+        except Exception as ex:
+          self.log.error("Could not remove documents with id %s." % mongo_id)
+          self.log.exception(ex)
+
 
   def _processFiles(self):
     """
@@ -434,6 +456,10 @@ class WFCatalogCollector():
     self._validateFilters()
 
     self.files = [f for f in self.files if self._passFilter(os.path.basename(f))]
+
+    # Return immediately if deleting 
+    if self.args['delete']:
+      return
 
     # Get the new files from the directory that are not in the database
     new_files = [file for file in self.files if self._isNewDocument(file)]
@@ -1248,6 +1274,7 @@ if __name__ == '__main__':
   # Updates can be forced (without checksum check)
   parser.add_argument('--update', help='update existing documents in the database', action='store_true')
   parser.add_argument('--force', help='force file updates', action='store_true')
+  parser.add_argument('--delete', help='delete files from database', action='store_true')
 
   # Get parsed arguments as a JSON dict to match
   # compatibility with an imported class
