@@ -4,7 +4,9 @@
 
 <p> The EIDAWS WFCatalog provides access to metadata and quality parameters for archives contributing data to EIDA. The supported request types are <b>HTTP-GET</b> and <b>HTTP-POST</b>. Service response is in <b>JSON</b>. Please refer to <a href="http://www.orfeus-eu.org/data/eida/eidaws/wfcatalog/">http://www.orfeus-eu.org/data/eida/eidaws/wfcatalog/</a> for a complete description of the service.
 
-<h2> Available methods for WFCatalog </h2>
+<p> Metadata is presented with a daily granularity. Metadata for the previous day is always available with a maximum delay of 12 hours.
+
+<h2> Available methods for the WFCatalog </h2>
 
 <ul>
   <li><a href="./query/">/query</a> - interface to the WFCatalog
@@ -13,6 +15,8 @@
 </ul>
 
 <h2> Feature Notes </h2>
+
+<h3> Software implementation: </h3>
 
 <ul> 
   <li> Metadata extraction: ObsPy MSEEDMetadata
