@@ -86,6 +86,14 @@ module.exports = function(CONFIG, WFCatalogCallback) {
 
   });
 
+  // Root implementation
+  WFCatalog.get(CONFIG.BASE_URL, function(req, res, next) {
+
+    res.setHeader('Content-Type', 'text/html');
+    res.status(200).sendFile(__dirname + '/root.html');
+
+  });
+
   /*
    * WFCatalog version implementation [MWID1]
    * Serve the configured webservice version
