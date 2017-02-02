@@ -5,7 +5,7 @@
   "PUBLISHER": "OBSPY MSEED-QC",
   "STRUCTURE": "SDS",
   "MONGO": {
-    "ENABLED": true,
+    "ENABLED": false,
     "DB_HOST": "mongodb://localhost:27017/",
     "DB_NAME": "wfrepo",
     "USER": "user",
