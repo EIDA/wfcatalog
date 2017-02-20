@@ -13,7 +13,7 @@
     "AUTHENTICATE": false,
     "ALLOW_DOUBLE": false
   },
-  "ARCHIVE_ROOT": "/nobackup/users/koymans/SDSNL/",
+  "ARCHIVE_ROOT": "/usr/src/collector/wfcatalog/collector/archive",
   "DEFAULT_LOG_FILE": "WFCatalog-collector.log",
   "PROCESSING_TIMEOUT": 120,
   "ENABLE_DUBLIN_CORE": false,
