@@ -1178,7 +1178,7 @@ class MongoDatabase():
     MongoDatabase._connect
     > Sets up connection to the MongoDB
     """
-    self.client = MongoClient(self.host)
+    self.client = MongoClient(self.host, connect=False)
     self.client.server_info()
     self.db = self.client[CONFIG['MONGO']['DB_NAME']]
 
