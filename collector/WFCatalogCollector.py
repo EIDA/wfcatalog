@@ -120,16 +120,6 @@ class WFCatalogCollector():
     self.mongo = MongoDatabase()
     self._setupLogger(logfile)
 
-    # Attempt connection to the database
-    if CONFIG['MONGO']['ENABLED']:
-      try:
-        self.mongo._connect()
-        self.log.info("Connection to the database has been established")
-      except Exception as ex:
-        self.log.critical("Could not establish connection to the database"); sys.exit(0)
-    else:
-      self.log.info("Connection to the database is disabled");
-
 
   def _setOptions(self, user_options):
     """
@@ -198,6 +188,17 @@ class WFCatalogCollector():
     """
 
     self.timeInitialized = datetime.datetime.now()
+
+    # Attempt connection to the database
+    if not self.mongo._connected:
+      if CONFIG['MONGO']['ENABLED']:
+        try:
+          self.mongo._connect()
+          self.log.info("Connection to the database has been established")
+        except Exception as ex:
+          self.log.critical("Could not establish connection to the database"); sys.exit(0)
+      else:
+        self.log.info("Connection to the database is disabled");
 
     self._setOptions(options)
 
@@ -1171,6 +1172,7 @@ class MongoDatabase():
     > sets the configured host
     """
     self.host = CONFIG['MONGO']['DB_HOST']
+    self._connected = False
 
 
   def _connect(self):
@@ -1178,12 +1180,17 @@ class MongoDatabase():
     MongoDatabase._connect
     > Sets up connection to the MongoDB
     """
-    self.client = MongoClient(self.host, connect=False)
-    self.client.server_info()
+
+    if self._connected:
+      return
+
+    self.client = MongoClient(self.host)
     self.db = self.client[CONFIG['MONGO']['DB_NAME']]
 
     if CONFIG['MONGO']['AUTHENTICATE']:
       self.db.authenticate(CONFIG['MONGO']['USER'], CONFIG['MONGO']['PASS'])
+
+    self._connected = True
 
   def getFileDataObject(self, file):
     """
