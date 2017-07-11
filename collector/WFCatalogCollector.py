@@ -222,8 +222,22 @@ class WFCatalogCollector():
     WFCatalogCollector._deleteFiles
     Removes files from database
     """
+
+    update_files = []
+
     for file in self.files:
+
+      # Set update for dependents on the file to be deleted
+      for documents in self.mongo.getDailyFilesById(file):
+
+        # Make sure to not update self or any file included in deletion
+        if self._getFullPath(documents["fileId"]) not in self.files:
+          self.log.info("Stage dependent file for update %s" % documents["fileId"])
+          update_files.append(self._getFullPath(documents["fileId"]))
+
+      # Remove the document
       for document in self.mongo.getDocumentByFilename(file):
+           
         try:
           mongo_id = document['_id']
           self.mongo.removeDocumentsById(mongo_id)
@@ -231,6 +245,11 @@ class WFCatalogCollector():
         except Exception as ex:
           self.log.error("Could not remove documents with id %s." % mongo_id)
           self.log.exception(ex)
+
+    # Set some variables and process the files to be updated 
+    self.files = update_files
+    self.totalFiles = len(self.files)
+    self._processFiles()
 
 
   def _processFiles(self):
@@ -492,9 +511,6 @@ class WFCatalogCollector():
     > compares checksums in database against files in a directory
     """
 
-    # Caches for files that we have the MD5 for
-    hash_cache = {}
-
     changedFiles = []
 
     if self.args['force']:
@@ -504,44 +520,39 @@ class WFCatalogCollector():
 
     # Go over all the files in the input
     for file in self.files:
+    
+      # Get the documents that depend on this file
+      # under document.files
+      for document in self.mongo.getDailyFilesById(file): 
 
-      # Get the document that belongs to this file from the database
-      # if the file is not in the database it returns an empty array
-      for document in self.mongo.getDocumentByFilename(file): 
-
-        # The document update is forced by the user for every file
+        # The document update is forced
+        # We must update every document that depends on the file
         if self.args['force']:
-          self.log.info("Forcing update on %s" % document['fileId']) 
-          changedFiles.append(self._getFullPath(document['fileId']))
-          break
+          self.log.info("Forcing update on %s" % document["fileId"])
+          changedFiles.append(document["fileId"])
+          continue
 
-        self.log.info("Comparing MD5checksums for %s" % document['fileId']) 
-
-        # If not forced, we must complete a checksum comparison
-        # Loop over all the files this file depends on
-        # In other words day 002 may be dependent on 002 and 003 because
-        # a record beloning to day 002 may be present in 003. Therefore, if 003 changes
-        # we will need to reprocess 002 as well
+        # Loop over all the used files
         for used_files in document['files']:
 
-          # Not in cache, get the MD5 hash of the file and compare against db response
-          # Add hash to the cache
-          if not used_files['name'] in hash_cache:
-            fullPath = self._getFullPath(used_files['name'])
-            MD5Hash = self._getMD5Hash(fullPath)
-            hash_cache[used_files['name']] = MD5Hash
-          else:
-            MD5Hash = hash_cache[used_files['name']]
+          # If not forcing, just check the MD5 hash of the
+          # actual passed file, and the MD5 hash in the database
+          if used_files["name"] != os.path.basename(file):
+            continue
 
-          # Is the database hash different from the file hash? Change detected
-          # Cache any changed/unchanged files so we are not required to recalculate the checksum
+          self.log.info("Comparing MD5checksums for %s" % used_files['name'])
+          
+          fullPath = self._getFullPath(os.path.basename(file))
+          MD5Hash = self._getMD5Hash(fullPath)
+
+          # Compare the checksum
           if MD5Hash != used_files['chksm']:
-            changedFiles.append(self._getFullPath(document['fileId'])) 
-            self.log.info("Detected MD5checksum change for %s" % document['fileId']) 
-            break
 
+            self.log.info("Detected MD5checksum change for %s" % used_files['name'])
+            self.log.info("Adding file %s for updating" % document["fileId"])
+            changedFiles.append(document["fileId"])
     
-    return changedFiles
+    return list(set([self._getFullPath(filename) for filename in changedFiles]))
      
       
   def _getFullPath(self, file):
@@ -608,6 +619,10 @@ class WFCatalogCollector():
     """
     self.file_counter += 1
 
+    if not os.path.isfile(file):
+      self.log.info("File no longer exists in archive %s" % os.path.basename(file))
+      return
+
     # Get the neighbouring files and windows for a given file
     try:
       fas = self._collectFilesAndSegments(file)
@@ -662,7 +677,7 @@ class WFCatalogCollector():
       return
 
     # When updating, make sure we remove the previous document
-    if self.args['update']:
+    if self.args['update'] or self.args['delete']:
       try:
         for document in self.mongo.getDocumentByFilename(documents['daily']['fileId']):
           mongo_id = document['_id']
@@ -984,7 +999,7 @@ class WFCatalogCollector():
           buf = afile.read(BLOCKSIZE)
     except Exception as ex:
       self.log.error(ex)
-      raise
+      return None
 
     return hasher.hexdigest()
 
