@@ -87,6 +87,7 @@ import warnings
 import sys
 import fnmatch
 import signal
+import glob
 
 def handler(signum, frame):
   raise Exception("Metric calculation has timed out")
@@ -134,6 +135,7 @@ class WFCatalogCollector():
       'range': 1,
       'file': None,
       'dir': None,
+      'glob': None,
       'list': None,
       'past': None,
       'date': None,
@@ -154,7 +156,7 @@ class WFCatalogCollector():
     self.args = default_options
 
     # Check if there is a single input method
-    nInput = 5 - [self.args['date'], self.args['file'], self.args['dir'], self.args['list'], self.args['past']].count(None)
+    nInput = 7 - [self.args['date'], self.args['file'], self.args['dir'], self.args['list'], self.args['past'], self.args['date'], self.args['glob']].count(None)
     if nInput == 0:
       raise Exception("No input was given");
     if nInput > 1:
@@ -429,6 +431,11 @@ class WFCatalogCollector():
       # Collect all the files (recursively) from a directory and add them
       self.files = [os.path.join(root, f) for root, dirs, files in os.walk(self.args['dir']) for f in files if os.path.isfile(os.path.join(root, f))]
       self.log.info("Collected %d file(s) from directory %s" % (len(self.files), self.args['dir']))
+
+    # If globbing match all files
+    elif self.args['glob']:
+      self.files = glob.glob(self.args['glob'])
+      self.files = [f for f in self.files if os.path.isfile(f)]
 
     # Single file as input
     elif self.args['file']:
@@ -1274,6 +1281,7 @@ if __name__ == '__main__':
   # Input file options
   parser.add_argument('--dir', help='directory containing the files to process')
   parser.add_argument('--file', help='specific file to be processed')
+  parser.add_argument('--glob', help='glob expression for files to be processed')
   parser.add_argument('--list', help='specific list of files to be processed ["file1", "file2"]')
   parser.add_argument('--past', help='process files in a specific range in the past', choices=['day', 'yesterday', 'week', 'fortnight', 'month'], default=None)
   parser.add_argument('--date', help='process files for a specific date', default=None)
