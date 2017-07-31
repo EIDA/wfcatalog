@@ -664,13 +664,6 @@ module.exports = function(CONFIG, WFCatalogCallback) {
       // with the query for a new segment
       parseSegmentQuery(req);
 
-      // Log each database request
-      WFCatalogger.trace({
-        "id": req.WFCatalog.requestId,   
-        "query": req.WFCatalog.parsedQuery,
-        "options": req.WFCatalog.options
-      }, 'Database Request');
-
       // Open and initialize the cursor to the daily stream collection
       cursor = Mongo.collection(CONFIG.MONGO.COLLECTION).find(req.WFCatalog.parsedQuery, included);
       cursor.nextObject(processDailyStream);
@@ -1099,6 +1092,14 @@ module.exports = function(CONFIG, WFCatalogCallback) {
 
     // First segment in queue
     var segment = req.WFCatalog.segments.pop();
+
+    // Log each database request
+    WFCatalogger.trace({
+      "id": req.WFCatalog.requestId,
+      "query": req.WFCatalog.parsedQuery,
+      "segment": segment,
+      "options": req.WFCatalog.options
+    }, 'Database Request');
 
     // Round outwardly to the nearest day
     segment.ts = new Date(DAILY_MS * Math.floor(segment.ts / DAILY_MS));
