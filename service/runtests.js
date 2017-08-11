@@ -508,7 +508,7 @@ var suite = function () {
   this.testWADL = function(callback) {
 
     // Create MD5 hash
-    var EXPECTED_WADL_HASH = "eaa723f996ec3431e84cf845f8dff9ca";
+    var EXPECTED_WADL_HASH = "528282124128277283c18c68e82a3f56";
 
     var hash = require('crypto').createHash('md5')
     var options = getOptions('GET', CONFIG.BASE_URL + 'application.wadl');
