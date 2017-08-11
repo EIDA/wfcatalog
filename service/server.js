@@ -67,6 +67,17 @@ module.exports = function(CONFIG, WFCatalogCallback) {
   // The service is powered by express
   var WFCatalog = require('express')();
 
+  // Middleware for trailing slashes
+  WFCatalog.use(function(req, res, next) {
+
+     if(req.url.substr(-1) === "/" && req.url.length > 1) {
+       res.redirect(301, req.url.slice(0, -1));
+     } else {
+       next();
+     }
+
+  });
+
   /*
    * WFCatalog Middleware [MWID0]
    * Allow Cross Origin from anywhere
