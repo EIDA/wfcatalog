@@ -67,17 +67,6 @@ module.exports = function(CONFIG, WFCatalogCallback) {
   // The service is powered by express
   var WFCatalog = require('express')();
 
-  // Middleware for trailing slashes
-  WFCatalog.use(function(req, res, next) {
-
-     if(req.url.substr(-1) === "/" && req.url.length > 1) {
-       res.redirect(301, req.url.slice(0, -1));
-     } else {
-       next();
-     }
-
-  });
-
   /*
    * WFCatalog Middleware [MWID0]
    * Allow Cross Origin from anywhere
@@ -100,8 +89,16 @@ module.exports = function(CONFIG, WFCatalogCallback) {
   // Root implementation
   WFCatalog.get(CONFIG.BASE_URL, function(req, res, next) {
 
-    res.setHeader('Content-Type', 'text/html');
-    res.status(200).sendFile(__dirname + '/root.html');
+    if(req.url.substr(-1) !== "/") {
+
+      res.redirect(301, req.url + "/");
+
+    } else {
+
+      res.setHeader('Content-Type', 'text/html');
+      res.status(200).sendFile(__dirname + '/root.html');
+
+    }
 
   });
 
