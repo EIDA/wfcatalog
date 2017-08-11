@@ -5,7 +5,7 @@
   "VERSION": "1.0.0",
   "VERSION_DATE": "2016.06.08",
   "DOCUMENTATION_URI": "ENTER_URI_HERE",
-  "BASE_URL": "/wfcatalog/alpha/",
+  "BASE_URL": "/eidaws/wfcatalog/1/",
   "HOST": "127.0.0.1",
   "PORT": 3000,
   "LOGPATH": "./logs/",
