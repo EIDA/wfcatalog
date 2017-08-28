@@ -156,7 +156,7 @@ class WFCatalogCollector():
     self.args = default_options
 
     # Check if there is a single input method
-    nInput = 7 - [self.args['date'], self.args['file'], self.args['dir'], self.args['list'], self.args['past'], self.args['date'], self.args['glob']].count(None)
+    nInput = 6 - [self.args['date'], self.args['file'], self.args['dir'], self.args['list'], self.args['past'], self.args['glob']].count(None)
     if nInput == 0:
       raise Exception("No input was given");
     if nInput > 1:
