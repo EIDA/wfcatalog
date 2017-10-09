@@ -653,6 +653,21 @@ module.exports = function(CONFIG, WFCatalogCallback) {
     // Get the metrics to be included in the database response
     var included = getIncludedMetrics(req.WFCatalog.options.include);
 
+    if(CONFIG.FILTER.ENABLED) {
+
+      // Make sure to filter by streams but this may be slower
+      if(CONFIG.FILTER.STREAMS.length > 0) {
+        req.WFCatalog.parsedQuery["fileId"] = {
+          "$nin": CONFIG.FILTER.STREAMS.map(function(x) {
+            return replaceWildcards(x);
+          }).filter(function(x) {
+            return x !== null;
+          })
+        }
+      }
+
+    }
+
     req.WFCatalog.dbRequestStart = new Date();
     req.WFCatalog.nSegments = req.WFCatalog.segments.length;
     req.WFCatalog.nDocuments = 0;

@@ -17,6 +17,10 @@
   "WORKER": 0,
   "MAXIMUM_CORES": 4,
   "MAXIMUM_BYTES_RETURNED": 10e6,
+  "FILTER": {
+    "ENABLED": false,
+    "STREAMS": []
+  },
   "ELASTICSEARCH": {
     "ENABLED": false,
     "HOST": "127.0.0.1",
