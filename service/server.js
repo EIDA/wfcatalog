@@ -350,7 +350,7 @@ module.exports = function(CONFIG, WFCatalogCallback) {
 
     // Get key=value parameters
     var parameters = lines.filter(function(x) {
-      return /^\w+=[\w,]+$/.test(x);
+      return /^\w+=.+$/.test(x);
     });
 
     if(req.WFCatalog.segments.length + parameters.length !== lines.length) {
