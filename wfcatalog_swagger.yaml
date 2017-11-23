@@ -1,0 +1,602 @@
+swagger: "2.0"
+info:
+  description: "EIDA Web Services"
+  version: "1.0.0"
+  title: "EIDA Web Services"
+  termsOfService: "https://www.orfeus-eu.org/data/eida/webservices/"
+  contact:
+    email: "info@orfeus.eu"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "orfeus-eu.org"
+basePath: "/eidaws/"
+tags:
+- name: "wfcatalog"
+  description: "**Waveform data catalog**\nRequest options under ***Sample Metrics***, ***Header Flag*** and ***Timing Quality*** can be filtered by appending a range filtering syntax to the end of the option.\n* _eq - Equal to\n* _gt - Greater than\n* _ge - Greater or equal to\n* _lt - Less than\n* _le - Less or equal to\n* _ne - Not equal to\n\n**Example:**\nWaveform metadata documents with an availability above 95 percent can thus be found using:\npercentage_availability_gt=95"
+  externalDocs:
+    description: "GitHub Repository"
+    url: "https://github.com/EIDA/wfcatalog"
+schemes:
+- "https"
+paths:
+  # WFCatalog *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+  /wfcatalog/1/query:
+    get:
+      tags:
+      - "wfcatalog"
+      summary: "Obtain Waveform Data"
+      description: ""
+      operationId: "wfcatalogGetOpId"
+      produces:
+      - "application/json"
+      parameters:
+      # Temporal Constraints *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "starttime"
+        in: "query"
+        description: "(Temporal Constraint) Start time for time window in UTC; ISO-8601 i.e. 2017-11-19T12:00:00Z"
+        required: true
+        type: "string"
+        format: "date-time"
+      - name: "endtime"
+        in: "query"
+        description: "(Temporal Constraint) Endtime for time window in UTC; ISO-8601 i.e. 2017-11-20T12:00:00Z"
+        required: true
+        type: "string"
+        format: "date-time"
+      # SEED Identifiers *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "network"
+        in: "query"
+        description: "(SEED Identifier) SEED Network code"
+        required: false
+        type: "string"
+      - name: "station"
+        in: "query"
+        description: "(SEED Identifier) SEED Station code"
+        required: false
+        type: "string"
+      - name: "location"
+        in: "query"
+        description: "(SEED Identifier) SEED Location code. Use -- for blank location identifiers"
+        required: false
+        type: "string"
+      - name: "channel"
+        in: "query"
+        description: "(SEED Identifier) SEED Channel code"
+        required: false
+        type: "string"
+      # Request Options *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "csegments"
+        in: "query"
+        description: "(Request Option) Include continuous segments"
+        required: false
+        type: "boolean"
+      - name: "format"
+        in: "query"
+        description: "(Request Option) Response"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "json"
+          - "miniSEED"
+          default: "json"
+      - name: "granularity"
+        in: "query"
+        description: "(Request Option) Granularity of metrics"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "day"
+          default: "day"
+      - name: "include"
+        in: "query"
+        description: "(Request Option) Level of detail"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "default"
+          - "sample"
+          - "header"
+          - "all"
+          default: "default"
+      - name: "longestonly"
+        in: "query"
+        description: "(Request Option) Limit to single continuous segment that is the longest"
+        required: false
+        type: "boolean"
+      - name: "minimumlength"
+        in: "query"
+        description: "(Request Option) Limit to continuous segment longer than this length"
+        required: false
+        type: "number"
+        format: "float"
+      # Record Options *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "encoding"
+        in: "query"
+        description: "(Record Option) Waveform data encoding"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "STEIM2"
+          default: "STEIM2"
+      - name: "num_records"
+        in: "query"
+        description: "(Record Option) Number of records in document"
+        required: false
+        type: "integer"
+      - name: "quality"
+        in: "query"
+        description: "(Record Option) SEED Quality code"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "D"
+          - "R"
+          - "Q"
+          - "M"
+          default: "D"
+      - name: "record_length"
+        in: "query"
+        description: "(Record Option) Record length"
+        required: false
+        type: "integer"
+      - name: "sample_rate"
+        in: "query"
+        description: "(Record Option) Number of samples per second"
+        required: false
+        type: "number"
+        format: "float"
+      # Sample Metric Options *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "max_gap"
+        in: "query"
+        description: "(Sample Metric Option) Maximum gap length in seconds"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "max_overlap"
+        in: "query"
+        description: "(Sample Metric Option) Maximum overlap length in seconds"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "num_gaps"
+        in: "query"
+        description: "(Sample Metric Option) Number of gaps"
+        required: false
+        type: "integer"
+      - name: "num_overlaps"
+        in: "query"
+        description: "(Sample Metric Option) Number of overlaps"
+        required: false
+        type: "integer"
+      - name: "num_samples"
+        in: "query"
+        description: "(Sample Metric Option) Number of samples"
+        required: false
+        type: "integer"
+      - name: "percent_availability"
+        in: "query"
+        description: "(Sample Metric Option) Percentage of available data"
+        required: false
+        type: "integer"
+      - name: "sample_max"
+        in: "query"
+        description: "(Sample Metric Option) Maximum sample value"
+        required: false
+        type: "integer"
+      - name: "sample_min"
+        in: "query"
+        description: "(Sample Metric Option) Minimum sample value"
+        required: false
+        type: "integer"
+      - name: "sample_mean"
+        in: "query"
+        description: "(Sample Metric Option) Mean sample value"
+        required: false
+        type: "integer"
+      - name: "sample_rms"
+        in: "query"
+        description: "(Sample Metric Option) Quadratic mean of samples"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "sample_stdev"
+        in: "query"
+        description: "(Sample Metric Option) Standard deviation of samples"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "sample_lower_quartile"
+        in: "query"
+        description: "(Sample Metric Option) 25th percentile of samples"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "sample_median"
+        in: "query"
+        description: "(Sample Metric Option) 50th percentile of samples"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "sample_upper_quartile"
+        in: "query"
+        description: "(Sample Metric Option) 75th percentile of samples"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "sum_gaps"
+        in: "query"
+        description: "(Sample Metric Option) Sum of data gaps in seconds"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "sum_overlaps"
+        in: "query"
+        description: "(Sample Metric Option) Sum of data overlaps in seconds"
+        required: false
+        type: "number"
+        format: "float"
+      # Header Flag Options *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "amplifier_saturation"
+        in: "query"
+        description: "(Header Flag Option) Data with quality flags bit 0 set"
+        required: false
+        type: "integer"
+      - name: "calibration_signal"
+        in: "query"
+        description: "(Header Flag Option) Data with activity flags bit 0 set"
+        required: false
+        type: "integer"
+      - name: "clock_locked"
+        in: "query"
+        description: "(Header Flag Option) Data with io-and-clock flags bit 5 set"
+        required: false
+        type: "integer"
+      - name: "digital_filter_charging"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 6 set"
+        required: false
+        type: "integer"
+      - name: "digitizer_clipping"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 1 set"
+        required: false
+        type: "integer"
+      - name: "start_time_series"
+        in: "query"
+        description: "(Header Flag Option) Data with io-and-clock flags bit 3 set"
+        required: false
+        type: "integer"
+      - name: "end_time_series"
+        in: "query"
+        description: "(Header Flag Option) Data with io-and-clock flags bit 4 set"
+        required: false
+        type: "integer"
+      - name: "event_begin"
+        in: "query"
+        description: "(Header Flag Option) Data with activity flags bit 2 set"
+        required: false
+        type: "integer"
+      - name: "event_end"
+        in: "query"
+        description: "(Header Flag Option) Data with activity flags bit 3 set"
+        required: false
+        type: "integer"
+      - name: "event_in_progress"
+        in: "query"
+        description: "(Header Flag Option) Data with activity flags bit 6 set"
+        required: false
+        type: "integer"
+      - name: "glitches"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 3 set"
+        required: false
+        type: "integer"
+      - name: "long_record_read"
+        in: "query"
+        description: "(Header Flag Option) Data with io-and-clock flags bit 1 set"
+        required: false
+        type: "integer"
+      - name: "missing_padded_data"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 4 set"
+        required: false
+        type: "integer"
+      - name: "positive_leap"
+        in: "query"
+        description: "(Header Flag Option) Data with activity flags bit 4 set"
+        required: false
+        type: "integer"
+      - name: "short_record_read"
+        in: "query"
+        description: "(Header Flag Option) Data with io-and-clock flags bit 2 set"
+        required: false
+        type: "integer"
+      - name: "spikes"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 2 set"
+        required: false
+        type: "integer"
+      - name: "station_volume"
+        in: "query"
+        description: "(Header Flag Option) Data with io-and-clock flags bit 0 set"
+        required: false
+        type: "integer"
+      - name: "suspect_time_tag"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 7 set"
+        required: false
+        type: "integer"
+      - name: "telemetry_sync_error"
+        in: "query"
+        description: "(Header Flag Option) Data with data quality flags bit 5 set"
+        required: false
+        type: "integer"
+      - name: "time_correction_applied"
+        in: "query"
+        description: "(Header Flag Option) Data with activity flags bit 1 set"
+        required: false
+        type: "integer"
+      # Timing Quality Options *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+      - name: "timing_correction"
+        in: "query"
+        description: "(Timing Quality Option) Data with header field 16 to non-zero"
+        required: false
+        type: "integer"
+      - name: "timing_quality_max"
+        in: "query"
+        description: "(Timing Quality Option) Maximum timing quality value"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "timing_quality_min"
+        in: "query"
+        description: "(Timing Quality Option) Minimum timing quality value"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "timing_quality_mean"
+        in: "query"
+        description: "(Timing Quality Option) Mean timing quality value"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "timing_quality_median"
+        in: "query"
+        description: "(Timing Quality Option) 50th percentile of timing quality values"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "timing_quality_lower_quartile"
+        in: "query"
+        description: "(Timing Quality Option) 25th percentile of timing quality values"
+        required: false
+        type: "number"
+        format: "float"
+      - name: "timing_quality_upper_quartile"
+        in: "query"
+        description: "(Timing Quality Option) 75th percentile of timing quality values"
+        required: false
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "Successful request, results follow"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/WfCatalogResponseObject"
+        204:
+          description: "Request was properly formatted and submitted but no data matches the selection"
+        400:
+          description: "Bad request due to improper specification, unrecognised parameter, parameter value out of range, etc."
+        413:
+          description: "Request would result in too much data being returned or the request itself is too large. Returned error message should include the service limitations in the detailed description. Service limits should be documented in the WADL"
+        500:
+          description: "Internal server error"
+        503:
+          description: "Service temporarily unavailable, used in maintenance mode"
+      security:
+      - eida_auth:
+        - "read:wfcatalog"
+    post:
+      tags:
+      - "wfcatalog"
+      summary: "Obtain Waveform Data"
+      description: ""
+      operationId: "wfcatalogPostOpId"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "file"
+        in: "formData"
+        description: "A plain-text file containing a selection list can be sent to the service. The contents of this message may contain multiple streams and traces to be downloaded. Each line must contain the SEED stream identifiers delimited by a space, followed by the trace starttime and endtime. Empty fields are marked by an asterisk."
+        required: true
+        type: "file"
+      responses:
+        200:
+          description: "Successful request, results follow"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/WfCatalogResponseObject"
+        204:
+          description: "Request was properly formatted and submitted but no data matches the selection"
+        400:
+          description: "Bad request due to improper specification, unrecognised parameter, parameter value out of range, etc."
+        413:
+          description: "Request would result in too much data being returned or the request itself is too large. Returned error message should include the service limitations in the detailed description. Service limits should be documented in the WADL"
+        500:
+          description: "Internal server error"
+        503:
+          description: "Service temporarily unavailable, used in maintenance mode"
+      security:
+      - eida_auth:
+        - "read:wfcatalog"
+securityDefinitions:
+  eida_auth:
+    type: "oauth2"
+    authorizationUrl: "http://orfeus-eu.org/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:wfcatalog: "modify"
+      read:wfcatalog: "read"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  WfCatalogResponseObject:
+    type: "object"
+    properties:
+      version:
+        type: "string"
+        example: "1.0.0"
+      producer:
+        $ref: "#/definitions/Producer"
+      station:
+        type: "string"
+        example: "HGN"
+      network:
+        type: "string"
+        example: "NL"
+      location:
+        type: "string"
+        example: "02"
+      channel:
+        type: "string"
+        example: "BHE"
+      num_gaps:
+        type: "integer"
+        example: "0"
+      num_overlaps:
+        type: "integer"
+        example: "0"
+      sum_gaps:
+        type: "number"
+        format: "float"
+        example: "0"
+      sum_overlaps:
+        type: "number"
+        format: "float"
+        example: "0"
+      max_gap:
+        type: "number"
+        format: "float"
+        description: "Nullable!"
+        example: "null"
+      max_overlap:
+        type: "number"
+        format: "float"
+        description: "Nullable!"
+        example: "null"
+      record_length:
+        $ref: "#/definitions/RecordLength"
+      sample_rate:
+        $ref: "#/definitions/SampleRate"
+      percent_availability:
+        type: "integer"
+        example: "100"
+      encoding:
+        $ref: "#/definitions/Encoding"
+      num_records:
+        type: "integer"
+        example: "9268"
+      start_time:
+        type: "string"
+        format: "date-time"
+        example: "2017-11-20T00:00:00.000Z"
+      end_time:
+        type: "string"
+        format: "date-time"
+        example: "2017-11-21T00:00:00.000Z"
+      format:
+        type: "string"
+        enum:
+          - "json"
+          - "miniSEED"
+      quality:
+        type: "string"
+        enum:
+          - "D"
+          - "R"
+          - "Q"
+          - "M"
+      sample_min:
+        type: "integer"
+        example: "-32279"
+      sample_max:
+        type: "integer"
+        example: "33696"
+      sample_mean:
+        type: "number"
+        format: "float"
+        example: "260.63848466435184"
+      sample_median:
+        type: "number"
+        format: "float"
+        example: "266"
+      sample_stdev:
+        type: "number"
+        format: "float"
+        example: "1980.8370410545583"
+      sample_rms:
+        type: "number"
+        format: "float"
+        example: "1997.910859598573"
+      sample_lower_quartile:
+        type: "number"
+        format: "float"
+        example: "-1004"
+      sample_upper_quartile:
+        type: "number"
+        format: "float"
+        example: "1505"
+  Producer:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "ORFEUS ODC/KNMI"
+      agent:
+        type: "string"
+        example: "ObsPy mSEED-QC"
+      created:
+        type: "string"
+        example: "2017-11-21T04:52:02.819Z"
+  RecordLength:
+    type: "object"
+    properties:
+      array:
+        type: "array"
+        items:
+          type: "integer"
+          example: "512"
+  SampleRate:
+    type: "object"
+    properties:
+      array:
+        type: "array"
+        items:
+          type: "integer"
+          example: "40"
+  Encoding:
+    type: "object"
+    properties:
+      array:
+        type: "array"
+        items:
+          type: "string"
+          example: "STEIM2"
