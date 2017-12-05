@@ -1,0 +1,85 @@
+   <!-- Bootstrap core CSS -->
+  <link href="./css/bootstrap.css" rel="stylesheet">
+
+  <div id="msiModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 900px;">
+      <div class="modal-content">
+        <div class="alert alert-warning" style="margin: 0px;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+          <h4 id="segmentTitle" style="text-align: center;"> </h4>
+          <div style="text-align: center;"><b>
+          <div style="border: 1px solid rgb(138, 109, 59); width: 20px; height: 10px; background-color:rgb(119, 191, 152); display: inline-block;"></div> Available &nbsp;
+          <div style="border: 1px solid rgb(138, 109, 59); width: 20px; height: 10px; background-color:rgb(191, 119, 152); display: inline-block;"></div> Gap &nbsp;
+          <div style="border: 1px solid rgb(138, 109, 59); width: 20px; height: 10px; background-color:rgb(119, 152, 191); display: inline-block;"></div> Overlap
+          </b></div>
+          <div id="segmentLine" style="text-align: center;"></div>
+          <div id="segmentText" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 50%; margin: 0 auto;">
+
+    <!-- User Input -->
+    <div style="text-align: center; margin: 6px;">
+      <div style="display: inline-block;">
+        <div class="input-group">
+          <input id="network" type="text" class="form-control" placeholder="Network">
+          <span class="input-group-addon alert-info"></span>
+          <input id="station" type="text" class="form-control" placeholder="Station">
+          <span class="input-group-addon alert-info"> from </span>
+          <input type="text" class="form-control" name="date" id="dateMin" placeholder="yyyy-mm-dd"/>
+          <span class="input-group-addon alert-info"> to </span>
+          <input type="text" class="form-control" name="date" id="dateMax" placeholder="yyyy-mm-dd"/>
+          <span class="input-group-btn">
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /input-group -->
+    </div>
+  
+             
+    <div style="text-align: center; margin: 6px;">
+      <button class="btn btn-info" type="button" id="request"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> View Data Availability</button>
+    </div>
+             
+    <p>
+  
+    <!-- progress bar -->
+    <div class="progress" id="progress" style="display: none;">
+      <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        <b> Loading Availability from ODC WFCatalog</b>
+      </div>
+    </div>
+  
+    <!-- Controls for changing stream -->
+    <div id="controls" style="display: none;">
+      <div class="input-group">
+        <span class="input-group-addon alert-info">View Channel</span>
+        <select id="channelCodes" class="form-control trigger"></select>
+      </div>
+    </div>
+  
+    <p>
+  
+    <!-- Div for information -->
+    <div id="infoContainer" class="alert alert-warning" style="text-align: center; display: none">
+      <div style="display: inline-block;" id="chartInformation"></div>
+    </div>
+  
+    <!-- Div for calendars -->
+    <div id="calendars" class="table-responsive" style="text-align: center; padding: 10px;"></div>
+
+  </div>
+  
+  <!-- jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  
+  <!-- Bootstrap JS -->
+  <script src="./js/bootstrap.min.js"></script>
+  
+  <!-- Src for availabiltiy calendar -->
+  <script src="./js/calendar.js"></script>
+  <script src="./js/rainbow.js"></script>
+  <script src="./js/timec.js"></script>
+  <script src="./js/interface.js"></script>
