@@ -790,7 +790,9 @@ module.exports = function(CONFIG, WFCatalogCallback) {
 
   var serverOptions = {
     'auto_reconnect': CONFIG.MONGO.AUTO_RECONNECT,
-    'poolSize': CONFIG.MONGO.POOL_SIZE
+    'poolSize': CONFIG.MONGO.POOL_SIZE,
+    'reconnectTries': 3600 * 24,
+    'reconnectInterval': 1000
   }
 
   MongoClient.connect(CONFIG.MONGO.AUTHHOST, {'server': serverOptions}, function(err, db) {
