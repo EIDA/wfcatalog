@@ -168,7 +168,7 @@ module.exports = function(CONFIG, WFCatalogCallback) {
       // Log finished HTTP request
       WFCatalogger.info({
         'code': res.statusCode,
-        'client': req.connection.remoteAddress,
+        'client': req.headers['x-forwarded-for'] || req.connection.remoteAddress,
         'message': res.statusMessage,
         'method': req.method,
         'id': req.WFCatalog.requestId,
