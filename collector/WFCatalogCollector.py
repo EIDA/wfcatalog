@@ -394,7 +394,7 @@ class WFCatalogCollector():
     elif CONFIG['STRUCTURE'] == 'SDS':
       collectedFiles = []
       directory = os.path.join(CONFIG['ARCHIVE_ROOT'], year)
-      for subdir, dirs, files in os.walk(directory):
+      for subdir, dirs, files in os.walk(directory, followlinks=True):
         for file in files:
           if file.endswith(jday) and os.path.isfile(os.path.join(subdir, file)):
             collectedFiles.append(os.path.join(subdir, file))
