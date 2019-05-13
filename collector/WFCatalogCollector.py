@@ -448,7 +448,14 @@ class WFCatalogCollector():
     # Specific date as input (with optional range)
     elif self.args['date']:
       self.files = []
-      specific_date = datetime.datetime.strptime(self.args['date'], "%Y-%m-%d")
+      # Date type 2019-01-01
+      if re.match(r'^[0-9]{4}-[0-9]{2}-[0-9]{2}$', self.args['date']):
+        specific_date = datetime.datetime.strptime(self.args['date'], "%Y-%m-%d")
+      # Date type 2019-001
+      elif re.match(r'^[0-9]{4}-[0-9]{3}$', self.args['date']):
+        specific_date = datetime.datetime.strptime(self.args['date'], "%Y-%j")
+      else:
+        raise ValueError('Invalid date specification: %s' % self.args['date'])
       n_days = int(self.args['range'])
       # Include a given range (default to 1)
       for day in range(abs(n_days)):
