@@ -258,13 +258,13 @@
             <param name="missing_padded_data_ge" style="query" type="xsd:float"/>
             <param name="missing_padded_data_lt" style="query" type="xsd:float"/>
             <param name="missing_padded_data_le" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error_eq" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error_ne" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error_gt" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error_ge" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error_lt" style="query" type="xsd:float"/>
-            <param name="telemtry_sync_error_le" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error_eq" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error_ne" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error_gt" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error_ge" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error_lt" style="query" type="xsd:float"/>
+            <param name="telemetry_sync_error_le" style="query" type="xsd:float"/>
             <param name="digital_filter_charging" style="query" type="xsd:float"/>
             <param name="digital_filter_charging_eq" style="query" type="xsd:float"/>
             <param name="digital_filter_charging_ne" style="query" type="xsd:float"/>
