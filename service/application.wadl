@@ -54,62 +54,326 @@
 
             <!-- Sample Metrics -->
             <param name="num_samples" style="query" type="xsd:int"/>
+            <param name="num_samples_eq" style="query" type="xsd:int"/>
+            <param name="num_samples_ne" style="query" type="xsd:int"/>
+            <param name="num_samples_gt" style="query" type="xsd:int"/>
+            <param name="num_samples_ge" style="query" type="xsd:int"/>
+            <param name="num_samples_lt" style="query" type="xsd:int"/>
+            <param name="num_samples_le" style="query" type="xsd:int"/>
             <param name="sample_max" style="query" type="xsd:int"/>
+            <param name="sample_max_eq" style="query" type="xsd:int"/>
+            <param name="sample_max_ne" style="query" type="xsd:int"/>
+            <param name="sample_max_gt" style="query" type="xsd:int"/>
+            <param name="sample_max_ge" style="query" type="xsd:int"/>
+            <param name="sample_max_lt" style="query" type="xsd:int"/>
+            <param name="sample_max_le" style="query" type="xsd:int"/>
             <param name="sample_min" style="query" type="xsd:int"/>
+            <param name="sample_min_eq" style="query" type="xsd:int"/>
+            <param name="sample_min_ne" style="query" type="xsd:int"/>
+            <param name="sample_min_gt" style="query" type="xsd:int"/>
+            <param name="sample_min_ge" style="query" type="xsd:int"/>
+            <param name="sample_min_lt" style="query" type="xsd:int"/>
+            <param name="sample_min_le" style="query" type="xsd:int"/>
             <param name="sample_rms" style="query" type="xsd:float"/>
+            <param name="sample_rms_eq" style="query" type="xsd:float"/>
+            <param name="sample_rms_ne" style="query" type="xsd:float"/>
+            <param name="sample_rms_gt" style="query" type="xsd:float"/>
+            <param name="sample_rms_ge" style="query" type="xsd:float"/>
+            <param name="sample_rms_lt" style="query" type="xsd:float"/>
+            <param name="sample_rms_le" style="query" type="xsd:float"/>
             <param name="sample_stdev" style="query" type="xsd:float"/>
+            <param name="sample_stdev_eq" style="query" type="xsd:float"/>
+            <param name="sample_stdev_ne" style="query" type="xsd:float"/>
+            <param name="sample_stdev_gt" style="query" type="xsd:float"/>
+            <param name="sample_stdev_ge" style="query" type="xsd:float"/>
+            <param name="sample_stdev_lt" style="query" type="xsd:float"/>
+            <param name="sample_stdev_le" style="query" type="xsd:float"/>
             <param name="sample_mean" style="query" type="xsd:float"/>
+            <param name="sample_mean_eq" style="query" type="xsd:float"/>
+            <param name="sample_mean_ne" style="query" type="xsd:float"/>
+            <param name="sample_mean_gt" style="query" type="xsd:float"/>
+            <param name="sample_mean_ge" style="query" type="xsd:float"/>
+            <param name="sample_mean_lt" style="query" type="xsd:float"/>
+            <param name="sample_mean_le" style="query" type="xsd:float"/>
             <param name="sample_median" style="query" type="xsd:float"/>
+            <param name="sample_median_eq" style="query" type="xsd:float"/>
+            <param name="sample_median_ne" style="query" type="xsd:float"/>
+            <param name="sample_median_gt" style="query" type="xsd:float"/>
+            <param name="sample_median_ge" style="query" type="xsd:float"/>
+            <param name="sample_median_lt" style="query" type="xsd:float"/>
+            <param name="sample_median_le" style="query" type="xsd:float"/>
             <param name="sample_lower_quartile" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile_eq" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile_ne" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile_gt" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile_ge" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile_lt" style="query" type="xsd:float"/>
+            <param name="sample_lower_quartile_le" style="query" type="xsd:float"/>
             <param name="sample_upper_quartile" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile_eq" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile_ne" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile_gt" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile_ge" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile_lt" style="query" type="xsd:float"/>
+            <param name="sample_upper_quartile_le" style="query" type="xsd:float"/>
 
             <!-- Gap and Overlap Info -->
             <param name="num_gaps" style="query" type="xsd:int"/>
+            <param name="num_gaps_eq" style="query" type="xsd:int"/>
+            <param name="num_gaps_ne" style="query" type="xsd:int"/>
+            <param name="num_gaps_gt" style="query" type="xsd:int"/>
+            <param name="num_gaps_ge" style="query" type="xsd:int"/>
+            <param name="num_gaps_lt" style="query" type="xsd:int"/>
+            <param name="num_gaps_le" style="query" type="xsd:int"/>
             <param name="num_overlaps" style="query" type="xsd:int"/>
+            <param name="num_overlaps_eq" style="query" type="xsd:int"/>
+            <param name="num_overlaps_ne" style="query" type="xsd:int"/>
+            <param name="num_overlaps_gt" style="query" type="xsd:int"/>
+            <param name="num_overlaps_ge" style="query" type="xsd:int"/>
+            <param name="num_overlaps_lt" style="query" type="xsd:int"/>
+            <param name="num_overlaps_le" style="query" type="xsd:int"/>
             <param name="max_gap" style="query" type="xsd:float"/>
+            <param name="max_gap_eq" style="query" type="xsd:float"/>
+            <param name="max_gap_ne" style="query" type="xsd:float"/>
+            <param name="max_gap_gt" style="query" type="xsd:float"/>
+            <param name="max_gap_ge" style="query" type="xsd:float"/>
+            <param name="max_gap_lt" style="query" type="xsd:float"/>
+            <param name="max_gap_le" style="query" type="xsd:float"/>
             <param name="max_overlap" style="query" type="xsd:float"/>
+            <param name="max_overlap_eq" style="query" type="xsd:float"/>
+            <param name="max_overlap_ne" style="query" type="xsd:float"/>
+            <param name="max_overlap_gt" style="query" type="xsd:float"/>
+            <param name="max_overlap_ge" style="query" type="xsd:float"/>
+            <param name="max_overlap_lt" style="query" type="xsd:float"/>
+            <param name="max_overlap_le" style="query" type="xsd:float"/>
             <param name="sum_overlaps" style="query" type="xsd:float"/>
+            <param name="sum_overlaps_eq" style="query" type="xsd:float"/>
+            <param name="sum_overlaps_ne" style="query" type="xsd:float"/>
+            <param name="sum_overlaps_gt" style="query" type="xsd:float"/>
+            <param name="sum_overlaps_ge" style="query" type="xsd:float"/>
+            <param name="sum_overlaps_lt" style="query" type="xsd:float"/>
+            <param name="sum_overlaps_le" style="query" type="xsd:float"/>
             <param name="gaps" style="query" type="xsd:float"/>
+            <param name="gaps_eq" style="query" type="xsd:float"/>
+            <param name="gaps_ne" style="query" type="xsd:float"/>
+            <param name="gaps_gt" style="query" type="xsd:float"/>
+            <param name="gaps_ge" style="query" type="xsd:float"/>
+            <param name="gaps_lt" style="query" type="xsd:float"/>
+            <param name="gaps_le" style="query" type="xsd:float"/>
 
             <param name="percent_availability" style="query" type="xsd:float"/>
+            <param name="percent_availability_eq" style="query" type="xsd:float"/>
+            <param name="percent_availability_ne" style="query" type="xsd:float"/>
+            <param name="percent_availability_gt" style="query" type="xsd:float"/>
+            <param name="percent_availability_ge" style="query" type="xsd:float"/>
+            <param name="percent_availability_lt" style="query" type="xsd:float"/>
+            <param name="percent_availability_le" style="query" type="xsd:float"/>
 
             <!-- Timing Qualities -->
             <param name="timing_quality" style="query" type="xsd:float"/>
+            <param name="timing_quality_eq" style="query" type="xsd:float"/>
+            <param name="timing_quality_ne" style="query" type="xsd:float"/>
+            <param name="timing_quality_gt" style="query" type="xsd:float"/>
+            <param name="timing_quality_ge" style="query" type="xsd:float"/>
+            <param name="timing_quality_lt" style="query" type="xsd:float"/>
+            <param name="timing_quality_le" style="query" type="xsd:float"/>
             <param name="timing_quality_median" style="query" type="xsd:float"/>
+            <param name="timing_quality_median_eq" style="query" type="xsd:float"/>
+            <param name="timing_quality_median_ne" style="query" type="xsd:float"/>
+            <param name="timing_quality_median_gt" style="query" type="xsd:float"/>
+            <param name="timing_quality_median_ge" style="query" type="xsd:float"/>
+            <param name="timing_quality_median_lt" style="query" type="xsd:float"/>
+            <param name="timing_quality_median_le" style="query" type="xsd:float"/>
             <param name="timing_quality_lower_quartile" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile_eq" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile_ne" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile_gt" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile_ge" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile_lt" style="query" type="xsd:float"/>
+            <param name="timing_quality_lower_quartile_le" style="query" type="xsd:float"/>
             <param name="timing_quality_upper_quartile" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile_eq" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile_ne" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile_gt" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile_ge" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile_lt" style="query" type="xsd:float"/>
+            <param name="timing_quality_upper_quartile_le" style="query" type="xsd:float"/>
             <param name="timing_quality_min" style="query" type="xsd:float"/>
+            <param name="timing_quality_min_eq" style="query" type="xsd:float"/>
+            <param name="timing_quality_min_ne" style="query" type="xsd:float"/>
+            <param name="timing_quality_min_gt" style="query" type="xsd:float"/>
+            <param name="timing_quality_min_ge" style="query" type="xsd:float"/>
+            <param name="timing_quality_min_lt" style="query" type="xsd:float"/>
+            <param name="timing_quality_min_le" style="query" type="xsd:float"/>
             <param name="timing_quality_max" style="query" type="xsd:float"/>
+            <param name="timing_quality_max_eq" style="query" type="xsd:float"/>
+            <param name="timing_quality_max_ne" style="query" type="xsd:float"/>
+            <param name="timing_quality_max_gt" style="query" type="xsd:float"/>
+            <param name="timing_quality_max_ge" style="query" type="xsd:float"/>
+            <param name="timing_quality_max_lt" style="query" type="xsd:float"/>
+            <param name="timing_quality_max_le" style="query" type="xsd:float"/>
 
             <param name="timing_correction" style="query" type="xsd:float"/>
+            <param name="timing_correction_eq" style="query" type="xsd:float"/>
+            <param name="timing_correction_ne" style="query" type="xsd:float"/>
+            <param name="timing_correction_gt" style="query" type="xsd:float"/>
+            <param name="timing_correction_ge" style="query" type="xsd:float"/>
+            <param name="timing_correction_lt" style="query" type="xsd:float"/>
+            <param name="timing_correction_le" style="query" type="xsd:float"/>
 
             <!-- Miniseed Header Flags -->
             <!-- Data Quality Flags -->
             <param name="amplifier_saturation" style="query" type="xsd:float"/>
+            <param name="amplifier_saturation_eq" style="query" type="xsd:float"/>
+            <param name="amplifier_saturation_ne" style="query" type="xsd:float"/>
+            <param name="amplifier_saturation_gt" style="query" type="xsd:float"/>
+            <param name="amplifier_saturation_ge" style="query" type="xsd:float"/>
+            <param name="amplifier_saturation_lt" style="query" type="xsd:float"/>
+            <param name="amplifier_saturation_le" style="query" type="xsd:float"/>
             <param name="digitizer_clipping" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping_eq" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping_ne" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping_gt" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping_ge" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping_lt" style="query" type="xsd:float"/>
+            <param name="digitizer_clipping_le" style="query" type="xsd:float"/>
             <param name="spikes" style="query" type="xsd:float"/>
+            <param name="spikes_eq" style="query" type="xsd:float"/>
+            <param name="spikes_ne" style="query" type="xsd:float"/>
+            <param name="spikes_gt" style="query" type="xsd:float"/>
+            <param name="spikes_ge" style="query" type="xsd:float"/>
+            <param name="spikes_lt" style="query" type="xsd:float"/>
+            <param name="spikes_le" style="query" type="xsd:float"/>
             <param name="glitches" style="query" type="xsd:float"/>
+            <param name="glitches_eq" style="query" type="xsd:float"/>
+            <param name="glitches_ne" style="query" type="xsd:float"/>
+            <param name="glitches_gt" style="query" type="xsd:float"/>
+            <param name="glitches_ge" style="query" type="xsd:float"/>
+            <param name="glitches_lt" style="query" type="xsd:float"/>
+            <param name="glitches_le" style="query" type="xsd:float"/>
             <param name="missing_padded_data" style="query" type="xsd:float"/>
+            <param name="missing_padded_data_eq" style="query" type="xsd:float"/>
+            <param name="missing_padded_data_ne" style="query" type="xsd:float"/>
+            <param name="missing_padded_data_gt" style="query" type="xsd:float"/>
+            <param name="missing_padded_data_ge" style="query" type="xsd:float"/>
+            <param name="missing_padded_data_lt" style="query" type="xsd:float"/>
+            <param name="missing_padded_data_le" style="query" type="xsd:float"/>
             <param name="telemtry_sync_error" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error_eq" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error_ne" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error_gt" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error_ge" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error_lt" style="query" type="xsd:float"/>
+            <param name="telemtry_sync_error_le" style="query" type="xsd:float"/>
             <param name="digital_filter_charging" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging_eq" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging_ne" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging_gt" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging_ge" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging_lt" style="query" type="xsd:float"/>
+            <param name="digital_filter_charging_le" style="query" type="xsd:float"/>
             <param name="suspect_time_tag" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag_eq" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag_ne" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag_gt" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag_ge" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag_lt" style="query" type="xsd:float"/>
+            <param name="suspect_time_tag_le" style="query" type="xsd:float"/>
 
             <!-- Activity Flags -->
             <param name="calibration_signal" style="query" type="xsd:float"/>
+            <param name="calibration_signal_eq" style="query" type="xsd:float"/>
+            <param name="calibration_signal_ne" style="query" type="xsd:float"/>
+            <param name="calibration_signal_gt" style="query" type="xsd:float"/>
+            <param name="calibration_signal_ge" style="query" type="xsd:float"/>
+            <param name="calibration_signal_lt" style="query" type="xsd:float"/>
+            <param name="calibration_signal_le" style="query" type="xsd:float"/>
             <param name="time_correction_applied" style="query" type="xsd:float"/>
+            <param name="time_correction_applied_eq" style="query" type="xsd:float"/>
+            <param name="time_correction_applied_ne" style="query" type="xsd:float"/>
+            <param name="time_correction_applied_gt" style="query" type="xsd:float"/>
+            <param name="time_correction_applied_ge" style="query" type="xsd:float"/>
+            <param name="time_correction_applied_lt" style="query" type="xsd:float"/>
+            <param name="time_correction_applied_le" style="query" type="xsd:float"/>
             <param name="event_begin" style="query" type="xsd:float"/>
+            <param name="event_begin_eq" style="query" type="xsd:float"/>
+            <param name="event_begin_ne" style="query" type="xsd:float"/>
+            <param name="event_begin_gt" style="query" type="xsd:float"/>
+            <param name="event_begin_ge" style="query" type="xsd:float"/>
+            <param name="event_begin_lt" style="query" type="xsd:float"/>
+            <param name="event_begin_le" style="query" type="xsd:float"/>
             <param name="event_end" style="query" type="xsd:float"/>
+            <param name="event_end_eq" style="query" type="xsd:float"/>
+            <param name="event_end_ne" style="query" type="xsd:float"/>
+            <param name="event_end_gt" style="query" type="xsd:float"/>
+            <param name="event_end_ge" style="query" type="xsd:float"/>
+            <param name="event_end_lt" style="query" type="xsd:float"/>
+            <param name="event_end_le" style="query" type="xsd:float"/>
             <param name="positive_leap" style="query" type="xsd:float"/>
+            <param name="positive_leap_eq" style="query" type="xsd:float"/>
+            <param name="positive_leap_ne" style="query" type="xsd:float"/>
+            <param name="positive_leap_gt" style="query" type="xsd:float"/>
+            <param name="positive_leap_ge" style="query" type="xsd:float"/>
+            <param name="positive_leap_lt" style="query" type="xsd:float"/>
+            <param name="positive_leap_le" style="query" type="xsd:float"/>
             <param name="negative_leap" style="query" type="xsd:float"/>
+            <param name="negative_leap_eq" style="query" type="xsd:float"/>
+            <param name="negative_leap_ne" style="query" type="xsd:float"/>
+            <param name="negative_leap_gt" style="query" type="xsd:float"/>
+            <param name="negative_leap_ge" style="query" type="xsd:float"/>
+            <param name="negative_leap_lt" style="query" type="xsd:float"/>
+            <param name="negative_leap_le" style="query" type="xsd:float"/>
             <param name="event_in_progress" style="query" type="xsd:float"/>
+            <param name="event_in_progress_eq" style="query" type="xsd:float"/>
+            <param name="event_in_progress_ne" style="query" type="xsd:float"/>
+            <param name="event_in_progress_gt" style="query" type="xsd:float"/>
+            <param name="event_in_progress_ge" style="query" type="xsd:float"/>
+            <param name="event_in_progress_lt" style="query" type="xsd:float"/>
+            <param name="event_in_progress_le" style="query" type="xsd:float"/>
 
             <!-- IO and Clock flags -->
             <param name="station_volume" style="query" type="xsd:float"/>
+            <param name="station_volume_eq" style="query" type="xsd:float"/>
+            <param name="station_volume_ne" style="query" type="xsd:float"/>
+            <param name="station_volume_gt" style="query" type="xsd:float"/>
+            <param name="station_volume_ge" style="query" type="xsd:float"/>
+            <param name="station_volume_lt" style="query" type="xsd:float"/>
+            <param name="station_volume_le" style="query" type="xsd:float"/>
             <param name="long_record_read" style="query" type="xsd:float"/>
+            <param name="long_record_read_eq" style="query" type="xsd:float"/>
+            <param name="long_record_read_ne" style="query" type="xsd:float"/>
+            <param name="long_record_read_gt" style="query" type="xsd:float"/>
+            <param name="long_record_read_ge" style="query" type="xsd:float"/>
+            <param name="long_record_read_lt" style="query" type="xsd:float"/>
+            <param name="long_record_read_le" style="query" type="xsd:float"/>
             <param name="short_record_read" style="query" type="xsd:float"/>
+            <param name="short_record_read_eq" style="query" type="xsd:float"/>
+            <param name="short_record_read_ne" style="query" type="xsd:float"/>
+            <param name="short_record_read_gt" style="query" type="xsd:float"/>
+            <param name="short_record_read_ge" style="query" type="xsd:float"/>
+            <param name="short_record_read_lt" style="query" type="xsd:float"/>
+            <param name="short_record_read_le" style="query" type="xsd:float"/>
             <param name="start_time_series" style="query" type="xsd:float"/>
+            <param name="start_time_series_eq" style="query" type="xsd:float"/>
+            <param name="start_time_series_ne" style="query" type="xsd:float"/>
+            <param name="start_time_series_gt" style="query" type="xsd:float"/>
+            <param name="start_time_series_ge" style="query" type="xsd:float"/>
+            <param name="start_time_series_lt" style="query" type="xsd:float"/>
+            <param name="start_time_series_le" style="query" type="xsd:float"/>
             <param name="end_time_series" style="query" type="xsd:float"/>
+            <param name="end_time_series_eq" style="query" type="xsd:float"/>
+            <param name="end_time_series_ne" style="query" type="xsd:float"/>
+            <param name="end_time_series_gt" style="query" type="xsd:float"/>
+            <param name="end_time_series_ge" style="query" type="xsd:float"/>
+            <param name="end_time_series_lt" style="query" type="xsd:float"/>
+            <param name="end_time_series_le" style="query" type="xsd:float"/>
             <param name="clock_locked" style="query" type="xsd:float"/>
+            <param name="clock_locked_eq" style="query" type="xsd:float"/>
+            <param name="clock_locked_ne" style="query" type="xsd:float"/>
+            <param name="clock_locked_gt" style="query" type="xsd:float"/>
+            <param name="clock_locked_ge" style="query" type="xsd:float"/>
+            <param name="clock_locked_lt" style="query" type="xsd:float"/>
+            <param name="clock_locked_le" style="query" type="xsd:float"/>
           </request>
           <response>
             <representation mediaType="text/plain"/>
