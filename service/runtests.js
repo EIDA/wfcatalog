@@ -46,6 +46,24 @@ var suite = function () {
   }
 
   /*
+   * function this.testEmptyLocationGET
+   * test should result in an empty response (i.e. HTTP status code 204)
+   */
+  this.testEmptyLocationGET = function(callback) {
+
+    var options = getOptions(
+      'GET',
+      CONFIG.BASE_URL + 'query?net=NET&sta=STA&cha=CHA&LOC=--&' +
+      'start=2020-01-01&end=2020-01-02');
+
+    http.request(options, function(response) {
+      var err = (response.statusCode === 204) ?
+        null : "Invalid response code: " + response.statusCode;
+      callback(err)
+    }).end();
+
+  }
+  /*
    * function this.testStartTimeFuture
    * test start time in the future (2133)
    */
