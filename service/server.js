@@ -1514,6 +1514,7 @@ module.exports = function(CONFIG, WFCatalogCallback) {
       'string': /^([0-9a-z_*?]+)$/i,
       'stringList': /^([0-9a-z]+,){0,}([0-9a-z]+)$/i,
       'stringListWildcards': /^([0-9a-z_*?]+,){0,}([0-9a-z_*?]+)$/i,
+      'stringLocListWildcards': /^(([0-9a-z_*?]+|--),){0,}([0-9a-z_*?]+|--)$/i,
       'floatList': /^(\s*-?\d+(\.\d+)?)(\s*,\s*-?\d+(\.\d+)?)*$/,
       'intList': /^(\d+(,\d+)*)?$/,
       'query': /^\?([\w-?.:*,%]+(=[\w-?.:*,%]*)?(&[\w-?.:*,%]+(=[\w-?.:*,%]*)?)*)?$/

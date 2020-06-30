@@ -39,7 +39,7 @@
 
   "net": "stringListWildcards",
   "sta": "stringListWildcards",
-  "loc": "stringListWildcards",
+  "loc": "stringLocListWildcards",
   "cha": "stringListWildcards",
 
   "nsam": "int",
