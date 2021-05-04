@@ -11,7 +11,8 @@ The collector requires a custom Python class used for metrics calculation that w
 It is important to create two MongoDB collections and apply an index on the daily streams fileId field before starting the procedure.
 
     db.daily_streams.createIndex({'fileId': 1})
-
+    db.c_segments.createIndex({'fileId': 1})
+    
 # Downloading the source code
 The source code of the WFCatalog Service can be downloaded through git: `git clone https://github.com/EIDA/EIDA.git` and is located in the `wfcatalog/collector` subdirectory that will be our working directory during setup.
 
