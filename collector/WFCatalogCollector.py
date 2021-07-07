@@ -312,18 +312,14 @@ class WFCatalogCollector():
     """
 
     # Set up WFCatalogger
-    self.log = logging.getLogger('WFCatalog Collector')
-    self.log.setLevel(logging.INFO)
-
     if to_stdout:
-      # Log everything to standard output
-      handler = logging.StreamHandler(sys.stdout)
-      handler.setLevel(logging.INFO)
-      formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-      handler.setFormatter(formatter)
-      self.log.addHandler(handler)
+      logging.basicConfig(level=logging.INFO,
+                          stream=sys.stdout,
+                          format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+      self.log = logging.getLogger('WFCatalog Collector')
 
     else:
+      self.log = logging.getLogger('WFCatalog Collector')
       log_file = logfile or CONFIG['DEFAULT_LOG_FILE']
       self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
       self.file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
