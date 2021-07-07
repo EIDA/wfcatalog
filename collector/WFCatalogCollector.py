@@ -73,7 +73,7 @@ Authors:
 
   ### Other flags
   [--logfile] specify a custom logfile
-
+  [--stdout]  outpurs everything to stdout
 """
 from __future__ import print_function
 
@@ -92,7 +92,6 @@ import glob
 def handler(signum, frame):
   raise Exception("Metric calculation has timed out")
 
-# TODO: Log to stdout
 from logging.handlers import TimedRotatingFileHandler
 
 # ObsPy mSEED-QC is required
@@ -314,14 +313,21 @@ class WFCatalogCollector():
 
     # Set up WFCatalogger
     self.log = logging.getLogger('WFCatalog Collector')
+    self.log.setLevel(logging.INFO)
 
-    log_file = logfile or CONFIG['DEFAULT_LOG_FILE']
+    if self.args['stdout']:
+      # Log everything to standard output
+      handler = logging.StreamHandler(sys.stdout)
+      handler.setLevel(logging.INFO)
+      formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+      handler.setFormatter(formatter)
+      self.log.addHandler(handler)
 
-    self.log.setLevel('INFO')
-
-    self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
-    self.file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
-    self.log.addHandler(self.file_handler)
+    else:
+      log_file = logfile or CONFIG['DEFAULT_LOG_FILE']
+      self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
+      self.file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
+      self.log.addHandler(self.file_handler)
 
 
   def _printArguments(self):
@@ -646,7 +652,7 @@ class WFCatalogCollector():
     self.file_counter += 1
 
     if not os.path.isfile(file):
-      self.log.info("File no longer exists in archive %s" % os.path.basename(file))
+      self.log.info("File no longer exists in archive %s" % file)
       return
 
     # Get the neighbouring files and windows for a given file
@@ -1327,6 +1333,7 @@ if __name__ == '__main__':
 
   # Set custom logfile
   parser.add_argument('--logfile', help='set custom logfile')
+  parser.add_argument('--stdout',  help='outputs all logs to stdout')
 
   # Options to update documents existing in the database, normally
   # files that are already processed are skipped
