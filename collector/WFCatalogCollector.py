@@ -119,13 +119,13 @@ class WFCatalogCollector():
   WFCatalogCollector class for ingesting waveform metadata
   """
 
-  def __init__(self, logfile=None):
+  def __init__(self, logfile=None, to_stdout=False):
     """
     WFCatalogCollector.__init__
     > initialize the class, set up logger and database connection
     """
     self.mongo = MongoDatabase()
-    self._setupLogger(logfile)
+    self._setupLogger(logfile, to_stdout)
 
 
   def _setOptions(self, user_options):
@@ -305,7 +305,7 @@ class WFCatalogCollector():
     return False
 
 
-  def _setupLogger(self, logfile):
+  def _setupLogger(self, logfile, to_stdout):
     """
     WFCatalogCollector._setupLogger
     > logging setup for the WFCatalog Collector
@@ -315,7 +315,7 @@ class WFCatalogCollector():
     self.log = logging.getLogger('WFCatalog Collector')
     self.log.setLevel(logging.INFO)
 
-    if self.args['stdout']:
+    if to_stdout:
       # Log everything to standard output
       handler = logging.StreamHandler(sys.stdout)
       handler.setLevel(logging.INFO)
@@ -1333,7 +1333,7 @@ if __name__ == '__main__':
 
   # Set custom logfile
   parser.add_argument('--logfile', help='set custom logfile')
-  parser.add_argument('--stdout',  help='outputs all logs to stdout')
+  parser.add_argument('--stdout',  help='outputs all logs to stdout', default=False, action='store_true')
 
   # Options to update documents existing in the database, normally
   # files that are already processed are skipped
@@ -1346,6 +1346,6 @@ if __name__ == '__main__':
   # compatibility with an imported class
   args = vars(parser.parse_args())
 
-  WFCollector = WFCatalogCollector(args['logfile'])
+  WFCollector = WFCatalogCollector(args['logfile'], to_stdout=args['stdout'])
 
   WFCollector.process(args)
