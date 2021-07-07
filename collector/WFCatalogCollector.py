@@ -1110,7 +1110,7 @@ class WFCatalogCollector():
         logging.error("Unable to extend network code")
         logging.error(e)
         raise e
-      filepath = os.path.join(stats['year'], stats['network'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
+      filepath = os.path.join(extnet, stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
 
     else:
       raise Exception("Unknown directory structure in CONFIG (expected ODC or SDS or SDSbynet)")
