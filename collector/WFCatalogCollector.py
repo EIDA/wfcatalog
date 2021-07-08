@@ -12,7 +12,7 @@ Authors:
   VERSION: Running version of the WFCatalog Collector
   ARCHIVE: Archive name
   PUBLISHER: Quality metric published
-  STRUCTURE: structure (ODC or SDS). SDS is default and used by all nodes except the ODC. Used to find files.
+  STRUCTURE: structure (ODC or SDS or SDSbynet). SDS is default and used by all nodes except the ODC. Used to find files.
   MONGO:
     ENABLED: (true | false) spits metrics to stdout (false) or database (true)
     DB_HOST: Host of Mongo database.
@@ -73,7 +73,7 @@ Authors:
 
   ### Other flags
   [--logfile] specify a custom logfile
-
+  [--stdout]  outpurs everything to stdout
 """
 from __future__ import print_function
 
@@ -108,18 +108,24 @@ with open(os.path.join(cfg_dir, 'config.json'), "r") as cfg:
 if CONFIG['MONGO']['ENABLED']:
   from pymongo import MongoClient
 
+if CONFIG['STRUCTURE'] == 'SDSbynet':
+  #SDSbynet structure starts with an extended network code.
+  # so we need to add the ability to extend a network code
+  from fdsnnetextender import FdsnNetExtender
+  fne = FdsnNetExtender()
+
 class WFCatalogCollector():
   """
   WFCatalogCollector class for ingesting waveform metadata
   """
 
-  def __init__(self, logfile=None):
+  def __init__(self, logfile=None, to_stdout=False):
     """
     WFCatalogCollector.__init__
     > initialize the class, set up logger and database connection
     """
     self.mongo = MongoDatabase()
-    self._setupLogger(logfile)
+    self._setupLogger(logfile, to_stdout)
 
 
   def _setOptions(self, user_options):
@@ -299,22 +305,25 @@ class WFCatalogCollector():
     return False
 
 
-  def _setupLogger(self, logfile):
+  def _setupLogger(self, logfile, to_stdout):
     """
     WFCatalogCollector._setupLogger
     > logging setup for the WFCatalog Collector
     """
 
     # Set up WFCatalogger
-    self.log = logging.getLogger('WFCatalog Collector')
+    if to_stdout:
+      logging.basicConfig(level=logging.INFO,
+                          stream=sys.stdout,
+                          format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+      self.log = logging.getLogger('WFCatalog Collector')
 
-    log_file = logfile or CONFIG['DEFAULT_LOG_FILE']
-
-    self.log.setLevel('INFO')
-
-    self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
-    self.file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
-    self.log.addHandler(self.file_handler)
+    else:
+      self.log = logging.getLogger('WFCatalog Collector')
+      log_file = logfile or CONFIG['DEFAULT_LOG_FILE']
+      self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
+      self.file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
+      self.log.addHandler(self.file_handler)
 
 
   def _printArguments(self):
@@ -398,6 +407,18 @@ class WFCatalogCollector():
         for file in files:
           if file.endswith(jday) and os.path.isfile(os.path.join(subdir, file)):
             collectedFiles.append(os.path.join(subdir, file))
+
+    # SDSbynet structure is slightly more complex, loop over all network directories
+    # in a year and extract files ending with a given jday
+    elif CONFIG['STRUCTURE'] == 'SDSbynet':
+      collectedFiles = []
+      # First, loop over all networks
+      for netdir in next(os.walk(CONFIG['ARCHIVE_ROOT']))[1]:
+          # Then find all files
+          for subdir, dirs, files in os.walk(os.path.join(CONFIG['ARCHIVE_ROOT'], netdir, year), followlinks=True):
+            for file in files:
+              if file.endswith(jday) and os.path.isfile(os.path.join(subdir, file)):
+                collectedFiles.append(os.path.join(subdir, file))
     
     else:
       raise Exception("WFCatalogCollector.getFilesFromDirectory: unknown directory structure.")
@@ -627,7 +648,7 @@ class WFCatalogCollector():
     self.file_counter += 1
 
     if not os.path.isfile(file):
-      self.log.info("File no longer exists in archive %s" % os.path.basename(file))
+      self.log.info("File no longer exists in archive %s" % file)
       return
 
     # Get the neighbouring files and windows for a given file
@@ -1029,7 +1050,7 @@ class WFCatalogCollector():
         'station': statsArray.pop()
       }
 
-    elif CONFIG['STRUCTURE'] == 'SDS':
+    elif CONFIG['STRUCTURE'] == 'SDS' or CONFIG['STRUCTURE'] == 'SDSbynet':
 
       stats_object = {
         'jday': statsArray.pop(),
@@ -1056,7 +1077,7 @@ class WFCatalogCollector():
     if CONFIG['STRUCTURE'] == 'ODC':
       filename = ".".join([stats['station'], stats['channel'], stats['network'], stats['year'], stats['jday']]) 
 
-    elif CONFIG['STRUCTURE'] == 'SDS':
+    elif CONFIG['STRUCTURE'] == 'SDS' or CONFIG['STRUCTURE'] == 'SDSbynet':
       filename = ".".join([stats['network'], stats['station'], stats['location'], stats['channel'], stats['dtype'], stats['year'], stats['jday']])
 
     else:
@@ -1077,8 +1098,18 @@ class WFCatalogCollector():
     elif CONFIG['STRUCTURE'] == 'SDS':
       filepath = os.path.join(stats['year'], stats['network'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
 
+    # SDSbynet starts with the extended networkcode
+    elif CONFIG['STRUCTURE'] == 'SDSbynet':
+      try:
+        extnet = fne.extend(stats['network'], stats['year'])
+      except Error as e:
+        logging.error("Unable to extend network code")
+        logging.error(e)
+        raise e
+      filepath = os.path.join(extnet, stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
+
     else:
-      raise Exception("Unknown directory structure in CONFIG (expected ODC or SDS)")
+      raise Exception("Unknown directory structure in CONFIG (expected ODC or SDS or SDSbynet)")
 
     return os.path.join(CONFIG['ARCHIVE_ROOT'], filepath)
 
@@ -1298,6 +1329,7 @@ if __name__ == '__main__':
 
   # Set custom logfile
   parser.add_argument('--logfile', help='set custom logfile')
+  parser.add_argument('--stdout',  help='outputs all logs to stdout', default=False, action='store_true')
 
   # Options to update documents existing in the database, normally
   # files that are already processed are skipped
@@ -1310,6 +1342,6 @@ if __name__ == '__main__':
   # compatibility with an imported class
   args = vars(parser.parse_args())
 
-  WFCollector = WFCatalogCollector(args['logfile'])
+  WFCollector = WFCatalogCollector(args['logfile'], to_stdout=args['stdout'])
 
   WFCollector.process(args)
