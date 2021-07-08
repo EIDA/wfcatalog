@@ -4,9 +4,11 @@
   "description": "NodeJS front end implementation of the EIDA-NG WFCatalog Service",
   "main": "cluster.js",
   "dependencies": {
-    "bunyan": "~1.8.1",
-    "express": "~4.13.4",
-    "mongodb": "~2.1.6"
+    "bunyan": "1.8.15",
+    "bunyan-elasticsearch": "1.0.1",
+    "express": "4.17.1",
+    "mongodb": "2.2.35"
+
   },
   "devDependencies": {},
   "scripts": {
