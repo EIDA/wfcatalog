@@ -24,6 +24,12 @@ It is important to edit the `config.json` properly before using the collector. P
 * `MONGO.DB_NAME` - name of the database (recommended: `wfrepo`)
 * `MONGO.ALLOW_DOUBLE` - allow double streams to be added to the database (recommended: `false`)
 * `ARCHIVE_ROOT` - root directory of the data archive that is used for metric calculation
+* `STRUCTURE` - ODC or SDS or SDSbynet.
+  * `ODC` has his own data structure
+  * `SDS` supposes that the data has the structure : `YYYY/NET/STA/CHAN.D/NET.STA.CHAN.D.YYYY.JJJ`
+  * `SDSbynet` supposes that the data has the structure : `NETXT/YYYY/STA/CHAN.D/NET.STA.CHAN.D.YYYY.JJJ`
+     where NETXT is an extended network code.
+  * If the value is `SDSbynet`, then you need to install the fdsnextender python library `pip install fdsnnetextender`
 
 # Running the collector
 The collector can be run with `MONGO.ENABLED` set to `false` to test the script installation without saving metrics to the database. The collector can be called with flags as described in [Redmine](https://dev.knmi.nl/projects/eida/wiki/WFCatalog#2-EIDANG-WFCatalog-Collector) e.g.:
