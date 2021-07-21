@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 obspy = "*"
 pymongo = "*"
-fdsnnetextender = "*"
+fdsnnetextender = "2.0.1"
 
 [dev-packages]
 
