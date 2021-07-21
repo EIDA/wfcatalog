@@ -305,7 +305,7 @@ class WFCatalogCollector():
     return False
 
 
-  def _setupLogger(self, logfile, to_stdout):
+  def _setupLogger(self, logfile, to_stdout, level=logging.INFO):
     """
     WFCatalogCollector._setupLogger
     > logging setup for the WFCatalog Collector
@@ -313,7 +313,7 @@ class WFCatalogCollector():
 
     # Set up WFCatalogger
     if to_stdout:
-      logging.basicConfig(level=logging.INFO,
+      logging.basicConfig(level=level,
                           stream=sys.stdout,
                           format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
       self.log = logging.getLogger('WFCatalog Collector')
@@ -1102,7 +1102,7 @@ class WFCatalogCollector():
     elif CONFIG['STRUCTURE'] == 'SDSbynet':
       try:
         extnet = fne.extend(stats['network'], stats['year'])
-      except Error as e:
+      except Exception as e:
         logging.error("Unable to extend network code")
         logging.error(e)
         raise e
