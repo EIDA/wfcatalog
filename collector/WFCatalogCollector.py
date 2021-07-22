@@ -79,6 +79,7 @@ from __future__ import print_function
 
 import os
 import json
+import re
 import logging
 import argparse
 import datetime
@@ -1094,17 +1095,23 @@ class WFCatalogCollector():
 
     # SDSbynet starts with the extended networkcode
     elif CONFIG['STRUCTURE'] == 'SDSbynet':
-      # test the existence of an extended network code directory, starting from data's year and going back in the past for each year
-      netyear = int(stats['year'])
-      self.log.debug("Guessing directory in SDSbynet, starting from %d", netyear)
-      while netyear >= 1990:
-        filepath = os.path.join(stats['network']+str(netyear), stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
-        self.log.debug("Trying %s", filepath)
-        if os.path.exists(os.path.join(CONFIG['ARCHIVE_ROOT'], filepath)):
-          break
-        netyear = netyear - 1
-      if netyear < 1990:
-        raise FileNotFoundError("No data in %s for %s", CONFIG['ARCHIVE_ROOT'], stats )
+      # For temporary network, we have to find the extended network code directory
+      if re.match('^[0-9XYZ][0-9A-Z]$', stats['network']):
+        # test the existence of an extended network code directory, starting from data's year and going back in the past for each year
+        netyear = int(stats['year'])
+        self.log.debug("Guessing directory in SDSbynet, starting from %d", netyear)
+        while netyear >= 1990:
+          filepath = os.path.join(stats['network']+str(netyear), stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
+          self.log.debug("Trying %s", filepath)
+          if os.path.exists(os.path.join(CONFIG['ARCHIVE_ROOT'], filepath)):
+            break
+          netyear = netyear - 1
+        if netyear < 1990:
+          raise FileNotFoundError("No data in %s for %s", CONFIG['ARCHIVE_ROOT'], stats )
+      else:
+        # For permanent networks, it's easy
+        filepath = os.path.join(stats['network'], stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
+
     else:
       raise Exception("Unknown directory structure in CONFIG (expected ODC or SDS or SDSbynet)")
 
