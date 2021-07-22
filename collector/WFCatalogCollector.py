@@ -108,12 +108,6 @@ with open(os.path.join(cfg_dir, 'config.json'), "r") as cfg:
 if CONFIG['MONGO']['ENABLED']:
   from pymongo import MongoClient
 
-if CONFIG['STRUCTURE'] == 'SDSbynet':
-  #SDSbynet structure starts with an extended network code.
-  # so we need to add the ability to extend a network code
-  from fdsnnetextender import FdsnNetExtender
-  fne = FdsnNetExtender()
-
 class WFCatalogCollector():
   """
   WFCatalogCollector class for ingesting waveform metadata
@@ -1101,15 +1095,16 @@ class WFCatalogCollector():
     # SDSbynet starts with the extended networkcode
     elif CONFIG['STRUCTURE'] == 'SDSbynet':
       # test the existence of an extended network code directory, starting from data's year and going back in the past for each year
-      netyear = stats['year']
+      netyear = int(stats['year'])
+      self.log.debug("Guessing directory in SDSbynet, starting from %d", netyear)
       while netyear >= 1990:
-        filepath = os.path.join(stats['net']+netyear, stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
-        if os.path.exists(filepath):
+        filepath = os.path.join(stats['network']+str(netyear), stats['year'], stats['station'], stats['channel'] + "." + stats['dtype'], self._getFilename(stats))
+        self.log.debug("Trying %s", filepath)
+        if os.path.exists(os.path.join(CONFIG['ARCHIVE_ROOT'], filepath)):
           break
         netyear = netyear - 1
       if netyear < 1990:
         raise FileNotFoundError("No data in %s for %s", CONFIG['ARCHIVE_ROOT'], stats )
-
     else:
       raise Exception("Unknown directory structure in CONFIG (expected ODC or SDS or SDSbynet)")
 
