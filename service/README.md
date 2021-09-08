@@ -12,14 +12,15 @@
 The source code of the WFCatalog Service can be downloaded through git: `git clone https://github.com/EIDA/EIDA.git` and is located in the `wfcatalog/service` subdirectory that will be our working directory during setup.
 
 # Configuring the service
-It is important to edit the `configuration.json` properly before starting the service. Pay particular attention to th
-e following options:
+It is important to edit the `configuration.json` properly before starting the service. Pay particular attention to the following options:
 
 * `NAME` - Service name
 * `ARCHIVE` - Name of archive running the service
 * `HOST` - host where the service will be available
 * `PORT` - port where the service will be available
 * `MONGO.HOST` - host:port/database of the collections used by the service
+
+Use the `configuration.json.dist` model file to create your own `configuration.json`.
 
 # Installing dependencies and testing the service
 The service dependencies must be installed through `npm install` and the installation can be tested through `npm test`.
