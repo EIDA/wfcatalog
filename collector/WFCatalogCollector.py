@@ -1109,7 +1109,7 @@ class WFCatalogCollector():
     elif CONFIG['STRUCTURE'] == 'SDSbynet':
       try:
         extnet = fne.extend(stats['network'], stats['year'])
-      except Error as e:
+      except Exception as e:
         logging.error("Unable to extend network code")
         logging.error(e)
         raise e
