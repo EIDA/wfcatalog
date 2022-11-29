@@ -8,6 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "WFCatalog Debug",
+            "cwd": "${workspaceFolder}/service/",
             "program": "${workspaceFolder}/service/server.js"
         }
     ]
