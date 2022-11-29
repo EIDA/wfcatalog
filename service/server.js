@@ -798,7 +798,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       Mongo = new MongoClient(CONFIG.MONGO.AUTHHOST);
       console.log("Connecting to MongoDB Atlas cluster...");
       await Mongo.connect();
-      Mongoconsole.log("Successfully connected to MongoDB Atlas!");
+      console.log("Successfully connected to MongoDB Atlas!");
     } catch (error) {
       console.error("Connection to MongoDB Atlas failed!", error);
     }
