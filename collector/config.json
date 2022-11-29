@@ -6,14 +6,14 @@
   "STRUCTURE": "SDS",
   "MONGO": {
     "ENABLED": false,
-    "DB_HOST": "mongodb://localhost:27017/",
+    "DB_HOST": "mongodb://127.0.0.1:27017/",
     "DB_NAME": "wfrepo",
-    "USER": "user",
-    "PASS": "pass",
+    "USER": "",
+    "PASS": "",
     "AUTHENTICATE": false,
     "ALLOW_DOUBLE": false
   },
-  "ARCHIVE_ROOT": "/usr/src/collector/wfcatalog/collector/archive",
+  "ARCHIVE_ROOT": "/Users/jarek/git/wfcatalog/collector/archive",
   "DEFAULT_LOG_FILE": "WFCatalog-collector.log",
   "PROCESSING_TIMEOUT": 120,
   "ENABLE_DUBLIN_CORE": false,
