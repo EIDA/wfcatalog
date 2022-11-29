@@ -31,8 +31,8 @@
     "AUTO_RECONNECT": true,
     "POOL_SIZE": 10,
     "AUTHENTICATE": true,
-    "HOST": "127.0.0.1:27017/wfrepo",
-    "USER": "wfcatalogread",
+    "HOST": "host:27017/wfrepo",
+    "USER": "username",
     "PASS": "password",
     "COLLECTION": "daily_streams",
     "C_COLLECTION": "c_segments"
