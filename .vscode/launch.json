@@ -1,15 +1,26 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "WFCatalog Debug",
-            "cwd": "${workspaceFolder}/service/",
-            "program": "${workspaceFolder}/service/server.js"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "WFCatalog Collector",
+      "type": "python",
+      "request": "launch",
+      "python": "${workspaceFolder}/collector/.env/bin/python",
+      "cwd": "${workspaceFolder}/collector/",
+      "program": "${workspaceFolder}/collector/WFCatalogCollector.py",
+      "console": "integratedTerminal",
+      "args": ["--dir", "archive/", "--csegs", "--flags", "--update", "--force"],
+      "justMyCode": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "WFCatalog API",
+      "cwd": "${workspaceFolder}/service/",
+      "program": "${workspaceFolder}/service/server.js"
+    }
+  ]
 }
