@@ -1516,7 +1516,8 @@ module.exports = function (CONFIG, WFCatalogCallback) {
         CONFIG.MONGO.PASS +
         "@" +
         CONFIG.MONGO.HOST +
-        "?authMechanism=SCRAM-SHA-1";
+        "/" +
+        CONFIG.MONGO.DBNAME
     } else {
       CONFIG.MONGO.AUTHHOST = "mongodb://" + CONFIG.MONGO.HOST;
     }
