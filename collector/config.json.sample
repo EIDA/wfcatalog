@@ -13,7 +13,7 @@
     "DB_PASS": "",
     "ALLOW_DOUBLE": false
   },
-  "ARCHIVE_ROOT": "/data/SDS/",
+  "ARCHIVE_ROOT": "/path/to/sds/",
   "DEFAULT_LOG_FILE": "WFCatalog-collector.log",
   "PROCESSING_TIMEOUT": 120,
   "ENABLE_DUBLIN_CORE": false,
