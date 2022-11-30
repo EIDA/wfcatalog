@@ -1420,7 +1420,7 @@ class MongoDatabase:
         self.db.hourly_streams.delete_many({"streamId": id})
         self.db.c_segments.delete_many({"streamId": id})
 
-    def storeContinuowsSegment(self, segment):
+    def storeContinuousSegment(self, segment):
         """
         MongoDatabase.storeContinuousSegment
         > Saves a continuous segment to collection
