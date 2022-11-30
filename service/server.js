@@ -689,10 +689,9 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       parseSegmentQuery(req);
 
       // Open and initialize the cursor to the daily stream collection
-      cursor = Mongo.db(CONFIG.MONGO.DBNAME).collection(CONFIG.MONGO.COLLECTION).find(
-        req.WFCatalog.parsedQuery,
-        included
-      );
+      cursor = Mongo.db(CONFIG.MONGO.DBNAME)
+        .collection(CONFIG.MONGO.COLLECTION)
+        .find(req.WFCatalog.parsedQuery, included);
       cursor.next(processDailyStream);
     })();
 
@@ -785,17 +784,19 @@ module.exports = function (CONFIG, WFCatalogCallback) {
 
   var Mongo;
 
-  var serverOptions = {
-    auto_reconnect: CONFIG.MONGO.AUTO_RECONNECT,
-    poolSize: CONFIG.MONGO.POOL_SIZE,
-    reconnectTries: 3600 * 24,
-    reconnectInterval: 1000,
-  };
+  // var serverOptions = {
+  //   auto_reconnect: CONFIG.MONGO.AUTO_RECONNECT,
+  //   poolSize: CONFIG.MONGO.POOL_SIZE,
+  //   reconnectTries: 3600 * 24,
+  //   reconnectInterval: 1000,
+  // };
 
   async function connect_to_mongo() {
     setMongoAuthentication();
     try {
-      Mongo = new MongoClient(CONFIG.MONGO.AUTHHOST);
+      Mongo = new MongoClient(CONFIG.MONGO.AUTHHOST, {
+        maxPoolSize: CONFIG.MONGO.POOL_SIZE,
+      });
       console.log("Connecting to MongoDB Atlas cluster...");
       await Mongo.connect();
       console.log("Successfully connected to MongoDB Atlas!");
@@ -1517,7 +1518,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
         "@" +
         CONFIG.MONGO.HOST +
         "/" +
-        CONFIG.MONGO.DBNAME
+        CONFIG.MONGO.DBNAME;
     } else {
       CONFIG.MONGO.AUTHHOST = "mongodb://" + CONFIG.MONGO.HOST;
     }
