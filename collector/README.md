@@ -54,7 +54,7 @@ The collector can be run with `MONGO.ENABLED` set to `false` to test the script 
 without saving metrics to the database. The collector can be called with flags as
 described in [Redmine](https://dev.knmi.nl/projects/eida/wiki/WFCatalog#2-EIDANG-WFCatalog-Collector) e.g.:
 
-`Python WFCatalogCollector.py --dir /data/storage/SDS/2012/NL/ --csegs --flags`
+`python WFCatalogCollector.py --dir /data/storage/SDS/2012/NL/ --csegs --flags`
 
 This command will process files recursively in the 2012/NL directory and include
 results on continuous segments and mSEED header flags.
