@@ -806,7 +806,7 @@ class WFCatalogCollector:
         try:
             qc_metadata_daily = self._getDatabaseKeyMap(documents["daily"], None)
             id = self.mongo._storeGranule(qc_metadata_daily, "daily")
-            self.log.info("Succesfully stored daily granule %s" % id)
+            self.log.info("Succesfully stored daily granule %s" % id.inserted_id)
         except Exception as ex:
             self.log.error("Could not store daily granule document to database")
             self.log.exception(ex)
@@ -816,7 +816,7 @@ class WFCatalogCollector:
         if self.args["hourly"]:
             for i, granule in enumerate(documents["hourly"]):
                 try:
-                    qc_metadata = self._getDatabaseKeyMap(granule, id)
+                    qc_metadata = self._getDatabaseKeyMap(granule, id.inserted_id)
                     self.mongo._storeGranule(qc_metadata, "hourly")
                     self.log.info(
                         "[%d/%d] Succesfully stored hourly granule"
@@ -832,7 +832,7 @@ class WFCatalogCollector:
         if self.args["csegs"] and not qc_metadata_daily["cont"]:
             for segment in documents["daily"]["c_segments"]:
                 try:
-                    qc_metadata = self._getDatabaseKeyMapContinuous(segment, id)
+                    qc_metadata = self._getDatabaseKeyMapContinuous(segment, id.inserted_id)
                     self.mongo.storeContinuousSegment(qc_metadata)
                 except Exception as ex:
                     self.log.exception("Could not store continuous segment to database")
@@ -849,7 +849,7 @@ class WFCatalogCollector:
 
         # Source object for a continuous segment
         source = {
-            "streamId": id.inserted_id,
+            "streamId": id,
             "smin": int(trace["sample_min"]),
             "smax": int(trace["sample_max"]),
             "smean": float(trace["sample_mean"]),
