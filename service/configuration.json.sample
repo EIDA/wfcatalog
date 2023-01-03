@@ -8,7 +8,7 @@
   "BASE_URL": "/eidaws/wfcatalog/1/",
   "HOST": "127.0.0.1",
   "PORT": 3000,
-  "LOGPATH": "/data/seismo/wfcatalog/service/logs/",
+  "LOGPATH": "./logs/",
   "MAXIMUM_POST_BYTES": 1e4,
   "MAXIMUM_GET_BYTES": 1e4,
   "MAXIMUM_SEGMENTS": 50,
