@@ -135,7 +135,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
     }
 
     // The database connection failed, try to reconnect
-    if (!Mongo || !Mongo.serverConfig.isConnected()) {
+    if (!Mongo) {
       connect_to_mongo();
       return sendErrorPage(req, res, ERROR.MONGO_CONNECTION_FAILED);
     }
@@ -689,11 +689,10 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       parseSegmentQuery(req);
 
       // Open and initialize the cursor to the daily stream collection
-      cursor = Mongo.collection(CONFIG.MONGO.COLLECTION).find(
-        req.WFCatalog.parsedQuery,
-        included
-      );
-      cursor.nextObject(processDailyStream);
+      cursor = Mongo.db(CONFIG.MONGO.DBNAME)
+        .collection(CONFIG.MONGO.COLLECTION)
+        .find(req.WFCatalog.parsedQuery, included);
+      cursor.next(processDailyStream);
     })();
 
     /*
@@ -725,7 +724,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       // and proceed along the cursor
       if (!req.WFCatalog.options.csegments || doc.cont) {
         if (writeStream(req, res, documentPointer)) {
-          return cursor.nextObject(processDailyStream);
+          return cursor.next(processDailyStream);
         }
         return endResponse(req, res);
       }
@@ -785,34 +784,25 @@ module.exports = function (CONFIG, WFCatalogCallback) {
 
   var Mongo;
 
-  function connect_to_mongo() {
-    // Create a single global connection pool for MongoDB
+  // var serverOptions = {
+  //   auto_reconnect: CONFIG.MONGO.AUTO_RECONNECT,
+  //   poolSize: CONFIG.MONGO.POOL_SIZE,
+  //   reconnectTries: 3600 * 24,
+  //   reconnectInterval: 1000,
+  // };
 
+  async function connect_to_mongo() {
     setMongoAuthentication();
-
-    // The reconnect options apply only once initial connection is established
-    var serverOptions = {
-      auto_reconnect: CONFIG.MONGO.AUTO_RECONNECT,
-      poolSize: CONFIG.MONGO.POOL_SIZE,
-      reconnectTries: 3600 * 24,
-      reconnectInterval: 1000,
-    };
-
-    MongoClient.connect(
-      CONFIG.MONGO.AUTHHOST,
-      {
-        server: serverOptions,
-      },
-      function (err, db) {
-        // MongoDB Connection error; refuse to start
-        if (err) {
-          // throw ("FATAL: The connection to the database could not be established.");
-        }
-
-        // Hoist so we open a single pool of connections
-        Mongo = db;
-      }
-    );
+    try {
+      Mongo = new MongoClient(CONFIG.MONGO.AUTHHOST, {
+        maxPoolSize: CONFIG.MONGO.POOL_SIZE,
+      });
+      console.log("Connecting to MongoDB Atlas cluster...");
+      await Mongo.connect();
+      console.log("Successfully connected to MongoDB Atlas!");
+    } catch (error) {
+      console.error("Connection to MongoDB Atlas failed!", error);
+    }
   }
 
   // Try to connect directly on startup
@@ -1527,7 +1517,8 @@ module.exports = function (CONFIG, WFCatalogCallback) {
         CONFIG.MONGO.PASS +
         "@" +
         CONFIG.MONGO.HOST +
-        "?authMechanism=SCRAM-SHA-1";
+        "/" +
+        CONFIG.MONGO.DBNAME;
     } else {
       CONFIG.MONGO.AUTHHOST = "mongodb://" + CONFIG.MONGO.HOST;
     }
