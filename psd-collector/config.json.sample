@@ -1,0 +1,17 @@
+{
+    "ARCHIVE_ROOT": "/data/shared/sds",
+    "FDSN_STATION_ADDRESS": "http://www.orfeus-eu.org/fdsnws/station/1/query",
+    "PERIOD_LOWER_LIMIT": 0.001,
+    "PERIOD_UPPER_LIMIT": 1000,
+    "NUMBER_OF_PROCESSES": 2,
+    "DEFAULT_LOG_FILE": "./log/psd-collector.log",
+    "PROCESSING_TIMEOUT": 300,
+    "MONGO": {
+        "AUTHENTICATE": true,
+        "DATABASE": "psd",
+        "HOST": "127.0.0.1",
+        "PORT": 27017,
+        "USER": "",
+        "PASS": "",
+    },
+}
