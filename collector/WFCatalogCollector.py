@@ -86,6 +86,7 @@ import sys
 import fnmatch
 import signal
 import glob
+import re
 
 
 def handler(signum, frame):
@@ -245,10 +246,8 @@ class WFCatalogCollector:
         update_files = []
 
         for file in self.files:
-
             # Set update for dependents on the file to be deleted
             for documents in self.mongo.getDailyFilesById(file):
-
                 # Make sure to not update self or any file included in deletion
                 if self._getFullPath(documents["fileId"]) not in self.files:
                     self.log.info(
@@ -258,7 +257,6 @@ class WFCatalogCollector:
 
             # Remove the document
             for document in self.mongo.getDocumentByFilename(file):
-
                 try:
                     mongo_id = document["_id"]
                     self.mongo.removeDocumentsById(mongo_id)
@@ -281,7 +279,6 @@ class WFCatalogCollector:
         """
 
         for file in self.files:
-
             fileStart = datetime.datetime.now()
 
             self.log.info("Starting processing file %s", file)
@@ -609,11 +606,9 @@ class WFCatalogCollector:
 
         # Go over all the files in the input
         for file in self.files:
-
             # Get the documents that depend on this file
             # under document.files
             for document in self.mongo.getDailyFilesById(file):
-
                 # The document update is forced
                 # We must update every document that depends on the file
                 if self.args["force"]:
@@ -623,7 +618,6 @@ class WFCatalogCollector:
 
                 # Loop over all the used files
                 for used_files in document["files"]:
-
                     # If not forcing, just check the MD5 hash of the
                     # actual passed file, and the MD5 hash in the database
                     if used_files["name"] != os.path.basename(file):
@@ -636,7 +630,6 @@ class WFCatalogCollector:
 
                     # Compare the checksum
                     if MD5Hash != used_files["chksm"]:
-
                         self.log.info(
                             "Detected MD5checksum change for %s" % used_files["name"]
                         )
@@ -832,7 +825,9 @@ class WFCatalogCollector:
         if self.args["csegs"] and not qc_metadata_daily["cont"]:
             for segment in documents["daily"]["c_segments"]:
                 try:
-                    qc_metadata = self._getDatabaseKeyMapContinuous(segment, id.inserted_id)
+                    qc_metadata = self._getDatabaseKeyMapContinuous(
+                        segment, id.inserted_id
+                    )
                     self.mongo.storeContinuousSegment(qc_metadata)
                 except Exception as ex:
                     self.log.exception("Could not store continuous segment to database")
@@ -1016,7 +1011,6 @@ class WFCatalogCollector:
         # Check if the minimum is None, so is the rest
         # otherwise convert to floats
         if trace["timing_quality_min"] is None:
-
             source.update(
                 {
                     "tqmin": None,
@@ -1029,7 +1023,6 @@ class WFCatalogCollector:
             )
 
         else:
-
             source.update(
                 {
                     "tqmin": float(trace["timing_quality_min"]),
@@ -1068,7 +1061,6 @@ class WFCatalogCollector:
         trace = trace[flag_type]
 
         if flag_type == "activity_flags":
-
             source = {
                 "cas": trace["calibration_signal"],
                 "tca": trace["time_correction_applied"],
@@ -1080,7 +1072,6 @@ class WFCatalogCollector:
             }
 
         elif flag_type == "data_quality_flags":
-
             source = {
                 "asa": trace["amplifier_saturation"],
                 "dic": trace["digitizer_clipping"],
@@ -1093,7 +1084,6 @@ class WFCatalogCollector:
             }
 
         elif flag_type == "io_and_clock_flags":
-
             source = {
                 "svo": trace["station_volume"],
                 "lrr": trace["long_record_read"],
@@ -1141,7 +1131,6 @@ class WFCatalogCollector:
         statsArray = file.split(".")
 
         if CONFIG["STRUCTURE"] == "ODC":
-
             stats_object = {
                 "jday": statsArray.pop(),
                 "year": statsArray.pop(),
@@ -1151,7 +1140,6 @@ class WFCatalogCollector:
             }
 
         elif CONFIG["STRUCTURE"] == "SDS" or CONFIG["STRUCTURE"] == "SDSbynet":
-
             stats_object = {
                 "jday": statsArray.pop(),
                 "year": statsArray.pop(),
@@ -1301,9 +1289,7 @@ class WFCatalogCollector:
         # Taking 1h steps
         hourly = []
         if self.args["hourly"]:
-
             while start_time < end_time:
-
                 segment_end = start_time + datetime.timedelta(hours=self.gran)
                 hourly.append({"start": start_time, "end": segment_end})
                 start_time = segment_end
@@ -1448,7 +1434,6 @@ class MongoDatabase:
 
 
 if __name__ == "__main__":
-
     # Parse cmd line arguments
     parser = argparse.ArgumentParser(
         description="Processes mSEED files and ingests waveform metadata to a Mongo repository."
