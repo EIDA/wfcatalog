@@ -1054,6 +1054,8 @@ module.exports = function (CONFIG, WFCatalogCallback) {
         timing_quality_min: doc["tqmin"],
         timing_quality_max: doc["tqmax"],
         timing_correction: doc["tcorr"],
+        // When mseed files were processed without the `--flags` argument, it
+        // might be that `io`, `dq` and `ac` dictionaries are not avaialble.
         io_and_clock_flags: {
           short_record_read: doc["io_flags"] ? doc["io_flags"]["srr"] : null,
           station_volume: doc["io_flags"] ? doc["io_flags"]["svo"] : null,
