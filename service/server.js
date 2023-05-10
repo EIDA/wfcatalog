@@ -747,13 +747,14 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       var limit = req.WFCatalog.options.longestonly ? 1 : 0;
 
       // Open and initialize the continuous cursor
-      cCursor = Mongo.collection(CONFIG.MONGO.C_COLLECTION)
+      cCursor = Mongo.db(CONFIG.MONGO.DBNAME)
+        .collection(CONFIG.MONGO.C_COLLECTION)
         .find(cQuery)
         .sort({
           slen: 1,
         })
         .limit(limit);
-      cCursor.nextObject(processCSegment);
+      cCursor.next(processCSegment);
     }
 
     /*
@@ -769,13 +770,13 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       if (cDoc) {
         req.WFCatalog.nContinuous++;
         documentPointer.c_segments.push(setClientKeysContinuous(cDoc));
-        return cCursor.nextObject(processCSegment);
+        return cCursor.next(processCSegment);
       }
 
       // The cursor has been exhausted; write to stream
       // and proceed with the next daily stream
       if (writeStream(req, res, documentPointer)) {
-        return cursor.nextObject(processDailyStream);
+        return cursor.next(processDailyStream);
       }
 
       return endResponse(req, res);
