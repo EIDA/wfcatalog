@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 The collector can be run with `MONGO.ENABLED` set to `false` to test the script installation
 without saving metrics to the database. The collector can be called with flags as
-described in [Redmine](https://dev.knmi.nl/projects/eida/wiki/WFCatalog#2-EIDANG-WFCatalog-Collector) e.g.:
+described in [Redmine](https://eida.gfz-potsdam.de/redmine/projects/etc/wiki/WFCatalog#2-EIDANG-WFCatalog-Collector) e.g.:
 
 `python WFCatalogCollector.py --dir /data/storage/SDS/2012/NL/ --csegs --flags`
 
@@ -64,4 +64,4 @@ results on continuous segments and mSEED header flags.
 Alternatively, the collector can also be run as a Docker container by building
 the Dockerfile and requires no installation of the ObsPy MSEEDMetadata class.
 A detailed description of the installation can be found on the internal
-[Redmine Wiki](https://dev.knmi.nl/projects/eida/wiki/WFCatalogDocker).
+[Redmine Wiki](https://eida.gfz-potsdam.de/redmine/projects/etc/wiki/WFCatalogDocker).
