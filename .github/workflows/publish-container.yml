@@ -59,4 +59,4 @@ jobs:
           push: true
           tags: ${{ steps.meta-collector.outputs.tags }}
           labels: ${{ steps.meta-collector.outputs.labels }}
-          file: service/Dockerfile
+          file: collector/Dockerfile
