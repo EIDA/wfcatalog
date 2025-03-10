@@ -112,7 +112,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
     function (req, res, next) {
       res.setHeader("Content-Type", "application/xml");
       res.status(200).sendFile(__dirname + "/application.wadl");
-    }
+    },
   );
 
   /*
@@ -172,7 +172,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
           msQueryTime: req.WFCatalog.msQueryTime || 0,
           msTotalRequestTime: Date.now() - req.WFCatalog.requestSubmitted,
         },
-        "HTTP request summary"
+        "HTTP request summary",
       );
     });
 
@@ -351,7 +351,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
           req,
           res,
           ERROR.INVALID_PARAMETER_POST,
-          keyValues.key
+          keyValues.key,
         );
       }
 
@@ -373,7 +373,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
           req,
           res,
           ERROR.DOUBLE_PARAMETER_POST,
-          databaseKey
+          databaseKey,
         );
       }
 
@@ -508,14 +508,14 @@ module.exports = function (CONFIG, WFCatalogCallback) {
     if (req.WFCatalog.query.include) {
       if (
         !["default", "sample", "header", "all"].inArray(
-          req.WFCatalog.query.include
+          req.WFCatalog.query.include,
         )
       ) {
         return sendErrorPage(
           req,
           res,
           ERROR.INCLUDE_UNSUPPORTED,
-          req.WFCatalog.query.include
+          req.WFCatalog.query.include,
         );
       }
       req.WFCatalog.options.include = req.WFCatalog.query.include;
@@ -529,7 +529,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
           req,
           res,
           ERROR.GRANULARITY_UNSUPPORTED,
-          req.WFCatalog.query.gran
+          req.WFCatalog.query.gran,
         );
       }
       req.WFCatalog.options.gran = req.WFCatalog.query.gran;
@@ -543,7 +543,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
           req,
           res,
           ERROR.FORMAT_UNSUPPORTED,
-          req.WFCatalog.query.format
+          req.WFCatalog.query.format,
         );
       }
       req.WFCatalog.options.format = req.WFCatalog.query.format;
@@ -650,7 +650,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       res.setHeader("Content-Type", "application/json");
       res.setHeader(
         "Content-Disposition",
-        "attachment; filename=" + generateFilename()
+        "attachment; filename=" + generateFilename(),
       );
     }
 
@@ -1122,7 +1122,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
         segment: segment,
         options: req.WFCatalog.options,
       },
-      "Database Request"
+      "Database Request",
     );
 
     // Round outwardly to the nearest day
@@ -1539,7 +1539,7 @@ if (require.main === module) {
   // Start up the WFCatalog
   new module.exports(CONFIG, function () {
     console.log(
-      "Single WFCatalog has been started on " + CONFIG.HOST + ":" + CONFIG.PORT
+      "Single WFCatalog has been started on " + CONFIG.HOST + ":" + CONFIG.PORT,
     );
   });
 }
