@@ -142,7 +142,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
 
     // When the user disconnects, update so that we can kill
     // any remaining database work
-    req.on("close", function () {
+    res.on("close", function () {
       req.WFCatalog.connected = false;
     });
 
