@@ -59,6 +59,7 @@
   "olen": "float",
   "avail": "float",
 
-  "minlen": "float"
+  "minlen": "float",
+  "nodata": "int"
 
 }

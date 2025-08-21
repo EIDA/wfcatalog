@@ -48,6 +48,11 @@
             <param name="longestonly" style="query" default="false" type="xsd:boolean"/>
             <param name="csegments" style="query" default="false" type="xsd:boolean"/>
  
+            <param name="nodata" style="query" type="xsd:int" default="204">
+              <option value="204"/>
+              <option value="404"/>
+            </param>
+
             <!-- Metrics may be appended with a logical operator -->
             <param name="sample_rate" style="query" type="xsd:float"/>
             <param name="record_length" style="query" type="xsd:float"/>

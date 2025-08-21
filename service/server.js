@@ -481,6 +481,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       format: "json",
       include: "default",
       gran: "day",
+      nodata: 204,
       longestonly: getStringAsBoolean(req.WFCatalog.query.longestonly),
       csegments: getStringAsBoolean(req.WFCatalog.query.csegments),
     };
@@ -550,6 +551,20 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       }
       req.WFCatalog.options.format = req.WFCatalog.query.format;
       delete req.WFCatalog.query.format;
+    }
+
+    // Check the nodata; only 204 or 404 are supported 
+    if (req.WFCatalog.query.nodata) {
+      if (!["204", "404"].inArray(req.WFCatalog.query.nodata)) {
+        return sendErrorPage(
+          req,
+          res,
+          ERROR.NODATA_UNSUPPORTED,
+          req.WFCatalog.query.nodata
+        );
+      }
+      req.WFCatalog.options.nodata = parseInt(req.WFCatalog.query.nodata);
+      delete req.WFCatalog.query.nodata;
     }
 
     // If [minimumlength] or [longestonly] is specified
@@ -858,9 +873,9 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       return res.status(499).end();
     }
 
-    // If no documents, return 204
+    // If no documents, return 204 or 404
     if (!req.WFCatalog.nDocuments) {
-      return res.status(204).end();
+      return res.status(req.WFCatalog.options.nodata).end();
     }
 
     // Close JSON and celebrate a succesful request
