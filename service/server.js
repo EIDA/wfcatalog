@@ -64,6 +64,8 @@ module.exports = function (CONFIG, WFCatalogCallback) {
   var WFCatalogger;
   setupLogger();
 
+  const VERSION = "1.0.2"
+
   // The service is powered by express
   var WFCatalog = require("express")();
 
@@ -100,7 +102,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
    */
   WFCatalog.get(CONFIG.BASE_URL + "version", function (req, res, next) {
     res.setHeader("Content-Type", "text/plain");
-    res.status(200).send(CONFIG.VERSION);
+    res.status(200).send(VERSION);
   });
 
   /*
@@ -1390,7 +1392,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       "Request Submitted:",
       req.WFCatalog.requestSubmitted,
       "Service Version:",
-      CONFIG.VERSION,
+      VERSION,
     ].join("\n");
 
     return res.send(response);
