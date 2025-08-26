@@ -64,6 +64,8 @@ module.exports = function (CONFIG, WFCatalogCallback) {
   var WFCatalogger;
   setupLogger();
 
+  const VERSION = "1.0.2"
+
   // The service is powered by express
   var WFCatalog = require("express")();
 
@@ -100,7 +102,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
    */
   WFCatalog.get(CONFIG.BASE_URL + "version", function (req, res, next) {
     res.setHeader("Content-Type", "text/plain");
-    res.status(200).send(CONFIG.VERSION);
+    res.status(200).send(VERSION);
   });
 
   /*
@@ -479,6 +481,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       format: "json",
       include: "default",
       gran: "day",
+      nodata: 204,
       longestonly: getStringAsBoolean(req.WFCatalog.query.longestonly),
       csegments: getStringAsBoolean(req.WFCatalog.query.csegments),
     };
@@ -548,6 +551,20 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       }
       req.WFCatalog.options.format = req.WFCatalog.query.format;
       delete req.WFCatalog.query.format;
+    }
+
+    // Check the nodata; only 204 or 404 are supported 
+    if (req.WFCatalog.query.nodata) {
+      if (!["204", "404"].inArray(req.WFCatalog.query.nodata)) {
+        return sendErrorPage(
+          req,
+          res,
+          ERROR.NODATA_UNSUPPORTED,
+          req.WFCatalog.query.nodata
+        );
+      }
+      req.WFCatalog.options.nodata = parseInt(req.WFCatalog.query.nodata);
+      delete req.WFCatalog.query.nodata;
     }
 
     // If [minimumlength] or [longestonly] is specified
@@ -856,9 +873,9 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       return res.status(499).end();
     }
 
-    // If no documents, return 204
+    // If no documents, return 204 or 404
     if (!req.WFCatalog.nDocuments) {
-      return res.status(204).end();
+      return res.status(req.WFCatalog.options.nodata).end();
     }
 
     // Close JSON and celebrate a succesful request
@@ -1390,7 +1407,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       "Request Submitted:",
       req.WFCatalog.requestSubmitted,
       "Service Version:",
-      CONFIG.VERSION,
+      VERSION,
     ].join("\n");
 
     return res.send(response);

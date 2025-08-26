@@ -78,6 +78,10 @@
     "code": 400,
     "msg": "The requested granularity is not supported: %s"
   },
+  "NODATA_UNSUPPORTED": {
+    "code": 400,
+    "msg": "The requested nodata is not supported: %s"
+  },
   "INCLUDE_UNSUPPORTED": {
     "code": 400,
     "msg": "The requested include options is not supported: %s"

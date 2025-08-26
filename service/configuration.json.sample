@@ -2,8 +2,6 @@
   "NAME": "ODC-WFCATALOG",
   "ARCHIVE": "ORFEUS ODC/KNMI",
   "AGENT": "ObsPy mSEED-QC",
-  "VERSION": "1.0.1",
-  "VERSION_DATE": "2025.03.10",
   "DOCUMENTATION_URI": "ENTER_URI_HERE",
   "BASE_URL": "/eidaws/wfcatalog/1/",
   "HOST": "127.0.0.1",
