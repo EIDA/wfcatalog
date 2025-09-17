@@ -87,7 +87,7 @@ import fnmatch
 import signal
 import glob
 import re
-
+import FastMSEEDMetadata
 
 def handler(signum, frame):
     raise Exception("Metric calculation has timed out")
@@ -681,7 +681,7 @@ class WFCatalogCollector:
 
                 # Skip continuous segments for hourly granules
                 if granule == "daily":
-                    metadata = MSEEDMetadata(
+                    metadata = FastMSEEDMetadata.FastMSEEDMetadata(
                         files,
                         starttime=start,
                         endtime=end,
@@ -689,7 +689,7 @@ class WFCatalogCollector:
                         add_c_segments=self.args["csegs"],
                     )
                 elif granule == "hourly":
-                    metadata = MSEEDMetadata(
+                    metadata = FastMSEEDMetadata.FastMSEEDMetadata(
                         files,
                         starttime=start,
                         endtime=end,
