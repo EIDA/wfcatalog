@@ -713,8 +713,7 @@ var suite = function () {
               code: ERROR.MAXIMUM_PAYLOAD_EXCEEDED.code,
               msg: ERROR.MAXIMUM_PAYLOAD_EXCEEDED.msg
             },
-            request: options.path,
-            "version":"1.0.3"
+            request: options.path
           });
 
           CONFIG.MAXIMUM_BYTES_RETURNED = prevMaxBytes
