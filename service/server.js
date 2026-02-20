@@ -64,7 +64,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
   var WFCatalogger;
   setupLogger();
 
-  const VERSION = "1.0.2"
+  const VERSION = "1.0.3"
 
   // The service is powered by express
   var WFCatalog = require("express")();

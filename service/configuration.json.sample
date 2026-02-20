@@ -36,5 +36,6 @@
     "COLLECTION": "daily_streams",
     "C_COLLECTION": "c_segments"
   },
-  "CLOSED": false
+  "CLOSED": false,
+  "VERSION": "1.0.3",
 }
