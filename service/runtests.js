@@ -696,7 +696,7 @@ var suite = function () {
   * Tests an response too large to return as configured by MAXIMUM_BYTES_RETURNED > 0
   */
   this.testPayloadTooLarge = function(callback) {
-    var options = getOptions(
+    const options = getOptions(
       "GET",
       CONFIG.BASE_URL +
         "query?network=NL&station=G233&include=sample&start=2024-01-01&end=2024-01-31"
@@ -708,7 +708,7 @@ var suite = function () {
     http
       .request(options, function (response) {
         response.on("data", function (data) {
-          var err = compareResponse(data, {
+          const err = compareResponse(data, {
             message: {
               code: ERROR.MAXIMUM_PAYLOAD_EXCEEDED.code,
               msg: ERROR.MAXIMUM_PAYLOAD_EXCEEDED.msg
