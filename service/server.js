@@ -692,6 +692,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
     req.WFCatalog.nDocuments = 0;
     req.WFCatalog.nBytes = 0;
     req.WFCatalog.nContinuous = 0;
+    req.WFCatalog.responseChunks = [];
 
     // Define variables for hoisting
     var documentPointer;
@@ -740,10 +741,10 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       // or the document is one trace, write the daily metric document
       // and proceed along the cursor
       if (!req.WFCatalog.options.csegments || doc.cont) {
-        if (writeStream(req, res, documentPointer)) {
+        if (buildResponse(req, res, documentPointer)) {
           return cursor.next(processDailyStream);
         }
-        return endResponse(req, res);
+        return sendErrorPage(req, res, ERROR.MAXIMUM_PAYLOAD_EXCEEDED);
       }
 
       // We are required to collect continuous segments
@@ -792,11 +793,11 @@ module.exports = function (CONFIG, WFCatalogCallback) {
 
       // The cursor has been exhausted; write to stream
       // and proceed with the next daily stream
-      if (writeStream(req, res, documentPointer)) {
+      if (buildResponse(req, res, documentPointer)) {
         return cursor.next(processDailyStream);
       }
 
-      return endResponse(req, res);
+      return sendErrorPage(req, res, ERROR.MAXIMUM_PAYLOAD_EXCEEDED);
     }
   });
 
@@ -833,15 +834,16 @@ module.exports = function (CONFIG, WFCatalogCallback) {
     }
   });
 
-  /* @ function writeStream
-   * Handler for writing to the writeable response stream
-   * counts the nBytes shipped and properly parses the
-   * JSON body
+  /**
+   * @ function writeStream
+   * Handler for writing response stream
+   * 
+   * @param {Object} req: Express Request Object
+   * @param {Object} res: Express Response Object
+   * @param {object} data: Stringified JSON Query result
+   * 
    */
   function writeStream(req, res, data) {
-    var json = JSON.stringify(data);
-    req.WFCatalog.nBytes += Buffer.byteLength(json);
-
     // Delimit a document by a comma or open the JSON
     if (req.WFCatalog.nDocuments === 1) {
       res.write("[");
@@ -849,12 +851,31 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       res.write(",");
     }
 
-    res.write(json);
+    req.WFCatalog.nBytes += 1;
+    res.write(data);
+  }
 
-    // Set to 0 for no maximum
+  /**
+   * @ function buildResponse 
+   * Handler for building the response.
+   * Checks if the response is within set limits
+   * 
+   * @param {Object} req: Express Request Object
+   * @param {Object} res: Express Response Object
+   * @param {object} data: Query result in JSON
+   * 
+   */
+  function buildResponse(req, res, data) {
+    var json = JSON.stringify(data);
+    req.WFCatalog.nBytes += Buffer.byteLength(json);
+    
+    // No limit on returnable data, therefore stream the response
     if (CONFIG.MAXIMUM_BYTES_RETURNED === 0) {
+      writeStream(req, res, json);
       return true;
     }
+    
+    req.WFCatalog.responseChunks.push(data);
 
     return req.WFCatalog.nBytes < CONFIG.MAXIMUM_BYTES_RETURNED;
   }
@@ -878,10 +899,16 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       return res.status(req.WFCatalog.options.nodata).end();
     }
 
-    // Close JSON and celebrate a succesful request
-    res.write("]");
+    // No limit of returnable data was defined, close the stream and return
+    if (CONFIG.MAXIMUM_BYTES_RETURNED === 0) {
+      res.write("]");
+      req.WFCatalog.nBytes += 1;
 
-    return res.status(200).end();
+      return res.end();
+    }
+
+    // A limit of returnable data was defined
+    return res.status(200).json(req.WFCatalog.responseChunks);
   }
 
   /*
