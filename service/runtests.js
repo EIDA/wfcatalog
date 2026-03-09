@@ -691,6 +691,39 @@ var suite = function () {
       })
       .end();
   };
+  
+  /*
+  * Tests an response too large to return as configured by MAXIMUM_BYTES_RETURNED > 0
+  */
+  this.testPayloadTooLarge = function(callback) {
+    const options = getOptions(
+      "GET",
+      CONFIG.BASE_URL +
+        "query?network=NL&station=G233&include=sample&start=2024-01-01&end=2024-01-31"
+    );
+
+    const prevMaxBytes = CONFIG.MAXIMUM_BYTES_RETURNED
+    CONFIG.MAXIMUM_BYTES_RETURNED = 10e3
+
+    http
+      .request(options, function (response) {
+        response.on("data", function (data) {
+          const err = compareResponse(data, {
+            message: {
+              code: ERROR.MAXIMUM_PAYLOAD_EXCEEDED.code,
+              msg: ERROR.MAXIMUM_PAYLOAD_EXCEEDED.msg
+            },
+            request: options.path
+          });
+
+          CONFIG.MAXIMUM_BYTES_RETURNED = prevMaxBytes
+
+          callback(err);
+        });
+      })
+      .end();
+      
+  };
 };
 
 function compareResponse(a, b) {
