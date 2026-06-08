@@ -15,7 +15,17 @@ db.daily_streams.createIndex({'fileId': 1})
 db.c_segments.createIndex({'fileId': 1})
 ```
 
-## Downloading the source code
+## Running in a docker contianer
+
+### Build the container
+
+    buildah bud -f Dockerfile -t wfcatalog-collector
+    
+### Run the container
+
+    podman run -rm wfcatalog-collector
+
+## Alternatively downloading the source code
 
 The source code of the WFCatalog Service can be downloaded through
 git: `git clone https://github.com/EIDA/EIDA.git` and is located in
