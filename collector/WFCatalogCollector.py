@@ -27,27 +27,27 @@ Authors:
 [USAGE]
   The provided class collects new and synchronizes waveform metadata and
   can be called through the command line or by importing the WFCatalogCollector class
-  
+
   -------------------------------------------------------------------
-  
+
   Through an import:
-  
-  options are identical to the flags described below and 
+
+  options are identical to the flags described below and
   passed as {'key': value} pairs in a dictionary. E.g.:
-  
+
     > from WFCatalogCollector.py import WFCatalogCollector
     > mmc = WFCatalogCollector(logfile)
     > mmc.process({'dir': '/PATH/TO/FILES', 'csegs': True, 'flags': True})
-  
+
   Through the CMD line:
-  
+
     > python WFCatalogCollector.py --dir {/PATH/TO/FILES} --csegs --flags --logfile {logfile}
-  
-  Giving the --update flag does a checksum change detection on 
+
+  Giving the --update flag does a checksum change detection on
   all input files. The documents in the database that are dependent
   on the changed files are removed, reprocessed, and inserted. Updating
   does NOT insert any new files in the directory.
-  
+
   An update can be forced by giving --update which skips the checksum change'exampleson and reprocesses all files.
   Giving --past {day, yesterday, week, fortnight, month} will reprocess the files in
   the specified window.
@@ -57,7 +57,7 @@ Authors:
 
   ### Boolean flags
   [--update] start synchronization on input files with changes
-  [--force] forces synchronization on all input files 
+  [--force] forces synchronization on all input files
   [--csegs] include continuous segments
   [--flags] include miniseed header percentages, timing correction, and timing quality
   [--hourly] include hourly granules
@@ -75,6 +75,7 @@ Authors:
   [--logfile] specify a custom logfile
   [--stdout]  outpurs everything to stdout
 """
+
 import os
 import json
 import logging
@@ -87,6 +88,7 @@ import fnmatch
 import signal
 import glob
 import re
+import importlib.metadata
 
 
 def handler(signum, frame):
@@ -196,7 +198,7 @@ class WFCatalogCollector:
         WFCatalog.showVersion
         > shows current Collector version
         """
-        print(CONFIG["VERSION"])
+        print(importlib.metadata.version("wfcatalog-collector"))
 
     def process(self, options):
         """
@@ -1463,7 +1465,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--config", help="view configuration options", action="store_true"
     )
-    parser.add_argument("--version", action="version", version=CONFIG["VERSION"])
+    parser.add_argument("--version", action="version", version="undefined")
 
     # Add flags and continuous segments
     parser.add_argument(
