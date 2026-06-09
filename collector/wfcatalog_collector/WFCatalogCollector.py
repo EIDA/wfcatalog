@@ -147,10 +147,10 @@ def load_configuration():
     return {
         "MONGO": {
             "ENABLED": mongo_enabled,
-            "HOST": mongo_host,
-            "PORT": mongo_port,
-            "USER": mongo_user,
-            "PASS": mongo_pass,
+            "DB_HOST": mongo_host,
+            "DB_PORT": mongo_port,
+            "DB_USER": mongo_user,
+            "DB_PASS": mongo_pass,
             "ALLOW_DOUBLE": mongo_allow_duplicate,
         },
         "NODE_NAME": node_name,
