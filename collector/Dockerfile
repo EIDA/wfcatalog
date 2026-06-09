@@ -31,6 +31,6 @@ COPY --from=builder --chown=app:app /app /app
 WORKDIR /app
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
-ENTRYPOINT ["python3", "WFCatalogCollector.py"]
-# CMD [""]
+ENTRYPOINT ["python3", "wfcatalog_collector/WFCatalogCollector.py"]
+# CMD [""]ç
 

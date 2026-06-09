@@ -164,8 +164,14 @@ def load_configuration():
     }
 
 
-# Load configuration from envinronment variables
-CONFIG = load_configuration()
+# Load config from path if exists, else from environment
+try:
+    cfg_dir = os.path.dirname(os.path.realpath(__file__))
+    with open(os.path.join(cfg_dir, "config.json"), "r") as cfg:
+        CONFIG = json.load(cfg)
+except Exception as e:
+    # load configuration from envinronment variables
+    CONFIG = load_configuration()
 
 if CONFIG["MONGO"]["ENABLED"]:
     from pymongo import MongoClient
