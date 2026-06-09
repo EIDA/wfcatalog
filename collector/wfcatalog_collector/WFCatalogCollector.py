@@ -9,7 +9,6 @@ Authors:
 [CONFIG]
   Option description from config.json
 
-  VERSION: Running version of the WFCatalog Collector
   ARCHIVE: Archive name
   PUBLISHER: Quality metric published
   STRUCTURE: structure (ODC or SDS or SDSbynet). SDS is default and used by all nodes except the ODC. Used to find files.
@@ -89,13 +88,12 @@ import signal
 import glob
 import re
 import importlib.metadata
+from logging.handlers import TimedRotatingFileHandler
 
 
 def handler(signum, frame):
     raise Exception("Metric calculation has timed out")
 
-
-from logging.handlers import TimedRotatingFileHandler
 
 # ObsPy mSEED-QC is required
 try:
@@ -103,10 +101,71 @@ try:
 except ImportError as ex:
     raise ImportError("Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.")
 
-# Load configuration from JSON
-cfg_dir = os.path.dirname(os.path.realpath(__file__))
-with open(os.path.join(cfg_dir, "config.json"), "r") as cfg:
-    CONFIG = json.load(cfg)
+
+def load_configuration():
+    """
+    This function load configuration parameters from environment variables.
+    - WFCAT_NODE_NAME : The name of the EIDA node. Will be set as the creator in wfcatalog database. Default is EIDA
+    - WFCAT_PUBLISHER : The name of the EIDA node. Will be set as the publisher in wfcatalog database. Default is "Obspy {Version}"
+    - WFCAT_ARCHIVE_STRUCT: Define how the archive is organised in it's directory hierarchy.
+              Possible values are "SDS" or "SDSbynet" or "ODC"
+              Default is "SDS" for "Seiscomp Data Structure"
+    - WFCAT_ARCHIVE_ROOT: The root path of the data archive.
+    - WFCAT_MONGO_ENABLED: Should the process connect to the mongodb backend ? (true or false), default false
+    - WFCAT_MONGO_HOST: Hostname of the mongo server. Default 127.0.0.1
+    - WFCAT_MONGO_PORT: Port of the mongs server. Default 27017
+    - WFCAT_MONGO_USER: Username. Default "wfcatalog"
+    - WFCAT_MONGO_PASS: Password. Default "wfcatalog"
+    - WFCAT_MONGO_ALLOW_DUPLICATE: If true, can insert multiple documents with same file ID (unique Net, Sta, Cha, Loc, Day)
+    - WFCAT_DEFAULT_LOG_FILE: Path to the log file. If not set, logs to stdout
+    - WFCAT_PROCESSING_TIMEOUT: Number of seconds to timeout when analysing a file
+    - WFCAT_DUBLIN_CORE_ENABLED: Add data object information in the catalog
+    - WFCAT_FILTERS_WHITE: coma separated list of pattern to whitelist when harvesting files. Default '*'
+    - WFCAT_FILTERS_BLACK: coma separated list of pattern to blacklist when harvesting files. Default ''
+    """
+    try:
+        node_name = os.getenv("WFCAT_NODE_NAME", "")
+        publisher = os.getenv("WFCAT_PUBLISHER ", "")
+        archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "")
+        archive_root = os.getenv("WFCAT_ARCHIVE_ROOT", "")
+        mongo_enabled = os.getenv("WFCAT_MONGO_ENABLED", "false") == "true"
+        mongo_host = os.getenv("WFCAT_MONGO_HOST", "localhost")
+        mongo_port = int(os.getenv("WFCAT_MONGO_PORT", "27017"))
+        mongo_user = os.getenv("WFCAT_MONGO_USER", "wfcatalog")
+        mongo_pass = os.getenv("WFCAT_MONGO_PASS", "wfcatalog")
+        mongo_allow_duplicate = (
+            os.getenv("WFCAT_MONGO_ALLOW_DUPLICATE", "false") == "true"
+        )
+        default_log_file = os.getenv("WFCAT_DEFAULT_LOG_FILE", None)
+        processing_timeout = int(os.getenv("WFCAT_PROCESSING_TIMEOUT", "120"))
+        dublin_core_enabled = os.getenv("WFCAT_DUBLIN_CORE_ENABLED", "false") == "true"
+        filters_white = os.getenv("WFCAT_FILTERS_WHITE", "'*'").split(",")
+        filters_black = os.getenv("WFCAT_FILTERS_BLACK", "").split(",")
+    except Exception as e:
+        print("Configuration error: %s", e)
+
+    return {
+        "MONGO": {
+            "ENABLED": mongo_enabled,
+            "HOST": mongo_host,
+            "PORT": mongo_port,
+            "USER": mongo_user,
+            "PASS": mongo_pass,
+            "ALLOW_DOUBLE": mongo_allow_duplicate,
+        },
+        "NODE_NAME": node_name,
+        "PUBLISHER": publisher,
+        "STRUCTURE": archive_struct,
+        "ARCHIVE_ROOT": archive_root,
+        "DEFAULT_LOG_FILE": default_log_file,
+        "PROCESSING_TIMEOUT": processing_timeout,
+        "ENABLE_DUBLIN_CORE": dublin_core_enabled,
+        "FILTERS": {"WHITE": filters_white, "BLACK": filters_black},
+    }
+
+
+# Load configuration from envinronment variables
+CONFIG = load_configuration()
 
 if CONFIG["MONGO"]["ENABLED"]:
     from pymongo import MongoClient
@@ -326,15 +385,8 @@ class WFCatalogCollector:
         """
 
         # Set up WFCatalogger
-        if to_stdout:
-            logging.basicConfig(
-                level=logging.INFO,
-                stream=sys.stdout,
-                format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-            )
-            self.log = logging.getLogger("WFCatalog Collector")
 
-        else:
+        if CONFIG["DEFAULT_LOG_FILE"] is not None:
             self.log = logging.getLogger("WFCatalog Collector")
             log_file = logfile or CONFIG["DEFAULT_LOG_FILE"]
             self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
@@ -342,6 +394,13 @@ class WFCatalogCollector:
                 logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")
             )
             self.log.addHandler(self.file_handler)
+        else:
+            logging.basicConfig(
+                level=logging.INFO,
+                stream=sys.stdout,
+                format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+            )
+            self.log = logging.getLogger("WFCatalog Collector")
 
     def _printArguments(self):
         """
