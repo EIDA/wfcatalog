@@ -267,7 +267,7 @@ class WFCatalogCollector:
         """
 
         # This could be done elswhere but this is the most simple way for now
-        if "config" in options:
+        if options["config"]:
             self.showConfig()
             sys.exit(0)
         if "version" in options:
