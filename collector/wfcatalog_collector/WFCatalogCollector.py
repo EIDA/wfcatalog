@@ -124,9 +124,11 @@ def load_configuration():
     - WFCAT_FILTERS_BLACK: coma separated list of pattern to blacklist when harvesting files. Default ''
     """
     try:
-        node_name = os.getenv("WFCAT_NODE_NAME", "")
-        publisher = os.getenv("WFCAT_PUBLISHER ", "")
-        archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "")
+        node_name = os.getenv("WFCAT_NODE_NAME", "EIDA")
+        publisher = os.getenv(
+            "WFCAT_PUBLISHER ", f"Obspy {importlib.metadata.version('obspy')}"
+        )
+        archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "SDS")
         archive_root = os.getenv("WFCAT_ARCHIVE_ROOT", "")
         mongo_enabled = os.getenv("WFCAT_MONGO_ENABLED", "false") == "true"
         mongo_host = os.getenv("WFCAT_MONGO_HOST", "localhost")
@@ -139,7 +141,7 @@ def load_configuration():
         default_log_file = os.getenv("WFCAT_DEFAULT_LOG_FILE", None)
         processing_timeout = int(os.getenv("WFCAT_PROCESSING_TIMEOUT", "120"))
         dublin_core_enabled = os.getenv("WFCAT_DUBLIN_CORE_ENABLED", "false") == "true"
-        filters_white = os.getenv("WFCAT_FILTERS_WHITE", "'*'").split(",")
+        filters_white = os.getenv("WFCAT_FILTERS_WHITE", "*").split(",")
         filters_black = os.getenv("WFCAT_FILTERS_BLACK", "").split(",")
     except Exception as e:
         print("Configuration error: %s", e)
@@ -153,7 +155,7 @@ def load_configuration():
             "DB_PASS": mongo_pass,
             "ALLOW_DOUBLE": mongo_allow_duplicate,
         },
-        "NODE_NAME": node_name,
+        "ARCHIVE": node_name,
         "PUBLISHER": publisher,
         "STRUCTURE": archive_struct,
         "ARCHIVE_ROOT": archive_root,
@@ -196,6 +198,7 @@ class WFCatalogCollector:
         """
         self.mongo = MongoDatabase()
         self._setupLogger(logfile, to_stdout)
+        # Show configuration and exit
 
     def _setOptions(self, user_options):
         """
@@ -247,14 +250,6 @@ class WFCatalogCollector:
         if not CONFIG["MONGO"]["ENABLED"] and self.args["update"]:
             raise Exception("Cannot update files when database connection is disabled")
 
-        # Show configuration and exit
-        if self.args["config"]:
-            self.showConfig()
-            sys.exit(0)
-        if self.args["version"]:
-            self.showVersion()
-            sys.exit(0)
-
         self._printArguments()
         self._setGranularity()
 
@@ -270,6 +265,14 @@ class WFCatalogCollector:
         WFCatalogCollector.process
         > processes data with options
         """
+
+        # This could be done elswhere but this is the most simple way for now
+        if options["config"]:
+            self.showConfig()
+            sys.exit(0)
+        if options["version"]:
+            self.showVersion()
+            sys.exit(0)
 
         self.timeInitialized = datetime.datetime.now()
 
@@ -940,7 +943,7 @@ class WFCatalogCollector:
         # Source document for granules
         source = {
             "created": datetime.datetime.now(),
-            "collector": CONFIG["VERSION"],
+            "collector": importlib.metadata.version("wfcatalog-collector"),
             "warnings": trace["warnings"],
             "status": "open",
             "format": "mSEED",
@@ -1051,7 +1054,7 @@ class WFCatalogCollector:
             "dc:subject": "mSEED, waveform, quality",
             "dc:creator": CONFIG["ARCHIVE"],
             "dc:contributor": "network operator",
-            "dc:publisher": CONFIG["ARCHIVE"],
+            "dc:publisher": CONFIG["PUBLISHER"],
             "dc:type": "seismic waveform",
             "dc:format": "MSEED",
             "dc:date": datetime.datetime.now(),
