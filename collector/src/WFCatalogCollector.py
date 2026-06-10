@@ -114,6 +114,7 @@ def load_configuration():
     - WFCAT_MONGO_ENABLED: Should the process connect to the mongodb backend ? (true or false), default false
     - WFCAT_MONGO_HOST: Hostname of the mongo server. Default 127.0.0.1
     - WFCAT_MONGO_PORT: Port of the mongs server. Default 27017
+    - WFCAT_MONGO_DBNAME: Port of the mongs server. Default 27017
     - WFCAT_MONGO_USER: Username. Default "wfcatalog"
     - WFCAT_MONGO_PASS: Password. Default "wfcatalog"
     - WFCAT_MONGO_ALLOW_DUPLICATE: If true, can insert multiple documents with same file ID (unique Net, Sta, Cha, Loc, Day)
@@ -133,6 +134,7 @@ def load_configuration():
         mongo_enabled = os.getenv("WFCAT_MONGO_ENABLED", "false") == "true"
         mongo_host = os.getenv("WFCAT_MONGO_HOST", "localhost")
         mongo_port = int(os.getenv("WFCAT_MONGO_PORT", "27017"))
+        mongo_dbname = os.getenv("WFCAT_MONGO_DBNAME", "wfcatalog")
         mongo_user = os.getenv("WFCAT_MONGO_USER", "wfcatalog")
         mongo_pass = os.getenv("WFCAT_MONGO_PASS", "wfcatalog")
         mongo_allow_duplicate = (
@@ -153,6 +155,7 @@ def load_configuration():
             "DB_PORT": mongo_port,
             "DB_USER": mongo_user,
             "DB_PASS": mongo_pass,
+            "DB_NAME": mongo_dbname,
             "ALLOW_DOUBLE": mongo_allow_duplicate,
         },
         "ARCHIVE": node_name,
@@ -181,7 +184,7 @@ if CONFIG["MONGO"]["ENABLED"]:
 if CONFIG["STRUCTURE"] == "SDSbynet":
     # SDSbynet structure starts with an extended network code.
     # so we need to add the ability to extend a network code
-    from fdsnnetextender import FdsnNetExtender
+    from fdsnnetextender.fdsnnetextender import FdsnNetExtender
 
     fne = FdsnNetExtender()
 
