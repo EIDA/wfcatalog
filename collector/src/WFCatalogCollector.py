@@ -267,7 +267,7 @@ class WFCatalogCollector:
         """
 
         # This could be done elswhere but this is the most simple way for now
-        if options["config"]:
+        if "config" in options and options["config"]:
             self.showConfig()
             sys.exit(0)
         if "version" in options:
@@ -1531,7 +1531,10 @@ if __name__ == "__main__":
 
     # Options to show config/versioning
     parser.add_argument(
-        "--config", help="view configuration options", action="store_true"
+        "--config",
+        help="view configuration options",
+        action="store_true",
+        default=False,
     )
     parser.add_argument("--version", action="version", version="undefined")
 

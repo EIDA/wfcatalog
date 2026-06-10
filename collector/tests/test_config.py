@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from wfcatalog_collector.WFCatalogCollector import load_configuration
-from wfcatalog_collector.WFCatalogCollector import WFCatalogCollector
+from src.WFCatalogCollector import load_configuration
+from src.WFCatalogCollector import WFCatalogCollector
 
 
 def test_config_load():
