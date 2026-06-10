@@ -12,3 +12,8 @@ def test_config_load():
 def test_show_config():
     wfcol = WFCatalogCollector()
     wfcol.showConfig()
+
+
+def test_show_version():
+    wfcol = WFCatalogCollector()
+    wfcol.showVersion()
