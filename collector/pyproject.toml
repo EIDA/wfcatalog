@@ -1,5 +1,6 @@
 [project]
 name = "wfcatalog-collector"
+requires-python = ">= 3.13"
 description = "Collector process for wfcatalog"
 version = "1.0.1"
 dependencies = [

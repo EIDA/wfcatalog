@@ -1,5 +1,6 @@
 # EIDA WFCatalog
 
+
 The WFCatalog is a webservice that facilities the discovery of data through
 waveform metadata. It is made up of a `collector` that is responsible for
 ingestion of mSEED quality metrics to the database and the `service` that
