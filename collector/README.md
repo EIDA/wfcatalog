@@ -59,6 +59,7 @@ If `config.json` can not be found in the `WFCAT_CONF_DIR` directory (default to 
             Default is "SDS" for "Seiscomp Data Structure"
 - WFCAT_ARCHIVE_ROOT: The root path of the data archive.
 - WFCAT_MONGO_ENABLED: Should the process connect to the mongodb backend ? (true or false), default false
+- WFCAT_MONGO_ENGINE: Engine running the DB backend (mongodb or docdb), default mongodb
 - WFCAT_MONGO_HOST: Hostname of the mongo server. Default 127.0.0.1
 - WFCAT_MONGO_PORT: Port of the mongs server. Default 27017
 - WFCAT_MONGO_DBNAME: Port of the mongs server. Default 27017

@@ -115,6 +115,7 @@ def load_configuration():
               Default is "SDS" for "Seiscomp Data Structure"
     - WFCAT_ARCHIVE_ROOT: The root path of the data archive.
     - WFCAT_MONGO_ENABLED: Should the process connect to the mongodb backend ? (true or false), default false
+    - WFCAT_MONGO_ENGINE: Engine running the DB backend (mongodb or docdb), default mongodb
     - WFCAT_MONGO_HOST: Hostname of the mongo server. Default 127.0.0.1
     - WFCAT_MONGO_PORT: Port of the mongs server. Default 27017
     - WFCAT_MONGO_DBNAME: Port of the mongs server. Default 27017
@@ -143,6 +144,7 @@ def load_configuration():
             archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "SDS")
             archive_root = os.getenv("WFCAT_ARCHIVE_ROOT", "")
             mongo_enabled = os.getenv("WFCAT_MONGO_ENABLED", "false") == "true"
+            mongo_engine = os.getenv("WFCAT_MONGO_ENGINE", "mongodb")
             mongo_host = os.getenv("WFCAT_MONGO_HOST", "localhost")
             mongo_port = int(os.getenv("WFCAT_MONGO_PORT", "27017"))
             mongo_dbname = os.getenv("WFCAT_MONGO_DBNAME", "wfcatalog")
@@ -161,6 +163,7 @@ def load_configuration():
             config = {
                 "MONGO": {
                     "ENABLED": mongo_enabled,
+                    "ENGINE": mongo_engine,
                     "DB_HOST": mongo_host,
                     "DB_PORT": mongo_port,
                     "DB_USER": mongo_user,
@@ -1451,12 +1454,26 @@ class MongoDatabase:
         if self._connected:
             return
 
+        # Document DB deployments need a different set of arguments
+        db_kwargs = {
+            "username": CONFIG["MONGO"]["DB_USER"],
+            "password": CONFIG["MONGO"]["DB_PASS"]
+        }
+        if CONFIG["MONGO"].get("ENGINE", "mongodb") == "docdb":
+            db_kwargs |= {
+                "tls": True,
+                "tlsCAFile": "global-bundle.pem",
+                "replicaSet": "rs0",
+                "readPreference": "secondaryPreferred",
+                "retryWrites": False
+            }
+        else:  # Just default to mongodb
+            db_kwargs |= {"authSource": CONFIG["MONGO"]["DB_NAME"]}
+
         self.db = MongoClient(
             CONFIG["MONGO"]["DB_HOST"],
             CONFIG["MONGO"]["DB_PORT"],
-            username=CONFIG["MONGO"]["DB_USER"],
-            password=CONFIG["MONGO"]["DB_PASS"],
-            authSource=CONFIG["MONGO"]["DB_NAME"],
+            **db_kwargs
         ).get_database(CONFIG["MONGO"]["DB_NAME"])
 
         self._connected = True
