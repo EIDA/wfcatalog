@@ -1,0 +1,18 @@
+[project]
+name = "wfcatalog-collector"
+requires-python = ">= 3.13"
+description = "Collector process for wfcatalog"
+version = "1.0.1"
+dependencies = [
+    "fdsnnetextender~=5.0.0",
+    "obspy>=1.5.0",
+    "pymongo>=4.17.0",
+]
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]

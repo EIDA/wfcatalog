@@ -9,7 +9,6 @@ Authors:
 [CONFIG]
   Option description from config.json
 
-  VERSION: Running version of the WFCatalog Collector
   ARCHIVE: Archive name
   PUBLISHER: Quality metric published
   STRUCTURE: structure (ODC or SDS or SDSbynet). SDS is default and used by all nodes except the ODC. Used to find files.
@@ -27,27 +26,27 @@ Authors:
 [USAGE]
   The provided class collects new and synchronizes waveform metadata and
   can be called through the command line or by importing the WFCatalogCollector class
-  
+
   -------------------------------------------------------------------
-  
+
   Through an import:
-  
-  options are identical to the flags described below and 
+
+  options are identical to the flags described below and
   passed as {'key': value} pairs in a dictionary. E.g.:
-  
+
     > from WFCatalogCollector.py import WFCatalogCollector
     > mmc = WFCatalogCollector(logfile)
     > mmc.process({'dir': '/PATH/TO/FILES', 'csegs': True, 'flags': True})
-  
+
   Through the CMD line:
-  
+
     > python WFCatalogCollector.py --dir {/PATH/TO/FILES} --csegs --flags --logfile {logfile}
-  
-  Giving the --update flag does a checksum change detection on 
+
+  Giving the --update flag does a checksum change detection on
   all input files. The documents in the database that are dependent
   on the changed files are removed, reprocessed, and inserted. Updating
   does NOT insert any new files in the directory.
-  
+
   An update can be forced by giving --update which skips the checksum change'exampleson and reprocesses all files.
   Giving --past {day, yesterday, week, fortnight, month} will reprocess the files in
   the specified window.
@@ -57,7 +56,7 @@ Authors:
 
   ### Boolean flags
   [--update] start synchronization on input files with changes
-  [--force] forces synchronization on all input files 
+  [--force] forces synchronization on all input files
   [--csegs] include continuous segments
   [--flags] include miniseed header percentages, timing correction, and timing quality
   [--hourly] include hourly granules
@@ -75,7 +74,9 @@ Authors:
   [--logfile] specify a custom logfile
   [--stdout]  outpurs everything to stdout
 """
+
 import os
+from pathlib import Path
 import json
 import logging
 import argparse
@@ -87,13 +88,13 @@ import fnmatch
 import signal
 import glob
 import re
+import importlib.metadata
+from logging.handlers import TimedRotatingFileHandler
 
 
 def handler(signum, frame):
     raise Exception("Metric calculation has timed out")
 
-
-from logging.handlers import TimedRotatingFileHandler
 
 # ObsPy mSEED-QC is required
 try:
@@ -101,10 +102,100 @@ try:
 except ImportError as ex:
     raise ImportError("Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.")
 
-# Load configuration from JSON
-cfg_dir = os.path.dirname(os.path.realpath(__file__))
-with open(os.path.join(cfg_dir, "config.json"), "r") as cfg:
-    CONFIG = json.load(cfg)
+
+def load_configuration():
+    """
+    Loads configuration parameters.
+    First try from $WFCAT_CONF_DIR/config.json ($WFCAT_CONF_DIR defaults to current working directory)
+    If file does not exist, use the following environment variables:
+    - WFCAT_NODE_NAME : The name of the EIDA node. Will be set as the creator in wfcatalog database. Default is EIDA
+    - WFCAT_PUBLISHER : The name of the EIDA node. Will be set as the publisher in wfcatalog database. Default is "Obspy {Version}"
+    - WFCAT_ARCHIVE_STRUCT: Define how the archive is organised in it's directory hierarchy.
+              Possible values are "SDS" or "SDSbynet" or "ODC"
+              Default is "SDS" for "Seiscomp Data Structure"
+    - WFCAT_ARCHIVE_ROOT: The root path of the data archive.
+    - WFCAT_MONGO_ENABLED: Should the process connect to the mongodb backend ? (true or false), default false
+    - WFCAT_MONGO_ENGINE: Engine running the DB backend (mongodb or docdb), default mongodb
+    - WFCAT_MONGO_HOST: Hostname of the mongo server. Default 127.0.0.1
+    - WFCAT_MONGO_PORT: Port of the mongs server. Default 27017
+    - WFCAT_MONGO_DBNAME: Port of the mongs server. Default 27017
+    - WFCAT_MONGO_USER: Username. Default "wfcatalog"
+    - WFCAT_MONGO_PASS: Password. Default "wfcatalog"
+    - WFCAT_MONGO_ALLOW_DUPLICATE: If true, can insert multiple documents with same file ID (unique Net, Sta, Cha, Loc, Day)
+    - WFCAT_DEFAULT_LOG_FILE: Path to the log file. If not set, logs to stdout
+    - WFCAT_PROCESSING_TIMEOUT: Number of seconds to timeout when analysing a file
+    - WFCAT_DUBLIN_CORE_ENABLED: Add data object information in the catalog
+    - WFCAT_FILTERS_WHITE: coma separated list of pattern to whitelist when harvesting files. Default '*'
+    - WFCAT_FILTERS_BLACK: coma separated list of pattern to blacklist when harvesting files. Default ''
+    """
+    try:
+        conf_dir = Path(os.getenv("WFCAT_CONF_DIR", os.getcwd()))
+        conf_file = conf_dir / "config.json"
+
+        if conf_file.exists():
+            with conf_file.open() as cfg:
+                logging.info("Using configuration from %s", conf_file)
+                config = json.load(cfg)
+        else:
+            node_name = os.getenv("WFCAT_NODE_NAME", "EIDA")
+            publisher = os.getenv(
+                "WFCAT_PUBLISHER ", f"Obspy {importlib.metadata.version('obspy')}"
+            )
+            archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "SDS")
+            archive_root = os.getenv("WFCAT_ARCHIVE_ROOT", "")
+            mongo_enabled = os.getenv("WFCAT_MONGO_ENABLED", "false") == "true"
+            mongo_engine = os.getenv("WFCAT_MONGO_ENGINE", "mongodb")
+            mongo_host = os.getenv("WFCAT_MONGO_HOST", "localhost")
+            mongo_port = int(os.getenv("WFCAT_MONGO_PORT", "27017"))
+            mongo_dbname = os.getenv("WFCAT_MONGO_DBNAME", "wfcatalog")
+            mongo_user = os.getenv("WFCAT_MONGO_USER", "wfcatalog")
+            mongo_pass = os.getenv("WFCAT_MONGO_PASS", "wfcatalog")
+            mongo_allow_duplicate = (
+                os.getenv("WFCAT_MONGO_ALLOW_DUPLICATE", "false") == "true"
+            )
+            default_log_file = os.getenv("WFCAT_DEFAULT_LOG_FILE", None)
+            processing_timeout = int(os.getenv("WFCAT_PROCESSING_TIMEOUT", "120"))
+            dublin_core_enabled = (
+                os.getenv("WFCAT_DUBLIN_CORE_ENABLED", "false") == "true"
+            )
+            filters_white = os.getenv("WFCAT_FILTERS_WHITE", "*").split(",")
+            filters_black = os.getenv("WFCAT_FILTERS_BLACK", "").split(",")
+            config = {
+                "MONGO": {
+                    "ENABLED": mongo_enabled,
+                    "ENGINE": mongo_engine,
+                    "DB_HOST": mongo_host,
+                    "DB_PORT": mongo_port,
+                    "DB_USER": mongo_user,
+                    "DB_PASS": mongo_pass,
+                    "DB_NAME": mongo_dbname,
+                    "ALLOW_DOUBLE": mongo_allow_duplicate,
+                },
+                "ARCHIVE": node_name,
+                "PUBLISHER": publisher,
+                "STRUCTURE": archive_struct,
+                "ARCHIVE_ROOT": archive_root,
+                "DEFAULT_LOG_FILE": default_log_file,
+                "PROCESSING_TIMEOUT": processing_timeout,
+                "ENABLE_DUBLIN_CORE": dublin_core_enabled,
+                "FILTERS": {"WHITE": filters_white, "BLACK": filters_black},
+            }
+
+    except json.decoder.JSONDecodeError as e:
+        # I don't have any logger initialized yet
+        print("ERROR: Configuration error: %s", e)
+        raise e
+    except Exception as e:
+        raise e
+
+    return config
+
+
+try:
+    CONFIG = load_configuration()
+except Exception:
+    sys.exit(1)
+
 
 if CONFIG["MONGO"]["ENABLED"]:
     from pymongo import MongoClient
@@ -112,7 +203,7 @@ if CONFIG["MONGO"]["ENABLED"]:
 if CONFIG["STRUCTURE"] == "SDSbynet":
     # SDSbynet structure starts with an extended network code.
     # so we need to add the ability to extend a network code
-    from fdsnnetextender import FdsnNetExtender
+    from fdsnnetextender.fdsnnetextender import FdsnNetExtender
 
     fne = FdsnNetExtender()
 
@@ -129,6 +220,7 @@ class WFCatalogCollector:
         """
         self.mongo = MongoDatabase()
         self._setupLogger(logfile, to_stdout)
+        # Show configuration and exit
 
     def _setOptions(self, user_options):
         """
@@ -180,14 +272,6 @@ class WFCatalogCollector:
         if not CONFIG["MONGO"]["ENABLED"] and self.args["update"]:
             raise Exception("Cannot update files when database connection is disabled")
 
-        # Show configuration and exit
-        if self.args["config"]:
-            self.showConfig()
-            sys.exit(0)
-        if self.args["version"]:
-            self.showVersion()
-            sys.exit(0)
-
         self._printArguments()
         self._setGranularity()
 
@@ -196,13 +280,21 @@ class WFCatalogCollector:
         WFCatalog.showVersion
         > shows current Collector version
         """
-        print(CONFIG["VERSION"])
+        print(importlib.metadata.version("wfcatalog-collector"))
 
     def process(self, options):
         """
         WFCatalogCollector.process
         > processes data with options
         """
+
+        # This could be done elswhere but this is the most simple way for now
+        if "config" in options and options["config"]:
+            self.showConfig()
+            sys.exit(0)
+        if "version" in options:
+            self.showVersion()
+            sys.exit(0)
 
         self.timeInitialized = datetime.datetime.now()
 
@@ -324,15 +416,8 @@ class WFCatalogCollector:
         """
 
         # Set up WFCatalogger
-        if to_stdout:
-            logging.basicConfig(
-                level=logging.INFO,
-                stream=sys.stdout,
-                format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-            )
-            self.log = logging.getLogger("WFCatalog Collector")
 
-        else:
+        if CONFIG["DEFAULT_LOG_FILE"] is not None:
             self.log = logging.getLogger("WFCatalog Collector")
             log_file = logfile or CONFIG["DEFAULT_LOG_FILE"]
             self.file_handler = TimedRotatingFileHandler(log_file, when="midnight")
@@ -340,6 +425,13 @@ class WFCatalogCollector:
                 logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")
             )
             self.log.addHandler(self.file_handler)
+        else:
+            logging.basicConfig(
+                level=logging.INFO,
+                stream=sys.stdout,
+                format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+            )
+            self.log = logging.getLogger("WFCatalog Collector")
 
     def _printArguments(self):
         """
@@ -873,7 +965,7 @@ class WFCatalogCollector:
         # Source document for granules
         source = {
             "created": datetime.datetime.now(),
-            "collector": CONFIG["VERSION"],
+            "collector": importlib.metadata.version("wfcatalog-collector"),
             "warnings": trace["warnings"],
             "status": "open",
             "format": "mSEED",
@@ -984,7 +1076,7 @@ class WFCatalogCollector:
             "dc:subject": "mSEED, waveform, quality",
             "dc:creator": CONFIG["ARCHIVE"],
             "dc:contributor": "network operator",
-            "dc:publisher": CONFIG["ARCHIVE"],
+            "dc:publisher": CONFIG["PUBLISHER"],
             "dc:type": "seismic waveform",
             "dc:format": "MSEED",
             "dc:date": datetime.datetime.now(),
@@ -1362,12 +1454,26 @@ class MongoDatabase:
         if self._connected:
             return
 
+        # Document DB deployments need a different set of arguments
+        db_kwargs = {
+            "username": CONFIG["MONGO"]["DB_USER"],
+            "password": CONFIG["MONGO"]["DB_PASS"]
+        }
+        if CONFIG["MONGO"].get("ENGINE", "mongodb") == "docdb":
+            db_kwargs |= {
+                "tls": True,
+                "tlsCAFile": "global-bundle.pem",
+                "replicaSet": "rs0",
+                "readPreference": "secondaryPreferred",
+                "retryWrites": False
+            }
+        else:  # Just default to mongodb
+            db_kwargs |= {"authSource": CONFIG["MONGO"]["DB_NAME"]}
+
         self.db = MongoClient(
             CONFIG["MONGO"]["DB_HOST"],
             CONFIG["MONGO"]["DB_PORT"],
-            username=CONFIG["MONGO"]["DB_USER"],
-            password=CONFIG["MONGO"]["DB_PASS"],
-            authSource=CONFIG["MONGO"]["DB_NAME"],
+            **db_kwargs
         ).get_database(CONFIG["MONGO"]["DB_NAME"])
 
         self._connected = True
@@ -1461,9 +1567,12 @@ if __name__ == "__main__":
 
     # Options to show config/versioning
     parser.add_argument(
-        "--config", help="view configuration options", action="store_true"
+        "--config",
+        help="view configuration options",
+        action="store_true",
+        default=False,
     )
-    parser.add_argument("--version", action="version", version=CONFIG["VERSION"])
+    parser.add_argument("--version", action="version", version="undefined")
 
     # Add flags and continuous segments
     parser.add_argument(
