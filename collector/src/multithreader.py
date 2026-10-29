@@ -1,6 +1,6 @@
 import os
 from multiprocessing import Pool
-from WFCatalogCollector import WFCatalogCollector
+from src.WFCatalogCollector import WFCatalogCollector
 
 import datetime
 

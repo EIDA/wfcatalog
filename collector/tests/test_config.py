@@ -3,7 +3,7 @@
 import os
 import tempfile
 import pytest
-from src.WFCatalogCollector import load_configuration
+from src.config import load_configuration
 from src.WFCatalogCollector import WFCatalogCollector
 
 

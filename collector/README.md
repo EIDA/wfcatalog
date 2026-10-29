@@ -80,7 +80,7 @@ If `config.json` can not be found in the `WFCAT_CONF_DIR` directory (default to 
 [https://docs.astral.sh/uv/getting-started/installation/](Get uv)
 
 ``` bash
-uv run src/WFCatalogCollector.py
+uv run python -m src.WFCatalogCollector
 ```
 
 ### virtual env + pip
