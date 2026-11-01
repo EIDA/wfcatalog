@@ -92,6 +92,7 @@ from logging.handlers import TimedRotatingFileHandler
 
 from src.config import CONFIG
 from src.db import MongoDatabase
+from src import archive
 
 
 def handler(signum, frame):
@@ -106,14 +107,6 @@ except ImportError as ex:
 
 
 
-
-
-if CONFIG["STRUCTURE"] == "SDSbynet":
-    # SDSbynet structure starts with an extended network code.
-    # so we need to add the ability to extend a network code
-    from fdsnnetextender.fdsnnetextender import FdsnNetExtender
-
-    fne = FdsnNetExtender()
 
 
 class WFCatalogCollector:
@@ -249,11 +242,11 @@ class WFCatalogCollector:
             # Set update for dependents on the file to be deleted
             for documents in self.mongo.getDailyFilesById(file):
                 # Make sure to not update self or any file included in deletion
-                if self._getFullPath(documents["fileId"]) not in self.files:
+                if archive.getFullPath(documents["fileId"]) not in self.files:
                     self.log.info(
                         "Stage dependent file for update %s" % documents["fileId"]
                     )
-                    update_files.append(self._getFullPath(documents["fileId"]))
+                    update_files.append(archive.getFullPath(documents["fileId"]))
 
             # Remove the document
             for document in self.mongo.getDocumentByFilename(file):
@@ -390,63 +383,9 @@ class WFCatalogCollector:
         # Loop over the window and collect files
         pastFiles = []
         for day in range(start, end):
-            pastFiles += self._collectFilesFromDate(now - datetime.timedelta(days=day))
+            pastFiles += archive.collectFilesFromDate(now - datetime.timedelta(days=day))
 
         return pastFiles
-
-    def _collectFilesFromDate(self, date):
-        """
-        WFCatalogCollector._collectFilesFromDate
-        > collects the files for a given year and day
-        """
-
-        # Get the year & day of year
-        jday = date.strftime("%j")
-        year = date.strftime("%Y")
-
-        # ODC directory structure makes it simple to loop over years and days
-        if CONFIG["STRUCTURE"] == "ODC":
-            directory = os.path.join(CONFIG["ARCHIVE_ROOT"], year, jday)
-            collectedFiles = [
-                os.path.join(directory, f)
-                for f in os.listdir(directory)
-                if os.path.isfile(os.path.join(directory, f))
-            ]
-
-        # SDS structure is slightly more complex, loop over all directories
-        # in a year and extract files ending with a given jday
-        elif CONFIG["STRUCTURE"] == "SDS":
-            collectedFiles = []
-            directory = os.path.join(CONFIG["ARCHIVE_ROOT"], year)
-            for subdir, dirs, files in os.walk(directory, followlinks=True):
-                for file in files:
-                    if file.endswith(jday) and os.path.isfile(
-                        os.path.join(subdir, file)
-                    ):
-                        collectedFiles.append(os.path.join(subdir, file))
-
-        # SDSbynet structure is slightly more complex, loop over all network directories
-        # in a year and extract files ending with a given jday
-        elif CONFIG["STRUCTURE"] == "SDSbynet":
-            collectedFiles = []
-            # First, loop over all networks
-            for netdir in next(os.walk(CONFIG["ARCHIVE_ROOT"]))[1]:
-                # Then find all files
-                for subdir, dirs, files in os.walk(
-                    os.path.join(CONFIG["ARCHIVE_ROOT"], netdir, year), followlinks=True
-                ):
-                    for file in files:
-                        if file.endswith(jday) and os.path.isfile(
-                            os.path.join(subdir, file)
-                        ):
-                            collectedFiles.append(os.path.join(subdir, file))
-
-        else:
-            raise Exception(
-                "WFCatalogCollector.getFilesFromDirectory: unknown directory structure."
-            )
-
-        return collectedFiles
 
     def _getFiles(self):
         """
@@ -516,11 +455,11 @@ class WFCatalogCollector:
             # Include a given range (default to 1)
             for day in range(abs(n_days)):
                 if n_days > 0:
-                    self.files += self._collectFilesFromDate(
+                    self.files += archive.collectFilesFromDate(
                         specific_date + datetime.timedelta(days=day)
                     )
                 else:
-                    self.files += self._collectFilesFromDate(
+                    self.files += archive.collectFilesFromDate(
                         specific_date - datetime.timedelta(days=day)
                     )
             self.log.info(
@@ -625,7 +564,7 @@ class WFCatalogCollector:
 
                     self.log.info("Comparing MD5checksums for %s" % used_files["name"])
 
-                    fullPath = self._getFullPath(os.path.basename(file))
+                    fullPath = archive.getFullPath(os.path.basename(file))
                     MD5Hash = self._getMD5Hash(fullPath)
 
                     # Compare the checksum
@@ -638,16 +577,7 @@ class WFCatalogCollector:
                         )
                         changedFiles.append(document["fileId"])
 
-        return list(set([self._getFullPath(filename) for filename in changedFiles]))
-
-    def _getFullPath(self, file):
-        """
-        WFCatalogCollector._getFullPath
-        > returns full path based on the archive root directory
-        > for file basename and directory stucture (config)
-        """
-
-        return self._getFileDirectory(self._getStatsObject(file))
+        return list(set([archive.getFullPath(filename) for filename in changedFiles]))
 
     def _isNewDocument(self, file):
         """
@@ -1122,121 +1052,6 @@ class WFCatalogCollector:
 
         return hasher.hexdigest()
 
-    def _getStatsObject(self, file):
-        """
-        WFCatalogCollector._getStatsObject
-        returns object with stream metadata depending on archive struture
-        """
-
-        statsArray = file.split(".")
-
-        if CONFIG["STRUCTURE"] == "ODC":
-            stats_object = {
-                "jday": statsArray.pop(),
-                "year": statsArray.pop(),
-                "network": statsArray.pop(),
-                "channel": statsArray.pop(),
-                "station": statsArray.pop(),
-            }
-
-        elif CONFIG["STRUCTURE"] == "SDS" or CONFIG["STRUCTURE"] == "SDSbynet":
-            stats_object = {
-                "jday": statsArray.pop(),
-                "year": statsArray.pop(),
-                "dtype": statsArray.pop(),
-                "channel": statsArray.pop(),
-                "location": statsArray.pop(),
-                "station": statsArray.pop(),
-                "network": statsArray.pop(),
-            }
-
-        else:
-            raise Exception(
-                "Unknown directory structure in mSEEDMetadataCollector._getStatsObject"
-            )
-
-        return stats_object
-
-    def _getFilename(self, stats):
-        """
-        WFCatalogCollector._getFilename
-        Returns filename based on structure ODC/SDS
-        """
-
-        if CONFIG["STRUCTURE"] == "ODC":
-            filename = ".".join(
-                [
-                    stats["station"],
-                    stats["channel"],
-                    stats["network"],
-                    stats["year"],
-                    stats["jday"],
-                ]
-            )
-
-        elif CONFIG["STRUCTURE"] == "SDS" or CONFIG["STRUCTURE"] == "SDSbynet":
-            filename = ".".join(
-                [
-                    stats["network"],
-                    stats["station"],
-                    stats["location"],
-                    stats["channel"],
-                    stats["dtype"],
-                    stats["year"],
-                    stats["jday"],
-                ]
-            )
-
-        else:
-            raise Exception(
-                "Unknown directory structure in mSEEDMetadataCollector._getFilename"
-            )
-
-        return filename
-
-    def _getFileDirectory(self, stats):
-        """
-        WFCatalogCollector._getFileDirectory
-        > Returns the directory for a stream at a given date
-        """
-
-        if CONFIG["STRUCTURE"] == "ODC":
-            filepath = os.path.join(
-                stats["year"], stats["jday"], self._getFilename(stats)
-            )
-
-        elif CONFIG["STRUCTURE"] == "SDS":
-            filepath = os.path.join(
-                stats["year"],
-                stats["network"],
-                stats["station"],
-                stats["channel"] + "." + stats["dtype"],
-                self._getFilename(stats),
-            )
-
-        # SDSbynet starts with the extended networkcode
-        elif CONFIG["STRUCTURE"] == "SDSbynet":
-            try:
-                extnet = fne.extend(stats["network"], stats["year"])
-            except Error as e:
-                logging.error("Unable to extend network code")
-                logging.error(e)
-                raise e
-            filepath = os.path.join(
-                extnet,
-                stats["year"],
-                stats["station"],
-                stats["channel"] + "." + stats["dtype"],
-                self._getFilename(stats),
-            )
-
-        else:
-            raise Exception(
-                "Unknown directory structure in CONFIG (expected ODC or SDS or SDSbynet)"
-            )
-
-        return os.path.join(CONFIG["ARCHIVE_ROOT"], filepath)
-
     def _setGranularity(self):
         """
         WFCatalogCollector._setGranularity
@@ -1246,32 +1061,6 @@ class WFCatalogCollector:
         # For daily granularity take steps of 24h
         self.gran = 1 if self.args["hourly"] else 24
 
-    def _getNextFile(self, file, direction):
-        """
-        WFCatalogCollector._getNextFile
-        > gets previous or next dayfile depending on direction (-1, +1)
-        """
-
-        stats = self._getStatsObject(os.path.basename(file))
-        current_date = datetime.datetime.strptime(
-            stats["year"] + " " + stats["jday"], "%Y %j"
-        )
-        new_date = current_date + datetime.timedelta(days=direction)
-
-        stats["year"] = new_date.strftime("%Y")
-        stats["jday"] = new_date.strftime("%j")
-
-        return self._getFileDirectory(stats)
-
-    def _getDateFromFile(self, file):
-        """
-        WFCatalogCollector._getDateFromFile
-        > returns datetime object of the day a file based on jday/year
-        """
-
-        stats = self._getStatsObject(os.path.basename(file))
-        return datetime.datetime.strptime(stats["year"] + " " + stats["jday"], "%Y %j")
-
     def _getFileSegments(self, file):
         """
         WFCatalogCollector._getFileSegments
@@ -1280,7 +1069,7 @@ class WFCatalogCollector:
         """
 
         # Get the daily segment
-        start_time = self._getDateFromFile(file)
+        start_time = archive.getDateFromFile(file)
         end_time = start_time + datetime.timedelta(days=1)
 
         daily = {"start": start_time, "end": end_time}
@@ -1314,7 +1103,7 @@ class WFCatalogCollector:
 
         # Append three files to array in order [yesterday, today, tomorrow]
         # Get yesterdays file
-        previous_file = self._getNextFile(file, -1)
+        previous_file = archive.getNextFile(file, -1)
         if os.path.isfile(previous_file):
             day_files.append(previous_file)
 
@@ -1322,7 +1111,7 @@ class WFCatalogCollector:
         day_files.append(file)
 
         # Get tomorrows file
-        next_file = self._getNextFile(file, 1)
+        next_file = archive.getNextFile(file, 1)
         if os.path.isfile(next_file):
             day_files.append(next_file)
 
