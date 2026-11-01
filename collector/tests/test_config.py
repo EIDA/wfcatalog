@@ -45,3 +45,11 @@ def test_config_load_with_file_not_found():
         os.environ["WFCAT_CONF_DIR"] = confdir
         config = load_configuration()
         assert config["ARCHIVE"] == "EIDA"
+
+
+def test_publisher_from_environment(monkeypatch):
+    with tempfile.TemporaryDirectory() as confdir:
+        monkeypatch.setenv("WFCAT_CONF_DIR", confdir)  # no config.json: env vars are used
+        monkeypatch.setenv("WFCAT_PUBLISHER", "TEST-NODE")
+        config = load_configuration()
+        assert config["PUBLISHER"] == "TEST-NODE"

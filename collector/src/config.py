@@ -49,7 +49,7 @@ def load_configuration():
         else:
             node_name = os.getenv("WFCAT_NODE_NAME", "EIDA")
             publisher = os.getenv(
-                "WFCAT_PUBLISHER ", f"Obspy {importlib.metadata.version('obspy')}"
+                "WFCAT_PUBLISHER", f"Obspy {importlib.metadata.version('obspy')}"
             )
             archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "SDS")
             archive_root = os.getenv("WFCAT_ARCHIVE_ROOT", "")
