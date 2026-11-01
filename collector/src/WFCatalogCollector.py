@@ -81,10 +81,8 @@ import logging
 import argparse
 import datetime
 import hashlib
-import warnings
 import sys
 import fnmatch
-import signal
 import glob
 import re
 import importlib.metadata
@@ -93,20 +91,7 @@ from logging.handlers import TimedRotatingFileHandler
 from src.config import CONFIG
 from src.db import MongoDatabase
 from src import archive
-
-
-def handler(signum, frame):
-    raise Exception("Metric calculation has timed out")
-
-
-# ObsPy mSEED-QC is required
-try:
-    from obspy.signal.quality_control import MSEEDMetadata
-except ImportError as ex:
-    raise ImportError("Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.")
-
-
-
+from src import metrics
 
 
 class WFCatalogCollector:
@@ -594,47 +579,6 @@ class WFCatalogCollector:
         else:
             return self.mongo.countDocumentsByFilename(file) == 0
 
-    def _callObsPyMetadata(self, files, start, end, granule):
-        """
-        WFCatalogCollector._callObsPyMetadata
-        wrapper function to call obspy.signal.MSEEDMetdata
-        """
-
-        # Throw an exception after the timeout (UNIX only)
-        signal.signal(signal.SIGALRM, handler)
-        signal.alarm(CONFIG["PROCESSING_TIMEOUT"])
-
-        try:
-            # Catch mSEED reading warnings
-            with warnings.catch_warnings(record=True) as w:
-                warnings.simplefilter("always")
-
-                # Skip continuous segments for hourly granules
-                if granule == "daily":
-                    metadata = MSEEDMetadata(
-                        files,
-                        starttime=start,
-                        endtime=end,
-                        add_flags=self.args["flags"],
-                        add_c_segments=self.args["csegs"],
-                    )
-                elif granule == "hourly":
-                    metadata = MSEEDMetadata(
-                        files,
-                        starttime=start,
-                        endtime=end,
-                        add_flags=self.args["flags"],
-                        add_c_segments=False,
-                    )
-
-                metadata.meta.update({"warnings": len(w) > 0})
-
-        finally:
-            # Disable alarm
-            signal.alarm(0)
-
-        return metadata.meta
-
     def _collectMetadata(self, file):
         """
         WFCatalogCollector._collectMetadata
@@ -657,8 +601,9 @@ class WFCatalogCollector:
         # Get the daily granulated waveform metadata
         try:
             granule = fas["segments"]["daily"]
-            daily_meta = self._callObsPyMetadata(
-                fas["files"], granule["start"], granule["end"], "daily"
+            daily_meta = metrics.computeMetadata(
+                fas["files"], granule["start"], granule["end"], "daily",
+                self.args["flags"], self.args["csegs"],
             )
             daily_meta.update({"fileId": os.path.basename(file)})
         except Exception as ex:
@@ -672,8 +617,9 @@ class WFCatalogCollector:
         hourly_meta_array = []
         for granule in fas["segments"]["hourly"]:
             try:
-                hourly_meta = self._callObsPyMetadata(
-                    fas["files"], granule["start"], granule["end"], "hourly"
+                hourly_meta = metrics.computeMetadata(
+                    fas["files"], granule["start"], granule["end"], "hourly",
+                    self.args["flags"], self.args["csegs"],
                 )
                 hourly_meta.update({"fileId": os.path.basename(file)})
                 hourly_meta_array.append(hourly_meta)
