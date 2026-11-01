@@ -17,11 +17,6 @@ def test_show_config():
     wfcol.showConfig()
 
 
-def test_show_version():
-    wfcol = WFCatalogCollector()
-    wfcol.showVersion()
-
-
 def test_config_load_with_file():
     with tempfile.TemporaryDirectory() as confdir:
         os.environ["WFCAT_CONF_DIR"] = confdir

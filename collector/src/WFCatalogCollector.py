@@ -133,7 +133,6 @@ class WFCatalogCollector:
             "update": False,
             "force": False,
             "config": False,
-            "version": False,
         }
 
         # Loop over user options and replace any default options
@@ -162,13 +161,6 @@ class WFCatalogCollector:
         self._printArguments()
         self._setGranularity()
 
-    def showVersion(self):
-        """
-        WFCatalog.showVersion
-        > shows current Collector version
-        """
-        print(importlib.metadata.version("wfcatalog-collector"))
-
     def process(self, options):
         """
         WFCatalogCollector.process
@@ -178,9 +170,6 @@ class WFCatalogCollector:
         # This could be done elswhere but this is the most simple way for now
         if "config" in options and options["config"]:
             self.showConfig()
-            sys.exit(0)
-        if "version" in options:
-            self.showVersion()
             sys.exit(0)
 
         self.timeInitialized = datetime.datetime.now()
@@ -915,7 +904,11 @@ if __name__ == "__main__":
         action="store_true",
         default=False,
     )
-    parser.add_argument("--version", action="version", version="undefined")
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=importlib.metadata.version("wfcatalog-collector"),
+    )
 
     # Add flags and continuous segments
     parser.add_argument(
