@@ -1,0 +1,6606 @@
+[
+ {
+  "daily": {
+   "created": "MASKED",
+   "collector": "1.0.1",
+   "warnings": false,
+   "status": "open",
+   "format": "mSEED",
+   "fileId": "NL.HGN.02.LHZ.D.2017.021",
+   "type": "seismic",
+   "nseg": 1,
+   "cont": false,
+   "net": "NL",
+   "sta": "HGN",
+   "cha": "LHZ",
+   "loc": "02",
+   "qlt": "D",
+   "ts": "2017-01-21 00:00:00",
+   "te": "2017-01-22 00:00:00",
+   "enc": [
+    "STEIM2"
+   ],
+   "srate": [
+    1.0
+   ],
+   "rlen": [
+    512
+   ],
+   "nrec": 406,
+   "nsam": 86320,
+   "smin": -3020,
+   "smax": 6763,
+   "smean": 1731.6339318813716,
+   "smedian": 1720.0,
+   "supper": 2442.0,
+   "slower": 1009.0,
+   "rms": 2040.1944238948095,
+   "stdev": 1078.8128722111796,
+   "ngaps": 1,
+   "glen": 80.069538,
+   "nover": 0,
+   "olen": 0.0,
+   "gmax": 80.069538,
+   "omax": null,
+   "avail": 99.90732692361112,
+   "sgap": true,
+   "egap": false,
+   "tcorr": 0.0,
+   "tqmin": 100.0,
+   "tqmax": 100.0,
+   "tqmean": 100.0,
+   "tqmedian": 100.0,
+   "tqupper": 100.0,
+   "tqlower": 100.0,
+   "io_flags": {
+    "svo": 0.0,
+    "lrr": 0.0,
+    "srr": 0.0,
+    "sts": 0.0,
+    "ets": 0.0,
+    "clo": 99.90732692347632
+   },
+   "dq_flags": {
+    "asa": 0.0,
+    "dic": 0.0,
+    "spi": 0.0,
+    "gli": 0.0,
+    "mpd": 0.0,
+    "tse": 0.0,
+    "dfc": 0.0,
+    "stt": 0.0
+   },
+   "ac_flags": {
+    "cas": 0.0,
+    "tca": 0.0,
+    "evb": 0.0,
+    "eve": 0.0,
+    "eip": 0.0,
+    "pol": 0.0,
+    "nel": 0.0
+   },
+   "files": [
+    {
+     "name": "NL.HGN.02.LHZ.D.2017.021",
+     "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+    }
+   ]
+  },
+  "hourly": [
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": false,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 00:00:00",
+    "te": "2017-01-21 01:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3520,
+    "smin": -1184,
+    "smax": 4992,
+    "smean": 2025.6284090909091,
+    "smedian": 2025.0,
+    "supper": 2608.25,
+    "slower": 1447.5,
+    "rms": 2201.67947297161,
+    "stdev": 862.6830530318642,
+    "ngaps": 1,
+    "glen": 80.069538,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": 80.069538,
+    "omax": null,
+    "avail": 97.77584616666665,
+    "sgap": true,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 97.77584616343181
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 01:00:00",
+    "te": "2017-01-21 02:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1164,
+    "smax": 4978,
+    "smean": 1803.8236111111112,
+    "smedian": 1814.5,
+    "supper": 2398.0,
+    "slower": 1210.5,
+    "rms": 2002.2933069219516,
+    "stdev": 869.1368516767168,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 02:00:00",
+    "te": "2017-01-21 03:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1208,
+    "smax": 4348,
+    "smean": 1586.6666666666667,
+    "smedian": 1587.0,
+    "supper": 2150.75,
+    "slower": 1027.0,
+    "rms": 1788.5427727622284,
+    "stdev": 825.4538987059717,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 03:00:00",
+    "te": "2017-01-21 04:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1139,
+    "smax": 4385,
+    "smean": 1382.1694444444445,
+    "smedian": 1387.0,
+    "supper": 1950.25,
+    "slower": 782.75,
+    "rms": 1616.8085097568674,
+    "stdev": 838.8548051160927,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 04:00:00",
+    "te": "2017-01-21 05:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1332,
+    "smax": 4220,
+    "smean": 1234.6047222222223,
+    "smedian": 1250.0,
+    "supper": 1802.0,
+    "slower": 654.0,
+    "rms": 1496.985831874615,
+    "stdev": 846.591850126094,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 05:00:00",
+    "te": "2017-01-21 06:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1664,
+    "smax": 3909,
+    "smean": 1168.7802777777779,
+    "smedian": 1167.5,
+    "supper": 1748.25,
+    "slower": 597.0,
+    "rms": 1448.7377449390592,
+    "stdev": 856.0337118880373,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 06:00:00",
+    "te": "2017-01-21 07:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2171,
+    "smax": 4529,
+    "smean": 1233.423888888889,
+    "smedian": 1239.0,
+    "supper": 1837.0,
+    "slower": 648.75,
+    "rms": 1522.7073549730062,
+    "stdev": 892.9183608858642,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 07:00:00",
+    "te": "2017-01-21 08:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1627,
+    "smax": 4654,
+    "smean": 1471.183888888889,
+    "smedian": 1484.5,
+    "supper": 2064.25,
+    "slower": 869.5,
+    "rms": 1715.7376960557424,
+    "stdev": 882.8215033292018,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 08:00:00",
+    "te": "2017-01-21 09:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1463,
+    "smax": 4672,
+    "smean": 1832.701111111111,
+    "smedian": 1835.5,
+    "supper": 2433.0,
+    "slower": 1252.0,
+    "rms": 2038.8716413742186,
+    "stdev": 893.4227483851633,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 09:00:00",
+    "te": "2017-01-21 10:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1909,
+    "smax": 5525,
+    "smean": 2077.338888888889,
+    "smedian": 2086.0,
+    "supper": 2712.0,
+    "slower": 1465.75,
+    "rms": 2283.2171362161575,
+    "stdev": 947.4933413069386,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 10:00:00",
+    "te": "2017-01-21 11:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -994,
+    "smax": 5258,
+    "smean": 2197.5680555555555,
+    "smedian": 2187.5,
+    "supper": 2827.5,
+    "slower": 1569.0,
+    "rms": 2386.580520966254,
+    "stdev": 930.8389894376634,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 11:00:00",
+    "te": "2017-01-21 12:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1030,
+    "smax": 5384,
+    "smean": 2182.6919444444443,
+    "smedian": 2183.5,
+    "supper": 2852.25,
+    "slower": 1520.75,
+    "rms": 2384.8586795424353,
+    "stdev": 960.9405793524488,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 12:00:00",
+    "te": "2017-01-21 13:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2048,
+    "smax": 5349,
+    "smean": 1987.4477777777777,
+    "smedian": 2009.0,
+    "supper": 2654.25,
+    "slower": 1314.0,
+    "rms": 2214.71185334195,
+    "stdev": 977.2409753686687,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 13:00:00",
+    "te": "2017-01-21 14:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2625,
+    "smax": 5327,
+    "smean": 1742.8616666666667,
+    "smedian": 1730.5,
+    "supper": 2456.0,
+    "slower": 1013.75,
+    "rms": 2038.0611643040659,
+    "stdev": 1056.4688922577575,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 14:00:00",
+    "te": "2017-01-21 15:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2012,
+    "smax": 5576,
+    "smean": 1465.7933333333333,
+    "smedian": 1463.0,
+    "supper": 2151.0,
+    "slower": 792.25,
+    "rms": 1792.8391930739974,
+    "stdev": 1032.338256666766,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 15:00:00",
+    "te": "2017-01-21 16:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2370,
+    "smax": 5098,
+    "smean": 1195.4822222222222,
+    "smedian": 1196.0,
+    "supper": 1917.25,
+    "slower": 461.0,
+    "rms": 1619.7161724958003,
+    "stdev": 1092.8415876946951,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 16:00:00",
+    "te": "2017-01-21 17:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2328,
+    "smax": 4533,
+    "smean": 1104.1477777777777,
+    "smedian": 1098.5,
+    "supper": 1835.25,
+    "slower": 363.75,
+    "rms": 1540.3558448906826,
+    "stdev": 1074.0362255144303,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 17:00:00",
+    "te": "2017-01-21 18:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -3020,
+    "smax": 5256,
+    "smean": 1259.0377777777778,
+    "smedian": 1249.0,
+    "supper": 2047.25,
+    "slower": 480.0,
+    "rms": 1710.9025951234044,
+    "stdev": 1158.4522278145073,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 18:00:00",
+    "te": "2017-01-21 19:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2304,
+    "smax": 5186,
+    "smean": 1568.6827777777778,
+    "smedian": 1587.0,
+    "supper": 2310.0,
+    "slower": 824.75,
+    "rms": 1932.1158693975312,
+    "stdev": 1127.965458461017,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 19:00:00",
+    "te": "2017-01-21 20:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1561,
+    "smax": 6423,
+    "smean": 1931.1375,
+    "smedian": 1928.5,
+    "supper": 2690.5,
+    "slower": 1156.75,
+    "rms": 2233.0098107089057,
+    "stdev": 1121.1782957299754,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 20:00:00",
+    "te": "2017-01-21 21:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1987,
+    "smax": 5707,
+    "smean": 2174.913611111111,
+    "smedian": 2158.5,
+    "supper": 2945.0,
+    "slower": 1420.0,
+    "rms": 2436.309381637635,
+    "stdev": 1097.8862360277506,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 21:00:00",
+    "te": "2017-01-21 22:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1749,
+    "smax": 6763,
+    "smean": 2264.242222222222,
+    "smedian": 2245.5,
+    "supper": 3029.0,
+    "slower": 1496.75,
+    "rms": 2542.9956513485777,
+    "stdev": 1157.5983940399844,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 22:00:00",
+    "te": "2017-01-21 23:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1785,
+    "smax": 6299,
+    "smean": 2330.7458333333334,
+    "smedian": 2319.5,
+    "supper": 3097.25,
+    "slower": 1555.0,
+    "rms": 2587.256480167103,
+    "stdev": 1123.1740535491242,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.021",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-21 23:00:00",
+    "te": "2017-01-22 00:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1849,
+    "smax": 6327,
+    "smean": 2344.6741666666667,
+    "smedian": 2364.0,
+    "supper": 3130.25,
+    "slower": 1541.75,
+    "rms": 2622.1229705145406,
+    "stdev": 1173.8960450849008,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     }
+    ]
+   }
+  ],
+  "c_segments": [
+   {
+    "streamId": "STREAMID",
+    "smin": -3020,
+    "smax": 6763,
+    "smean": 1731.6339318813716,
+    "smedian": 1720.0,
+    "stdev": 1078.8128722111794,
+    "rms": 2040.1944238948095,
+    "supper": 2442.0,
+    "slower": 1009.0,
+    "nsam": 86320,
+    "srate": 1.0,
+    "ts": "2017-01-21 00:01:20.069538",
+    "te": "2017-01-22 00:00:00",
+    "slen": 86319.930462
+   }
+  ]
+ },
+ {
+  "daily": {
+   "created": "MASKED",
+   "collector": "1.0.1",
+   "warnings": false,
+   "status": "open",
+   "format": "mSEED",
+   "fileId": "NL.HGN.02.LHZ.D.2017.022",
+   "type": "seismic",
+   "nseg": 1,
+   "cont": true,
+   "net": "NL",
+   "sta": "HGN",
+   "cha": "LHZ",
+   "loc": "02",
+   "qlt": "D",
+   "ts": "2017-01-22 00:00:00",
+   "te": "2017-01-23 00:00:00",
+   "enc": [
+    "STEIM2"
+   ],
+   "srate": [
+    1.0
+   ],
+   "rlen": [
+    512
+   ],
+   "nrec": 416,
+   "nsam": 86400,
+   "smin": -269780,
+   "smax": 239498,
+   "smean": 1813.4203009259259,
+   "smedian": 1833.0,
+   "supper": 2892.0,
+   "slower": 764.0,
+   "rms": 13952.32885445297,
+   "stdev": 13833.979444649709,
+   "ngaps": 0,
+   "glen": 0.0,
+   "nover": 0,
+   "olen": 0.0,
+   "gmax": null,
+   "omax": null,
+   "avail": 100.0,
+   "sgap": false,
+   "egap": false,
+   "tcorr": 0.0,
+   "tqmin": 100.0,
+   "tqmax": 100.0,
+   "tqmean": 100.0,
+   "tqmedian": 100.0,
+   "tqupper": 100.0,
+   "tqlower": 100.0,
+   "io_flags": {
+    "svo": 0.0,
+    "lrr": 0.0,
+    "srr": 0.0,
+    "sts": 0.0,
+    "ets": 0.0,
+    "clo": 100.0
+   },
+   "dq_flags": {
+    "asa": 0.0,
+    "dic": 0.0,
+    "spi": 0.0,
+    "gli": 0.0,
+    "mpd": 0.0,
+    "tse": 0.0,
+    "dfc": 0.0,
+    "stt": 0.0
+   },
+   "ac_flags": {
+    "cas": 0.0,
+    "tca": 0.0,
+    "evb": 67.29282407407408,
+    "eve": 0.0,
+    "eip": 67.29282407407408,
+    "pol": 0.0,
+    "nel": 0.0
+   },
+   "files": [
+    {
+     "name": "NL.HGN.02.LHZ.D.2017.021",
+     "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+    },
+    {
+     "name": "NL.HGN.02.LHZ.D.2017.022",
+     "chksm": "caf3416386dbf2290972003749f994e2"
+    }
+   ]
+  },
+  "hourly": [
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 00:00:00",
+    "te": "2017-01-22 01:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1842,
+    "smax": 5985,
+    "smean": 2254.471111111111,
+    "smedian": 2243.0,
+    "supper": 3010.25,
+    "slower": 1497.0,
+    "rms": 2524.9879170227946,
+    "stdev": 1137.0681555107167,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.021",
+      "chksm": "4b05b53a59d616a41b41075435d5d2a9"
+     },
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 01:00:00",
+    "te": "2017-01-22 02:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 19,
+    "nsam": 3600,
+    "smin": -1506,
+    "smax": 5934,
+    "smean": 2028.9633333333334,
+    "smedian": 2016.5,
+    "supper": 2812.25,
+    "slower": 1239.0,
+    "rms": 2319.434274894539,
+    "stdev": 1123.8697200051456,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 02:00:00",
+    "te": "2017-01-22 03:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -2443,
+    "smax": 5315,
+    "smean": 1714.2308333333333,
+    "smedian": 1736.5,
+    "supper": 2429.25,
+    "slower": 1007.75,
+    "rms": 2015.2305735876037,
+    "stdev": 1059.5125835833794,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 03:00:00",
+    "te": "2017-01-22 04:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2625,
+    "smax": 5198,
+    "smean": 1491.0011111111112,
+    "smedian": 1500.0,
+    "supper": 2241.25,
+    "slower": 753.75,
+    "rms": 1842.3109604515737,
+    "stdev": 1082.1392524372416,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 04:00:00",
+    "te": "2017-01-22 05:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 20,
+    "nsam": 3600,
+    "smin": -133891,
+    "smax": 161483,
+    "smean": 1353.5477777777778,
+    "smedian": 1400.0,
+    "supper": 2383.25,
+    "slower": 411.75,
+    "rms": 13472.024738715245,
+    "stdev": 13403.856123288864,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 23.636957274542915,
+     "eve": 0.0,
+     "eip": 23.636957274542915,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 05:00:00",
+    "te": "2017-01-22 06:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 24,
+    "nsam": 3600,
+    "smin": -269780,
+    "smax": 239498,
+    "smean": 1406.8222222222223,
+    "smedian": 2195.5,
+    "supper": 38540.5,
+    "slower": -34098.0,
+    "rms": 60246.68899852045,
+    "stdev": 60230.261385116915,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 06:00:00",
+    "te": "2017-01-22 07:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 19,
+    "nsam": 3600,
+    "smin": -107537,
+    "smax": 106967,
+    "smean": 1520.9186111111112,
+    "smedian": 1449.0,
+    "supper": 16039.25,
+    "slower": -12334.5,
+    "rms": 25577.76702228693,
+    "stdev": 25532.508149901074,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 07:00:00",
+    "te": "2017-01-22 08:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -27500,
+    "smax": 36867,
+    "smean": 1496.191388888889,
+    "smedian": 1155.0,
+    "supper": 6235.75,
+    "slower": -3296.5,
+    "rms": 7496.593491620785,
+    "stdev": 7345.769211350561,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 08:00:00",
+    "te": "2017-01-22 09:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -11657,
+    "smax": 20151,
+    "smean": 1911.3369444444445,
+    "smedian": 1798.0,
+    "supper": 5602.25,
+    "slower": -2120.0,
+    "rms": 5862.562081476551,
+    "stdev": 5542.240092595091,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 09:00:00",
+    "te": "2017-01-22 10:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -10569,
+    "smax": 14313,
+    "smean": 2079.7375,
+    "smedian": 2082.5,
+    "supper": 4652.0,
+    "slower": -546.5,
+    "rms": 4361.229167492679,
+    "stdev": 3833.407333232752,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 10:00:00",
+    "te": "2017-01-22 11:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -6087,
+    "smax": 10655,
+    "smean": 2233.3230555555556,
+    "smedian": 2303.5,
+    "supper": 3925.0,
+    "slower": 631.0,
+    "rms": 3283.3940426282475,
+    "stdev": 2406.853665824049,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 11:00:00",
+    "te": "2017-01-22 12:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -4506,
+    "smax": 10441,
+    "smean": 2305.1677777777777,
+    "smedian": 2234.5,
+    "supper": 3648.0,
+    "slower": 852.0,
+    "rms": 3130.2695190137647,
+    "stdev": 2117.7319891718425,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 12:00:00",
+    "te": "2017-01-22 13:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -4150,
+    "smax": 8412,
+    "smean": 2250.4019444444443,
+    "smedian": 2233.0,
+    "supper": 3400.75,
+    "slower": 1043.75,
+    "rms": 2866.2396932508395,
+    "stdev": 1775.1115648339771,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 13:00:00",
+    "te": "2017-01-22 14:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -3032,
+    "smax": 6855,
+    "smean": 1984.6905555555556,
+    "smedian": 2003.0,
+    "supper": 3012.25,
+    "slower": 1005.0,
+    "rms": 2471.791484373676,
+    "stdev": 1473.3487506055048,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 14:00:00",
+    "te": "2017-01-22 15:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -3431,
+    "smax": 6104,
+    "smean": 1596.4552777777778,
+    "smedian": 1596.0,
+    "supper": 2472.25,
+    "slower": 695.0,
+    "rms": 2068.6164101882205,
+    "stdev": 1315.4863733826658,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 15:00:00",
+    "te": "2017-01-22 16:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2826,
+    "smax": 6159,
+    "smean": 1314.2108333333333,
+    "smedian": 1277.0,
+    "supper": 2159.5,
+    "slower": 481.0,
+    "rms": 1818.9502499915836,
+    "stdev": 1257.5491630523834,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 16:00:00",
+    "te": "2017-01-22 17:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -2876,
+    "smax": 4929,
+    "smean": 1172.131111111111,
+    "smedian": 1186.0,
+    "supper": 1903.25,
+    "slower": 466.75,
+    "rms": 1598.0468844811783,
+    "stdev": 1086.2147593203806,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 17:00:00",
+    "te": "2017-01-22 18:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -2244,
+    "smax": 5572,
+    "smean": 1256.4716666666666,
+    "smedian": 1260.5,
+    "supper": 1932.25,
+    "slower": 575.5,
+    "rms": 1598.7425895927643,
+    "stdev": 988.5630069154251,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 18:00:00",
+    "te": "2017-01-22 19:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1865,
+    "smax": 4536,
+    "smean": 1512.5497222222223,
+    "smedian": 1484.0,
+    "supper": 2208.25,
+    "slower": 812.25,
+    "rms": 1820.4700291255674,
+    "stdev": 1013.0668609474515,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 19:00:00",
+    "te": "2017-01-22 20:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1524,
+    "smax": 5137,
+    "smean": 1780.4083333333333,
+    "smedian": 1761.0,
+    "supper": 2443.25,
+    "slower": 1126.0,
+    "rms": 2020.797528480058,
+    "stdev": 955.912557563888,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 20:00:00",
+    "te": "2017-01-22 21:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -870,
+    "smax": 5689,
+    "smean": 1982.5011111111112,
+    "smedian": 1967.5,
+    "supper": 2581.25,
+    "slower": 1379.25,
+    "rms": 2174.927647072426,
+    "stdev": 894.4269754670914,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 91.39082050323486,
+     "eve": 0.0,
+     "eip": 91.39082050323486,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 21:00:00",
+    "te": "2017-01-22 22:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1557,
+    "smax": 5459,
+    "smean": 2102.964722222222,
+    "smedian": 2119.0,
+    "supper": 2698.25,
+    "slower": 1514.75,
+    "rms": 2275.4503055561454,
+    "stdev": 869.0301894320863,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 22:00:00",
+    "te": "2017-01-22 23:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1078,
+    "smax": 6029,
+    "smean": 2294.507222222222,
+    "smedian": 2292.0,
+    "supper": 2908.0,
+    "slower": 1707.5,
+    "rms": 2458.9256188199124,
+    "stdev": 884.0541872865891,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.022",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-22 23:00:00",
+    "te": "2017-01-23 00:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -274,
+    "smax": 5536,
+    "smean": 2479.0830555555553,
+    "smedian": 2480.5,
+    "supper": 3062.0,
+    "slower": 1902.0,
+    "rms": 2623.9364342211747,
+    "stdev": 859.7613706666895,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     }
+    ]
+   }
+  ],
+  "c_segments": [
+   {
+    "streamId": "STREAMID",
+    "smin": -269780,
+    "smax": 239498,
+    "smean": 1813.4203009259259,
+    "smedian": 1833.0,
+    "stdev": 13833.979444649709,
+    "rms": 13952.32885445297,
+    "supper": 2892.0,
+    "slower": 764.0,
+    "nsam": 86400,
+    "srate": 1.0,
+    "ts": "2017-01-22 00:00:00",
+    "te": "2017-01-23 00:00:00",
+    "slen": 86400.0
+   }
+  ]
+ },
+ {
+  "daily": {
+   "created": "MASKED",
+   "collector": "1.0.1",
+   "warnings": false,
+   "status": "open",
+   "format": "mSEED",
+   "fileId": "NL.HGN.02.LHZ.D.2017.023",
+   "type": "seismic",
+   "nseg": 1,
+   "cont": true,
+   "net": "NL",
+   "sta": "HGN",
+   "cha": "LHZ",
+   "loc": "02",
+   "qlt": "D",
+   "ts": "2017-01-23 00:00:00",
+   "te": "2017-01-24 00:00:00",
+   "enc": [
+    "STEIM2"
+   ],
+   "srate": [
+    1.0
+   ],
+   "rlen": [
+    512
+   ],
+   "nrec": 397,
+   "nsam": 86400,
+   "smin": -1812,
+   "smax": 5591,
+   "smean": 1891.4734953703703,
+   "smedian": 1888.0,
+   "supper": 2460.0,
+   "slower": 1316.0,
+   "rms": 2071.905315436557,
+   "stdev": 845.6474752789445,
+   "ngaps": 0,
+   "glen": 0.0,
+   "nover": 0,
+   "olen": 0.0,
+   "gmax": null,
+   "omax": null,
+   "avail": 100.0,
+   "sgap": false,
+   "egap": false,
+   "tcorr": 0.0,
+   "tqmin": 100.0,
+   "tqmax": 100.0,
+   "tqmean": 100.0,
+   "tqmedian": 100.0,
+   "tqupper": 100.0,
+   "tqlower": 100.0,
+   "io_flags": {
+    "svo": 0.0,
+    "lrr": 0.0,
+    "srr": 0.0,
+    "sts": 0.0,
+    "ets": 0.0,
+    "clo": 100.0
+   },
+   "dq_flags": {
+    "asa": 0.0,
+    "dic": 0.0,
+    "spi": 0.0,
+    "gli": 0.0,
+    "mpd": 0.0,
+    "tse": 0.0,
+    "dfc": 0.0,
+    "stt": 0.0
+   },
+   "ac_flags": {
+    "cas": 0.0,
+    "tca": 0.0,
+    "evb": 16.99652777777778,
+    "eve": 0.0,
+    "eip": 16.99652777777778,
+    "pol": 0.0,
+    "nel": 0.0
+   },
+   "files": [
+    {
+     "name": "NL.HGN.02.LHZ.D.2017.022",
+     "chksm": "caf3416386dbf2290972003749f994e2"
+    },
+    {
+     "name": "NL.HGN.02.LHZ.D.2017.023",
+     "chksm": "737294e8f40e87a864cbb04a13193453"
+    }
+   ]
+  },
+  "hourly": [
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 00:00:00",
+    "te": "2017-01-23 01:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -211,
+    "smax": 5207,
+    "smean": 2462.172777777778,
+    "smedian": 2465.5,
+    "supper": 3022.25,
+    "slower": 1884.0,
+    "rms": 2600.19626566919,
+    "stdev": 835.8982189059033,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.022",
+      "chksm": "caf3416386dbf2290972003749f994e2"
+     },
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 01:00:00",
+    "te": "2017-01-23 02:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -333,
+    "smax": 5170,
+    "smean": 2302.81,
+    "smedian": 2308.0,
+    "supper": 2863.25,
+    "slower": 1750.0,
+    "rms": 2447.4489950422526,
+    "stdev": 828.8984782428627,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 02:00:00",
+    "te": "2017-01-23 03:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1172,
+    "smax": 5591,
+    "smean": 2048.858888888889,
+    "smedian": 2045.5,
+    "supper": 2598.5,
+    "slower": 1499.0,
+    "rms": 2202.0941162145336,
+    "stdev": 807.0909181050511,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 03:00:00",
+    "te": "2017-01-23 04:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1011,
+    "smax": 5026,
+    "smean": 1720.0533333333333,
+    "smedian": 1721.5,
+    "supper": 2254.5,
+    "slower": 1192.0,
+    "rms": 1902.3877200040538,
+    "stdev": 812.7087840740444,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 04:00:00",
+    "te": "2017-01-23 05:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1342,
+    "smax": 3886,
+    "smean": 1428.713888888889,
+    "smedian": 1422.0,
+    "supper": 1933.25,
+    "slower": 904.75,
+    "rms": 1622.6647817367852,
+    "stdev": 769.2968332086624,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 05:00:00",
+    "te": "2017-01-23 06:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1567,
+    "smax": 3818,
+    "smean": 1290.9194444444445,
+    "smedian": 1271.0,
+    "supper": 1835.0,
+    "slower": 754.75,
+    "rms": 1516.201036032711,
+    "stdev": 795.2311422611123,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 06:00:00",
+    "te": "2017-01-23 07:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1700,
+    "smax": 3943,
+    "smean": 1344.878888888889,
+    "smedian": 1342.5,
+    "supper": 1842.5,
+    "slower": 853.0,
+    "rms": 1529.0074398481884,
+    "stdev": 727.4369562595089,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 07:00:00",
+    "te": "2017-01-23 08:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1366,
+    "smax": 4416,
+    "smean": 1538.0627777777777,
+    "smedian": 1534.5,
+    "supper": 2035.25,
+    "slower": 1033.0,
+    "rms": 1710.4469719605133,
+    "stdev": 748.3259553853492,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 08:00:00",
+    "te": "2017-01-23 09:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -805,
+    "smax": 5172,
+    "smean": 1837.963611111111,
+    "smedian": 1837.0,
+    "supper": 2331.0,
+    "slower": 1347.0,
+    "rms": 1974.9021121311305,
+    "stdev": 722.5843319166315,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 09:00:00",
+    "te": "2017-01-23 10:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -281,
+    "smax": 5199,
+    "smean": 2129.0163888888887,
+    "smedian": 2125.0,
+    "supper": 2599.0,
+    "slower": 1663.5,
+    "rms": 2245.3409867867385,
+    "stdev": 713.3339770310683,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 10:00:00",
+    "te": "2017-01-23 11:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -110,
+    "smax": 5195,
+    "smean": 2317.406388888889,
+    "smedian": 2317.0,
+    "supper": 2787.0,
+    "slower": 1850.0,
+    "rms": 2419.5355614364416,
+    "stdev": 695.5429259165207,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 44.886957274542915,
+     "eve": 0.0,
+     "eip": 44.886957274542915,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 11:00:00",
+    "te": "2017-01-23 12:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -126,
+    "smax": 4838,
+    "smean": 2376.6813888888887,
+    "smedian": 2367.5,
+    "supper": 2856.0,
+    "slower": 1906.0,
+    "rms": 2477.714238018133,
+    "stdev": 700.3237972445037,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 12:00:00",
+    "te": "2017-01-23 13:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -256,
+    "smax": 4987,
+    "smean": 2281.3644444444444,
+    "smedian": 2285.5,
+    "supper": 2770.25,
+    "slower": 1803.75,
+    "rms": 2390.850110316412,
+    "stdev": 715.2206104585437,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 13:00:00",
+    "te": "2017-01-23 14:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -220,
+    "smax": 4534,
+    "smean": 2099.641666666667,
+    "smedian": 2105.5,
+    "supper": 2570.25,
+    "slower": 1645.75,
+    "rms": 2214.2694816174076,
+    "stdev": 703.2028219649317,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 100.0,
+     "eve": 0.0,
+     "eip": 100.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 14:00:00",
+    "te": "2017-01-23 15:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -445,
+    "smax": 4872,
+    "smean": 1874.5,
+    "smedian": 1890.5,
+    "supper": 2339.25,
+    "slower": 1416.5,
+    "rms": 1999.9423937537133,
+    "stdev": 697.1508648300834,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 63.02970939212375,
+     "eve": 0.0,
+     "eip": 63.02970939212375,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 15:00:00",
+    "te": "2017-01-23 16:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -927,
+    "smax": 4438,
+    "smean": 1652.3277777777778,
+    "smedian": 1651.5,
+    "supper": 2147.0,
+    "slower": 1143.0,
+    "rms": 1806.7150519351103,
+    "stdev": 730.7750636638056,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 16:00:00",
+    "te": "2017-01-23 17:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1463,
+    "smax": 3695,
+    "smean": 1442.9891666666667,
+    "smedian": 1439.0,
+    "supper": 1921.0,
+    "slower": 967.0,
+    "rms": 1607.7910820784866,
+    "stdev": 709.0658844520373,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 17:00:00",
+    "te": "2017-01-23 18:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1812,
+    "smax": 3834,
+    "smean": 1348.9572222222223,
+    "smedian": 1353.0,
+    "supper": 1790.25,
+    "slower": 901.0,
+    "rms": 1514.5081335756063,
+    "stdev": 688.5123813564812,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 18:00:00",
+    "te": "2017-01-23 19:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -1139,
+    "smax": 4539,
+    "smean": 1413.8119444444444,
+    "smedian": 1415.5,
+    "supper": 1883.25,
+    "slower": 937.0,
+    "rms": 1578.818291652195,
+    "stdev": 702.711166697794,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 19:00:00",
+    "te": "2017-01-23 20:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -1123,
+    "smax": 4276,
+    "smean": 1561.8675,
+    "smedian": 1556.0,
+    "supper": 2043.25,
+    "slower": 1089.0,
+    "rms": 1715.8212882044434,
+    "stdev": 710.3608980647128,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 20:00:00",
+    "te": "2017-01-23 21:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": -517,
+    "smax": 4367,
+    "smean": 1763.7944444444445,
+    "smedian": 1768.0,
+    "supper": 2243.0,
+    "slower": 1265.0,
+    "rms": 1904.9479692515372,
+    "stdev": 719.6220697716745,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 21:00:00",
+    "te": "2017-01-23 22:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -526,
+    "smax": 4767,
+    "smean": 2075.1883333333335,
+    "smedian": 2072.0,
+    "supper": 2549.25,
+    "slower": 1597.75,
+    "rms": 2194.203436202861,
+    "stdev": 712.8268377675366,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 22:00:00",
+    "te": "2017-01-23 23:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 18,
+    "nsam": 3600,
+    "smin": 332,
+    "smax": 4899,
+    "smean": 2422.6325,
+    "smedian": 2416.5,
+    "supper": 2895.25,
+    "slower": 1938.5,
+    "rms": 2522.6675313269307,
+    "stdev": 703.3514367333448,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   },
+   {
+    "created": "MASKED",
+    "collector": "1.0.1",
+    "warnings": false,
+    "status": "open",
+    "format": "mSEED",
+    "fileId": "NL.HGN.02.LHZ.D.2017.023",
+    "type": "seismic",
+    "nseg": 0,
+    "cont": true,
+    "net": "NL",
+    "sta": "HGN",
+    "cha": "LHZ",
+    "loc": "02",
+    "qlt": "D",
+    "ts": "2017-01-23 23:00:00",
+    "te": "2017-01-24 00:00:00",
+    "enc": [
+     "STEIM2"
+    ],
+    "srate": [
+     1.0
+    ],
+    "rlen": [
+     512
+    ],
+    "nrec": 17,
+    "nsam": 3600,
+    "smin": -122,
+    "smax": 5206,
+    "smean": 2660.751111111111,
+    "smedian": 2663.0,
+    "supper": 3177.25,
+    "slower": 2134.75,
+    "rms": 2769.7426481935504,
+    "stdev": 769.3359876823712,
+    "ngaps": 0,
+    "glen": 0.0,
+    "nover": 0,
+    "olen": 0.0,
+    "gmax": null,
+    "omax": null,
+    "avail": 100.0,
+    "sgap": false,
+    "egap": false,
+    "streamId": "STREAMID",
+    "tcorr": 0.0,
+    "tqmin": 100.0,
+    "tqmax": 100.0,
+    "tqmean": 100.0,
+    "tqmedian": 100.0,
+    "tqupper": 100.0,
+    "tqlower": 100.0,
+    "io_flags": {
+     "svo": 0.0,
+     "lrr": 0.0,
+     "srr": 0.0,
+     "sts": 0.0,
+     "ets": 0.0,
+     "clo": 100.0
+    },
+    "dq_flags": {
+     "asa": 0.0,
+     "dic": 0.0,
+     "spi": 0.0,
+     "gli": 0.0,
+     "mpd": 0.0,
+     "tse": 0.0,
+     "dfc": 0.0,
+     "stt": 0.0
+    },
+    "ac_flags": {
+     "cas": 0.0,
+     "tca": 0.0,
+     "evb": 0.0,
+     "eve": 0.0,
+     "eip": 0.0,
+     "pol": 0.0,
+     "nel": 0.0
+    },
+    "files": [
+     {
+      "name": "NL.HGN.02.LHZ.D.2017.023",
+      "chksm": "737294e8f40e87a864cbb04a13193453"
+     }
+    ]
+   }
+  ],
+  "c_segments": [
+   {
+    "streamId": "STREAMID",
+    "smin": -1812,
+    "smax": 5591,
+    "smean": 1891.4734953703703,
+    "smedian": 1888.0,
+    "stdev": 845.6474752789443,
+    "rms": 2071.905315436557,
+    "supper": 2460.0,
+    "slower": 1316.0,
+    "nsam": 86400,
+    "srate": 1.0,
+    "ts": "2017-01-23 00:00:00",
+    "te": "2017-01-24 00:00:00",
+    "slen": 86400.0
+   }
+  ]
+ }
+]
