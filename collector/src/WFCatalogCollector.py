@@ -380,7 +380,10 @@ class WFCatalogCollector:
 
         # List was given
         elif self.args["list"]:
-            self.files = [f for f in json.loads(self.args["list"]) if os.path.isfile(f)]
+            self.files = json.loads(self.args["list"])
+            # When deleting, the files may already be gone from the archive
+            if not self.args["delete"]:
+                self.files = [f for f in self.files if os.path.isfile(f)]
             self.log.info("Collected %d file(s) from list" % len(self.files))
 
         # Raise if an invalid input directory is given
@@ -407,7 +410,8 @@ class WFCatalogCollector:
 
         # Single file as input
         elif self.args["file"]:
-            if not os.path.isfile(self.args["file"]):
+            # When deleting, the file may already be gone from the archive
+            if not self.args["delete"] and not os.path.isfile(self.args["file"]):
                 raise Exception("Argument --file requires a valid file.")
 
             self.files = [self.args["file"]]
