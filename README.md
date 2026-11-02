@@ -8,5 +8,6 @@ exposes this database to users according to the specification file.
 
 ## Installation and Usage
 
-A detailed description of usage and installation can be found in the respective
-subdirectories and on [Redmine](https://eida.gfz-potsdam.de/redmine/projects/etc/wiki/WFCatalog).
+A detailed description of usage, installation and configuration for both
+components is in the [docs](docs/index.md) directory, which is also published
+on the [EIDA documentation site](https://eida.github.io/doc/).
