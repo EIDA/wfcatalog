@@ -1,4 +1,3 @@
-import os
 from multiprocessing import Pool
 from src.WFCatalogCollector import WFCatalogCollector
 from src import archive

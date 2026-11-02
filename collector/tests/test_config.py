@@ -31,7 +31,7 @@ def test_config_error():
         os.environ["WFCAT_CONF_DIR"] = confdir
         with open(f"{confdir}/config.json", "w") as conf:
             conf.write("""{"ARCHIVE": "EIDA TEST NODE"},""")
-        with pytest.raises(Exception) as e_info:
+        with pytest.raises(Exception):
             load_configuration()
 
 

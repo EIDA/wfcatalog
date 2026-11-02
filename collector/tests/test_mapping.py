@@ -8,7 +8,6 @@ because it is the current time.
 """
 
 import json
-import os
 from collections import OrderedDict
 from pathlib import Path
 
@@ -52,7 +51,8 @@ def test_mapped_documents_are_unchanged(monkeypatch):
         actual.append({"daily": daily, "hourly": hourly, "c_segments": segs})
     actual.sort(key=lambda x: x["daily"]["fileId"])
 
-    expected = json.load(open(EXPECTED_DIR / "mapped_documents.json"))
+    with open(EXPECTED_DIR / "mapped_documents.json") as f:
+        expected = json.load(f)
     assert as_json(actual) == expected
 
 

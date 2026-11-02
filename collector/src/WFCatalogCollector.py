@@ -180,7 +180,7 @@ class WFCatalogCollector:
                 try:
                     self.mongo._connect()
                     self.log.info("Connection to the database has been established")
-                except Exception as ex:
+                except Exception:
                     self.log.critical("Could not establish connection to the database")
                     sys.exit(0)
             else:
@@ -705,7 +705,7 @@ class WFCatalogCollector:
                         segment, id.inserted_id
                     )
                     self.mongo.storeContinuousSegment(qc_metadata)
-                except Exception as ex:
+                except Exception:
                     self.log.exception("Could not store continuous segment to database")
             self.log.info(
                 "Succesfully stored %d continuous segment(s) to database"

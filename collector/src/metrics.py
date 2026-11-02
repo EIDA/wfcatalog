@@ -18,7 +18,7 @@ def handler(signum, frame):
 # ObsPy mSEED-QC is required
 try:
     from obspy.signal.quality_control import MSEEDMetadata
-except ImportError as ex:
+except ImportError:
     raise ImportError("Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.")
 
 
