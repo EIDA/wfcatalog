@@ -15,9 +15,12 @@ def handler(signum, frame):
     raise Exception("Metric calculation has timed out")
 
 
-# ObsPy mSEED-QC is required
+# ObsPy mSEED-QC is required. FastMSEEDMetadata is ObsPy's MSEEDMetadata with
+# its own sample metrics: the standard deviation is computed from the
+# deviations themselves, which stays exact for constant data and for data
+# with a large offset.
 try:
-    from obspy.signal.quality_control import MSEEDMetadata
+    from src.FastMSEEDMetadata import FastMSEEDMetadata as MSEEDMetadata
 except ImportError:
     raise ImportError("Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.")
 

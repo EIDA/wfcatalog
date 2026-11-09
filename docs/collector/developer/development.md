@@ -27,6 +27,7 @@ The collector is started as a module from the `collector` directory:
 | `config.py` | Configuration loading from `config.json` or the `WFCAT_*` environment variables |
 | `archive.py` | Archive path logic: file name parsing, SDS, SDSbynet and ODC directory structures, neighbouring day files |
 | `metrics.py` | Metric computation: the single place where ObsPy's mSEED quality control is called, guarded by the per-file processing timeout |
+| `FastMSEEDMetadata.py` | Subclass of ObsPy's `MSEEDMetadata` with its own sample metrics; the class `metrics.py` uses |
 | `mapping.py` | Document mapping: turns the metadata dictionary returned by ObsPy into the compact documents stored in MongoDB |
 | `db.py` | MongoDB access |
 | `multithreader.py` | Runs the collector on several dates in parallel |
