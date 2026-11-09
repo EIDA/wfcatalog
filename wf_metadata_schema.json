@@ -25,16 +25,14 @@
     },
     "waveform_format": {
       "description": "Describes the waveform format. E.g.: miniSEED",
-      "type": {
-        "enum": ["miniSEED"]
-      },
+      "type": "string",
+      "enum": ["miniSEED"],
       "additionalProperties": false
     },
     "version": {
       "description": "The version of the metadata document. E.g.: 1.0.0",
-      "type": {
-        "enum": ["1.0.0"]
-      },
+      "type": "string",
+      "enum": ["1.0.0"],
       "additionalProperties": true
     },
     "start_time": {
@@ -67,9 +65,8 @@
     },
     "quality": {
       "description": "SEED quality indicator. This is SEED format specific",
-      "type": {
-        "enum": ["D", "R", "Q", "M"]
-      },
+      "type": "string",
+      "enum": ["D", "R", "Q", "M"],
       "additionalProperties": false
     },
     "sample_rate": {
