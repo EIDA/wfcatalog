@@ -57,5 +57,5 @@ Issues and pull requests are managed on <https://github.com/EIDA/wfcatalog>.
 - [x] Unit tests (`npm test`)
 - [ ] Linted code
 - [ ] Dependencies lock
-- [x] CI jobs: `.github/workflows/tests.yml` runs `npm test` against MongoDB 7 for every pull request and for pushes to `master`;
+- [x] CI jobs: `.github/workflows/tests.yml` runs `npm test` against MongoDB 7 and builds the container image for every pull request and for pushes to `master`;
   `.github/workflows/publish-container.yml` builds and publishes the container images on push

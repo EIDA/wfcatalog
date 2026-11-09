@@ -79,3 +79,21 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  containers:
+    name: Container images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # The same context and Dockerfile as in publish-container.yml
+      - name: Build the collector image
+        run: docker build -t wfcatalog-collector -f collector/Dockerfile collector
+
+      - name: The collector image runs the collector
+        run: docker run --rm wfcatalog-collector --version
+
+      - name: Build the service image
+        run: docker build -t wfcatalog-ws -f service/Dockerfile service

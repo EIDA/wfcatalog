@@ -60,5 +60,5 @@ output, regenerate the expected file with `UPDATE_EXPECTED=1 uv run pytest tests
 - [x] Unit tests (`uv run pytest`)
 - [ ] Linted code
 - [x] Dependencies lock (`uv.lock`)
-- [x] CI jobs: `.github/workflows/tests.yml` runs `uv run pytest` on Python 3.13 and 3.14 for every pull request and for pushes to `master`;
+- [x] CI jobs: `.github/workflows/tests.yml` runs `uv run pytest` on Python 3.13 and 3.14 and builds the container image for every pull request and for pushes to `master`;
   `.github/workflows/publish-container.yml` builds and publishes the container images on push
