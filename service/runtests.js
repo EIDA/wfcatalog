@@ -1028,6 +1028,70 @@ var suite = function () {
 
     callback(problems.length ? problems.join("; ") : null);
   };
+
+  /*
+   * Every field the schema requires must be in a returned document
+   * (the schema required waveform_format, the service returns format)
+   */
+  this.testSchemaRequiredFields = function (callback) {
+    var schema;
+
+    try {
+      schema = JSON.parse(
+        fs.readFileSync(path.join(__dirname, "..", "wf_metadata_schema.json")),
+      );
+    } catch (e) {
+      return callback("wf_metadata_schema.json: " + e.message);
+    }
+
+    queryFixtures("include=all&csegments=true", function (err, documents) {
+      if (err) {
+        return callback(err);
+      }
+
+      var problems = {};
+
+      (function check(node, value, where) {
+        if (node === null || typeof node !== "object") {
+          return;
+        }
+
+        // A reference to a definition in the same file
+        if (typeof node.$ref === "string") {
+          check(schema.definitions[node.$ref.split("/").pop()], value, where);
+        }
+
+        if (Array.isArray(value)) {
+          return value.forEach(function (element) {
+            check(node.items, element, where);
+          });
+        }
+
+        if (value === null || typeof value !== "object") {
+          return;
+        }
+
+        (node.required || []).forEach(function (name) {
+          if (value[name] === undefined) {
+            problems[where + name] = true;
+          }
+        });
+
+        Object.keys(node.properties || {}).forEach(function (name) {
+          if (value[name] !== undefined) {
+            check(node.properties[name], value[name], where + name + ".");
+          }
+        });
+      })({ items: schema }, documents, "");
+
+      var missing = Object.keys(problems);
+      callback(
+        missing.length
+          ? "Required by the schema, not returned: " + missing.join(", ")
+          : null,
+      );
+    });
+  };
 };
 
 /*
