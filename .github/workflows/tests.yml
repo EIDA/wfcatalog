@@ -92,8 +92,13 @@ jobs:
       - name: Build the collector image
         run: docker build -t wfcatalog-collector -f collector/Dockerfile collector
 
+      # The output must be the version alone: a warning at start fails the job
       - name: The collector image runs the collector
-        run: docker run --rm wfcatalog-collector --version
+        run: |
+          output="$(docker run --rm wfcatalog-collector --version 2>&1)"
+          echo "$output"
+          test "$(echo "$output" | wc -l)" -eq 1
+          echo "$output" | grep -Eqx '[0-9]+\.[0-9]+\.[0-9]+'
 
       - name: Build the service image
         run: docker build -t wfcatalog-ws -f service/Dockerfile service
