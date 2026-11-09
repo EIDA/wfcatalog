@@ -19,9 +19,8 @@ tags:
 
 | File | Purpose |
 | --- | --- |
-| `server.js` | starts a single instance of the service |
+| `server.js` | the service implementation; run directly, it starts a single instance |
 | `cluster.js` | starts one process for each available core up to `MAXIMUM_CORES` |
-| `wfcatalog.js` | the service implementation |
 | `application.wadl` | WADL description of the service |
 | `root.html` | service landing page |
 | `runtests.js` | test runner, started with `npm test` |
