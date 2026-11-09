@@ -6,7 +6,10 @@ environment has no config.json, so these tests cover the SDS layout only.
 """
 
 import datetime
+import logging
 import os
+
+import pytest
 
 from src import archive
 
@@ -56,3 +59,21 @@ def test_collect_files_from_date(monkeypatch):
     files = archive.collectFilesFromDate(datetime.datetime(2017, 1, 22))
     assert [os.path.basename(f) for f in files] == ["NL.HGN.02.LHZ.D.2017.022"]
     assert archive.collectFilesFromDate(datetime.datetime(2017, 1, 25)) == []
+
+
+def test_sdsbynet_reports_a_failed_network_code_lookup(monkeypatch, caplog):
+    """A failed lookup is logged and raised as it is, not hidden by a NameError."""
+
+    class FailingExtender:
+        def extend(self, network, year):
+            raise LookupError("no extended code for " + network)
+
+    monkeypatch.setitem(archive.CONFIG, "STRUCTURE", "SDSbynet")
+    # fne only exists when the module was imported with the SDSbynet layout
+    monkeypatch.setattr(archive, "fne", FailingExtender(), raising=False)
+
+    with caplog.at_level(logging.ERROR):
+        with pytest.raises(LookupError, match="no extended code for NL"):
+            archive.getFileDirectory(archive.getStatsObject(BUNDLED))
+
+    assert "Unable to extend network code" in caplog.text
