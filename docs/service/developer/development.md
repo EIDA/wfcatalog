@@ -11,8 +11,8 @@ tags:
 ## Program stack
 
 - NodeJS (container image based on `node:19`)
-- [express](https://expressjs.com/) 4.18
-- [mongodb](https://www.npmjs.com/package/mongodb) driver 4.12
+- [express](https://expressjs.com/) 4.22
+- [mongodb](https://www.npmjs.com/package/mongodb) driver 4.17
 - [bunyan](https://www.npmjs.com/package/bunyan) logging, with optional Elasticsearch output
 
 ## Architecture
