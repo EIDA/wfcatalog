@@ -19,6 +19,17 @@ jobs:
         python: ["3.13", "3.14"]
     env:
       UV_PYTHON: ${{ matrix.python }}
+    # tests/test_database_sync.py runs against this MongoDB; without one it is skipped
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
     defaults:
       run:
         working-directory: collector

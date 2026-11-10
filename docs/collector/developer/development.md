@@ -51,6 +51,10 @@ Tests run from the `collector` directory:
 uv run pytest
 ```
 
+`tests/test_database_sync.py` runs the collector against a MongoDB at
+`WFCAT_TEST_MONGO_HOST`:`WFCAT_TEST_MONGO_PORT` (default `127.0.0.1:27017`), in a database
+of its own named `wfcatalog_pytest`; without a MongoDB these tests are skipped.
+
 `tests/test_collector_output.py` runs the collector on the bundled day files in
 `collector/archive/` with MongoDB disabled and compares the output with
 `tests/expected/bundled_archive_output.txt`. To accept an intended change of

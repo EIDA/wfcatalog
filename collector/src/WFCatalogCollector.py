@@ -627,6 +627,32 @@ class WFCatalogCollector:
         # Store the documents
         self._storeOutput({"daily": daily_meta, "hourly": hourly_meta_array})
 
+    def _warnAboutDroppedParts(self, document):
+        """
+        WFCatalogCollector._warnAboutDroppedParts
+        > a document that is reprocessed by --update or --delete is stored
+        > with the options of this run; warn when the stored document has
+        > parts (hourly granules, header flags, continuous segments) that
+        > this run does not compute, because they are lost
+        """
+        fileId = document["fileId"]
+
+        if not self.args["hourly"] and self.mongo.countHourlyByStreamId(document["_id"]):
+            self.log.warning(
+                "%s has hourly granules in the database that are dropped: --hourly was not given"
+                % fileId
+            )
+        if not self.args["flags"] and "io_flags" in document:
+            self.log.warning(
+                "%s has header flags in the database that are dropped: --flags was not given"
+                % fileId
+            )
+        if not self.args["csegs"] and self.mongo.countSegmentsByStreamId(document["_id"]):
+            self.log.warning(
+                "%s has continuous segments in the database that are dropped: --csegs was not given"
+                % fileId
+            )
+
     def _storeOutput(self, documents):
         """
         WFCatalog._storeOutput
@@ -647,6 +673,7 @@ class WFCatalogCollector:
                     documents["daily"]["fileId"]
                 ):
                     mongo_id = document["_id"]
+                    self._warnAboutDroppedParts(document)
                     self.mongo.removeDocumentsById(mongo_id)
                     self.log.info(
                         "Succesfully removed document related to id %s." % mongo_id

@@ -120,3 +120,17 @@ class MongoDatabase:
     def countDocumentsByFilename(self, file):
         return self.db.daily_streams.count_documents({"fileId": os.path.basename(file)})
 
+    def countHourlyByStreamId(self, id):
+        """
+        MongoDatabase.countHourlyByStreamId
+        > number of hourly granules stored for a daily document
+        """
+        return self.db.hourly_streams.count_documents({"streamId": id})
+
+    def countSegmentsByStreamId(self, id):
+        """
+        MongoDatabase.countSegmentsByStreamId
+        > number of continuous segments stored for a daily document
+        """
+        return self.db.c_segments.count_documents({"streamId": id})
+

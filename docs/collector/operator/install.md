@@ -100,3 +100,23 @@ all input files. The documents in the database that are dependent
 on the changed files are removed, reprocessed, and inserted. Updating
 does NOT insert any new files in the directory.
 An update can be forced by giving `--force` which skips the checksum change detection and reprocesses all files.
+
+### Keeping the catalogue consistent with the archive
+
+A day document is computed from its own file and from the neighbouring day
+files that hold data of that day, typically the last record of the previous
+day. The names and checksums of the files used are stored with the document.
+
+- `--delete` removes the documents of the given files and then recomputes
+  every document that used one of those files.
+- `--update` compares the checksum of each given file with the checksum
+  stored in the documents that used it, and recomputes those documents when
+  the file changed.
+- Give `--update` and `--delete` the same `--hourly`, `--csegs` and `--flags`
+  as the original run. A recomputed document is stored with the options of the
+  current run; parts that are not computed again are lost, and the collector
+  logs a warning for each of them.
+- A file that arrives after the next day was processed is not picked up by
+  the next day's document, and `--update` cannot detect it because the
+  document never recorded that file. Run `--update --force --file` on the
+  next day's file.
