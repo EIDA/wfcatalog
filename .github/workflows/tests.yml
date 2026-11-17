@@ -1,0 +1,115 @@
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  collector:
+    name: Collector (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.13 is the minimum in pyproject.toml, 3.14 is what the container image runs
+        python: ["3.13", "3.14"]
+    env:
+      UV_PYTHON: ${{ matrix.python }}
+    # tests/test_database_sync.py runs against this MongoDB; without one it is skipped
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    defaults:
+      run:
+        working-directory: collector
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Run tests
+        run: uv run --frozen pytest
+
+  service:
+    name: Service (Node 20, MongoDB 7)
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    defaults:
+      run:
+        working-directory: service
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      # The suite needs a configuration.json. Start from the sample and point
+      # it at the MongoDB started above, which runs without authentication.
+      - name: Write configuration.json
+        run: |
+          node -e '
+            const fs = require("fs");
+            const config = JSON.parse(fs.readFileSync("configuration.json.sample", "utf8"));
+            config.MONGO.AUTHENTICATE = false;
+            config.MONGO.HOST = "127.0.0.1:27017";
+            fs.writeFileSync("configuration.json", JSON.stringify(config, null, 2));
+          '
+
+      - name: Run tests
+        run: npm test
+
+  containers:
+    name: Container images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # The same context and Dockerfile as in publish-container.yml
+      - name: Build the collector image
+        run: docker build -t wfcatalog-collector -f collector/Dockerfile collector
+
+      # The output must be the version alone: a warning at start fails the job
+      - name: The collector image runs the collector
+        run: |
+          output="$(docker run --rm wfcatalog-collector --version 2>&1)"
+          echo "$output"
+          test "$(echo "$output" | wc -l)" -eq 1
+          echo "$output" | grep -Eqx '[0-9]+\.[0-9]+\.[0-9]+'
+
+      - name: Build the service image
+        run: docker build -t wfcatalog-ws -f service/Dockerfile service

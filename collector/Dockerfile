@@ -31,6 +31,9 @@ COPY --from=builder --chown=app:app /app /app
 WORKDIR /app
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
-ENTRYPOINT ["python3", "src/WFCatalogCollector.py"]
+# The app user has no home directory. Give Matplotlib, which ObsPy imports,
+# a writable place for its cache so it does not warn at every start
+ENV MPLCONFIGDIR=/tmp/matplotlib
+ENTRYPOINT ["python3", "-m", "src.WFCatalogCollector"]
 # CMD [""]ç
 

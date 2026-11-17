@@ -1070,7 +1070,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
       percent_availability: doc["avail"],
       encoding: doc["enc"],
       num_records: doc["nrec"],
-      num_samples: doc["nsamp"],
+      num_samples: doc["nsam"],
       start_time: doc["ts"],
       end_time: doc["te"],
       format: "miniSEED",
@@ -1103,11 +1103,11 @@ module.exports = function (CONFIG, WFCatalogCallback) {
         // might be that `io`, `dq` and `ac` dictionaries are not avaialble.
         io_and_clock_flags: {
           short_record_read: doc["io_flags"] ? doc["io_flags"]["srr"] : null,
+          long_record_read: doc["io_flags"] ? doc["io_flags"]["lrr"] : null,
           station_volume: doc["io_flags"] ? doc["io_flags"]["svo"] : null,
           start_time_series: doc["io_flags"] ? doc["io_flags"]["sts"] : null,
           end_time_series: doc["io_flags"] ? doc["io_flags"]["ets"] : null,
           clock_locked: doc["io_flags"] ? doc["io_flags"]["clo"] : null,
-          event_in_progress: doc["io_flags"] ? doc["io_flags"]["eip"] : null,
         },
         data_quality_flags: {
           amplifier_saturation: doc["dq_flags"] ? doc["dq_flags"]["asa"] : null,
@@ -1128,6 +1128,7 @@ module.exports = function (CONFIG, WFCatalogCallback) {
             : null,
           event_begin: doc["ac_flags"] ? doc["ac_flags"]["evb"] : null,
           event_end: doc["ac_flags"] ? doc["ac_flags"]["eve"] : null,
+          event_in_progress: doc["ac_flags"] ? doc["ac_flags"]["eip"] : null,
           positive_leap: doc["ac_flags"] ? doc["ac_flags"]["pol"] : null,
           negative_leap: doc["ac_flags"] ? doc["ac_flags"]["nel"] : null,
         },

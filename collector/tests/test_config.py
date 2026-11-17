@@ -3,7 +3,7 @@
 import os
 import tempfile
 import pytest
-from src.WFCatalogCollector import load_configuration
+from src.config import load_configuration
 from src.WFCatalogCollector import WFCatalogCollector
 
 
@@ -15,11 +15,6 @@ def test_config_load():
 def test_show_config():
     wfcol = WFCatalogCollector()
     wfcol.showConfig()
-
-
-def test_show_version():
-    wfcol = WFCatalogCollector()
-    wfcol.showVersion()
 
 
 def test_config_load_with_file():
@@ -36,7 +31,7 @@ def test_config_error():
         os.environ["WFCAT_CONF_DIR"] = confdir
         with open(f"{confdir}/config.json", "w") as conf:
             conf.write("""{"ARCHIVE": "EIDA TEST NODE"},""")
-        with pytest.raises(Exception) as e_info:
+        with pytest.raises(Exception):
             load_configuration()
 
 
@@ -45,3 +40,11 @@ def test_config_load_with_file_not_found():
         os.environ["WFCAT_CONF_DIR"] = confdir
         config = load_configuration()
         assert config["ARCHIVE"] == "EIDA"
+
+
+def test_publisher_from_environment(monkeypatch):
+    with tempfile.TemporaryDirectory() as confdir:
+        monkeypatch.setenv("WFCAT_CONF_DIR", confdir)  # no config.json: env vars are used
+        monkeypatch.setenv("WFCAT_PUBLISHER", "TEST-NODE")
+        config = load_configuration()
+        assert config["PUBLISHER"] == "TEST-NODE"

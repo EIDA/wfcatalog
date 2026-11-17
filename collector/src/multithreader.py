@@ -1,6 +1,6 @@
-import os
 from multiprocessing import Pool
-from WFCatalogCollector import WFCatalogCollector
+from src.WFCatalogCollector import WFCatalogCollector
+from src import archive
 
 import datetime
 
@@ -29,7 +29,7 @@ def WFCatalogWork(filename):
 if __name__ == "__main__":
 
     # Get files from yesterday
-    files = MetadataCollector._collectFilesFromDate(
+    files = archive.collectFilesFromDate(
         datetime.datetime.now() - datetime.timedelta(days=1)
     )
 

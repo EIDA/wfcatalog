@@ -76,136 +76,23 @@ Authors:
 """
 
 import os
-from pathlib import Path
 import json
 import logging
 import argparse
 import datetime
 import hashlib
-import warnings
 import sys
 import fnmatch
-import signal
 import glob
 import re
 import importlib.metadata
 from logging.handlers import TimedRotatingFileHandler
 
-
-def handler(signum, frame):
-    raise Exception("Metric calculation has timed out")
-
-
-# ObsPy mSEED-QC is required
-try:
-    from obspy.signal.quality_control import MSEEDMetadata
-except ImportError as ex:
-    raise ImportError("Failure to load MSEEDMetadata; ObsPy mSEED-QC is required.")
-
-
-def load_configuration():
-    """
-    Loads configuration parameters.
-    First try from $WFCAT_CONF_DIR/config.json ($WFCAT_CONF_DIR defaults to current working directory)
-    If file does not exist, use the following environment variables:
-    - WFCAT_NODE_NAME : The name of the EIDA node. Will be set as the creator in wfcatalog database. Default is EIDA
-    - WFCAT_PUBLISHER : The name of the EIDA node. Will be set as the publisher in wfcatalog database. Default is "Obspy {Version}"
-    - WFCAT_ARCHIVE_STRUCT: Define how the archive is organised in it's directory hierarchy.
-              Possible values are "SDS" or "SDSbynet" or "ODC"
-              Default is "SDS" for "Seiscomp Data Structure"
-    - WFCAT_ARCHIVE_ROOT: The root path of the data archive.
-    - WFCAT_MONGO_ENABLED: Should the process connect to the mongodb backend ? (true or false), default false
-    - WFCAT_MONGO_ENGINE: Engine running the DB backend (mongodb or docdb), default mongodb
-    - WFCAT_MONGO_HOST: Hostname of the mongo server. Default 127.0.0.1
-    - WFCAT_MONGO_PORT: Port of the mongs server. Default 27017
-    - WFCAT_MONGO_DBNAME: Port of the mongs server. Default 27017
-    - WFCAT_MONGO_USER: Username. Default "wfcatalog"
-    - WFCAT_MONGO_PASS: Password. Default "wfcatalog"
-    - WFCAT_MONGO_ALLOW_DUPLICATE: If true, can insert multiple documents with same file ID (unique Net, Sta, Cha, Loc, Day)
-    - WFCAT_DEFAULT_LOG_FILE: Path to the log file. If not set, logs to stdout
-    - WFCAT_PROCESSING_TIMEOUT: Number of seconds to timeout when analysing a file
-    - WFCAT_DUBLIN_CORE_ENABLED: Add data object information in the catalog
-    - WFCAT_FILTERS_WHITE: coma separated list of pattern to whitelist when harvesting files. Default '*'
-    - WFCAT_FILTERS_BLACK: coma separated list of pattern to blacklist when harvesting files. Default ''
-    """
-    try:
-        conf_dir = Path(os.getenv("WFCAT_CONF_DIR", os.getcwd()))
-        conf_file = conf_dir / "config.json"
-
-        if conf_file.exists():
-            with conf_file.open() as cfg:
-                logging.info("Using configuration from %s", conf_file)
-                config = json.load(cfg)
-        else:
-            node_name = os.getenv("WFCAT_NODE_NAME", "EIDA")
-            publisher = os.getenv(
-                "WFCAT_PUBLISHER ", f"Obspy {importlib.metadata.version('obspy')}"
-            )
-            archive_struct = os.getenv("WFCAT_ARCHIVE_STRUCT", "SDS")
-            archive_root = os.getenv("WFCAT_ARCHIVE_ROOT", "")
-            mongo_enabled = os.getenv("WFCAT_MONGO_ENABLED", "false") == "true"
-            mongo_engine = os.getenv("WFCAT_MONGO_ENGINE", "mongodb")
-            mongo_host = os.getenv("WFCAT_MONGO_HOST", "localhost")
-            mongo_port = int(os.getenv("WFCAT_MONGO_PORT", "27017"))
-            mongo_dbname = os.getenv("WFCAT_MONGO_DBNAME", "wfcatalog")
-            mongo_user = os.getenv("WFCAT_MONGO_USER", "wfcatalog")
-            mongo_pass = os.getenv("WFCAT_MONGO_PASS", "wfcatalog")
-            mongo_allow_duplicate = (
-                os.getenv("WFCAT_MONGO_ALLOW_DUPLICATE", "false") == "true"
-            )
-            default_log_file = os.getenv("WFCAT_DEFAULT_LOG_FILE", None)
-            processing_timeout = int(os.getenv("WFCAT_PROCESSING_TIMEOUT", "120"))
-            dublin_core_enabled = (
-                os.getenv("WFCAT_DUBLIN_CORE_ENABLED", "false") == "true"
-            )
-            filters_white = os.getenv("WFCAT_FILTERS_WHITE", "*").split(",")
-            filters_black = os.getenv("WFCAT_FILTERS_BLACK", "").split(",")
-            config = {
-                "MONGO": {
-                    "ENABLED": mongo_enabled,
-                    "ENGINE": mongo_engine,
-                    "DB_HOST": mongo_host,
-                    "DB_PORT": mongo_port,
-                    "DB_USER": mongo_user,
-                    "DB_PASS": mongo_pass,
-                    "DB_NAME": mongo_dbname,
-                    "ALLOW_DOUBLE": mongo_allow_duplicate,
-                },
-                "ARCHIVE": node_name,
-                "PUBLISHER": publisher,
-                "STRUCTURE": archive_struct,
-                "ARCHIVE_ROOT": archive_root,
-                "DEFAULT_LOG_FILE": default_log_file,
-                "PROCESSING_TIMEOUT": processing_timeout,
-                "ENABLE_DUBLIN_CORE": dublin_core_enabled,
-                "FILTERS": {"WHITE": filters_white, "BLACK": filters_black},
-            }
-
-    except json.decoder.JSONDecodeError as e:
-        # I don't have any logger initialized yet
-        print("ERROR: Configuration error: %s", e)
-        raise e
-    except Exception as e:
-        raise e
-
-    return config
-
-
-try:
-    CONFIG = load_configuration()
-except Exception:
-    sys.exit(1)
-
-
-if CONFIG["MONGO"]["ENABLED"]:
-    from pymongo import MongoClient
-
-if CONFIG["STRUCTURE"] == "SDSbynet":
-    # SDSbynet structure starts with an extended network code.
-    # so we need to add the ability to extend a network code
-    from fdsnnetextender.fdsnnetextender import FdsnNetExtender
-
-    fne = FdsnNetExtender()
+from src.config import CONFIG
+from src.db import MongoDatabase
+from src import archive
+from src import metrics
+from src import mapping
 
 
 class WFCatalogCollector:
@@ -246,7 +133,6 @@ class WFCatalogCollector:
             "update": False,
             "force": False,
             "config": False,
-            "version": False,
         }
 
         # Loop over user options and replace any default options
@@ -275,13 +161,6 @@ class WFCatalogCollector:
         self._printArguments()
         self._setGranularity()
 
-    def showVersion(self):
-        """
-        WFCatalog.showVersion
-        > shows current Collector version
-        """
-        print(importlib.metadata.version("wfcatalog-collector"))
-
     def process(self, options):
         """
         WFCatalogCollector.process
@@ -292,9 +171,6 @@ class WFCatalogCollector:
         if "config" in options and options["config"]:
             self.showConfig()
             sys.exit(0)
-        if "version" in options:
-            self.showVersion()
-            sys.exit(0)
 
         self.timeInitialized = datetime.datetime.now()
 
@@ -304,7 +180,7 @@ class WFCatalogCollector:
                 try:
                     self.mongo._connect()
                     self.log.info("Connection to the database has been established")
-                except Exception as ex:
+                except Exception:
                     self.log.critical("Could not establish connection to the database")
                     sys.exit(0)
             else:
@@ -341,11 +217,11 @@ class WFCatalogCollector:
             # Set update for dependents on the file to be deleted
             for documents in self.mongo.getDailyFilesById(file):
                 # Make sure to not update self or any file included in deletion
-                if self._getFullPath(documents["fileId"]) not in self.files:
+                if archive.getFullPath(documents["fileId"]) not in self.files:
                     self.log.info(
                         "Stage dependent file for update %s" % documents["fileId"]
                     )
-                    update_files.append(self._getFullPath(documents["fileId"]))
+                    update_files.append(archive.getFullPath(documents["fileId"]))
 
             # Remove the document
             for document in self.mongo.getDocumentByFilename(file):
@@ -482,63 +358,9 @@ class WFCatalogCollector:
         # Loop over the window and collect files
         pastFiles = []
         for day in range(start, end):
-            pastFiles += self._collectFilesFromDate(now - datetime.timedelta(days=day))
+            pastFiles += archive.collectFilesFromDate(now - datetime.timedelta(days=day))
 
         return pastFiles
-
-    def _collectFilesFromDate(self, date):
-        """
-        WFCatalogCollector._collectFilesFromDate
-        > collects the files for a given year and day
-        """
-
-        # Get the year & day of year
-        jday = date.strftime("%j")
-        year = date.strftime("%Y")
-
-        # ODC directory structure makes it simple to loop over years and days
-        if CONFIG["STRUCTURE"] == "ODC":
-            directory = os.path.join(CONFIG["ARCHIVE_ROOT"], year, jday)
-            collectedFiles = [
-                os.path.join(directory, f)
-                for f in os.listdir(directory)
-                if os.path.isfile(os.path.join(directory, f))
-            ]
-
-        # SDS structure is slightly more complex, loop over all directories
-        # in a year and extract files ending with a given jday
-        elif CONFIG["STRUCTURE"] == "SDS":
-            collectedFiles = []
-            directory = os.path.join(CONFIG["ARCHIVE_ROOT"], year)
-            for subdir, dirs, files in os.walk(directory, followlinks=True):
-                for file in files:
-                    if file.endswith(jday) and os.path.isfile(
-                        os.path.join(subdir, file)
-                    ):
-                        collectedFiles.append(os.path.join(subdir, file))
-
-        # SDSbynet structure is slightly more complex, loop over all network directories
-        # in a year and extract files ending with a given jday
-        elif CONFIG["STRUCTURE"] == "SDSbynet":
-            collectedFiles = []
-            # First, loop over all networks
-            for netdir in next(os.walk(CONFIG["ARCHIVE_ROOT"]))[1]:
-                # Then find all files
-                for subdir, dirs, files in os.walk(
-                    os.path.join(CONFIG["ARCHIVE_ROOT"], netdir, year), followlinks=True
-                ):
-                    for file in files:
-                        if file.endswith(jday) and os.path.isfile(
-                            os.path.join(subdir, file)
-                        ):
-                            collectedFiles.append(os.path.join(subdir, file))
-
-        else:
-            raise Exception(
-                "WFCatalogCollector.getFilesFromDirectory: unknown directory structure."
-            )
-
-        return collectedFiles
 
     def _getFiles(self):
         """
@@ -558,7 +380,10 @@ class WFCatalogCollector:
 
         # List was given
         elif self.args["list"]:
-            self.files = [f for f in json.loads(self.args["list"]) if os.path.isfile(f)]
+            self.files = json.loads(self.args["list"])
+            # When deleting, the files may already be gone from the archive
+            if not self.args["delete"]:
+                self.files = [f for f in self.files if os.path.isfile(f)]
             self.log.info("Collected %d file(s) from list" % len(self.files))
 
         # Raise if an invalid input directory is given
@@ -585,7 +410,8 @@ class WFCatalogCollector:
 
         # Single file as input
         elif self.args["file"]:
-            if not os.path.isfile(self.args["file"]):
+            # When deleting, the file may already be gone from the archive
+            if not self.args["delete"] and not os.path.isfile(self.args["file"]):
                 raise Exception("Argument --file requires a valid file.")
 
             self.files = [self.args["file"]]
@@ -608,11 +434,11 @@ class WFCatalogCollector:
             # Include a given range (default to 1)
             for day in range(abs(n_days)):
                 if n_days > 0:
-                    self.files += self._collectFilesFromDate(
+                    self.files += archive.collectFilesFromDate(
                         specific_date + datetime.timedelta(days=day)
                     )
                 else:
-                    self.files += self._collectFilesFromDate(
+                    self.files += archive.collectFilesFromDate(
                         specific_date - datetime.timedelta(days=day)
                     )
             self.log.info(
@@ -717,7 +543,7 @@ class WFCatalogCollector:
 
                     self.log.info("Comparing MD5checksums for %s" % used_files["name"])
 
-                    fullPath = self._getFullPath(os.path.basename(file))
+                    fullPath = archive.getFullPath(os.path.basename(file))
                     MD5Hash = self._getMD5Hash(fullPath)
 
                     # Compare the checksum
@@ -730,16 +556,7 @@ class WFCatalogCollector:
                         )
                         changedFiles.append(document["fileId"])
 
-        return list(set([self._getFullPath(filename) for filename in changedFiles]))
-
-    def _getFullPath(self, file):
-        """
-        WFCatalogCollector._getFullPath
-        > returns full path based on the archive root directory
-        > for file basename and directory stucture (config)
-        """
-
-        return self._getFileDirectory(self._getStatsObject(file))
+        return list(set([archive.getFullPath(filename) for filename in changedFiles]))
 
     def _isNewDocument(self, file):
         """
@@ -755,47 +572,6 @@ class WFCatalogCollector:
             return True
         else:
             return self.mongo.countDocumentsByFilename(file) == 0
-
-    def _callObsPyMetadata(self, files, start, end, granule):
-        """
-        WFCatalogCollector._callObsPyMetadata
-        wrapper function to call obspy.signal.MSEEDMetdata
-        """
-
-        # Throw an exception after the timeout (UNIX only)
-        signal.signal(signal.SIGALRM, handler)
-        signal.alarm(CONFIG["PROCESSING_TIMEOUT"])
-
-        try:
-            # Catch mSEED reading warnings
-            with warnings.catch_warnings(record=True) as w:
-                warnings.simplefilter("always")
-
-                # Skip continuous segments for hourly granules
-                if granule == "daily":
-                    metadata = MSEEDMetadata(
-                        files,
-                        starttime=start,
-                        endtime=end,
-                        add_flags=self.args["flags"],
-                        add_c_segments=self.args["csegs"],
-                    )
-                elif granule == "hourly":
-                    metadata = MSEEDMetadata(
-                        files,
-                        starttime=start,
-                        endtime=end,
-                        add_flags=self.args["flags"],
-                        add_c_segments=False,
-                    )
-
-                metadata.meta.update({"warnings": len(w) > 0})
-
-        finally:
-            # Disable alarm
-            signal.alarm(0)
-
-        return metadata.meta
 
     def _collectMetadata(self, file):
         """
@@ -819,8 +595,9 @@ class WFCatalogCollector:
         # Get the daily granulated waveform metadata
         try:
             granule = fas["segments"]["daily"]
-            daily_meta = self._callObsPyMetadata(
-                fas["files"], granule["start"], granule["end"], "daily"
+            daily_meta = metrics.computeMetadata(
+                fas["files"], granule["start"], granule["end"], "daily",
+                self.args["flags"], self.args["csegs"],
             )
             daily_meta.update({"fileId": os.path.basename(file)})
         except Exception as ex:
@@ -834,8 +611,9 @@ class WFCatalogCollector:
         hourly_meta_array = []
         for granule in fas["segments"]["hourly"]:
             try:
-                hourly_meta = self._callObsPyMetadata(
-                    fas["files"], granule["start"], granule["end"], "hourly"
+                hourly_meta = metrics.computeMetadata(
+                    fas["files"], granule["start"], granule["end"], "hourly",
+                    self.args["flags"], self.args["csegs"],
                 )
                 hourly_meta.update({"fileId": os.path.basename(file)})
                 hourly_meta_array.append(hourly_meta)
@@ -848,6 +626,32 @@ class WFCatalogCollector:
 
         # Store the documents
         self._storeOutput({"daily": daily_meta, "hourly": hourly_meta_array})
+
+    def _warnAboutDroppedParts(self, document):
+        """
+        WFCatalogCollector._warnAboutDroppedParts
+        > a document that is reprocessed by --update or --delete is stored
+        > with the options of this run; warn when the stored document has
+        > parts (hourly granules, header flags, continuous segments) that
+        > this run does not compute, because they are lost
+        """
+        fileId = document["fileId"]
+
+        if not self.args["hourly"] and self.mongo.countHourlyByStreamId(document["_id"]):
+            self.log.warning(
+                "%s has hourly granules in the database that are dropped: --hourly was not given"
+                % fileId
+            )
+        if not self.args["flags"] and "io_flags" in document:
+            self.log.warning(
+                "%s has header flags in the database that are dropped: --flags was not given"
+                % fileId
+            )
+        if not self.args["csegs"] and self.mongo.countSegmentsByStreamId(document["_id"]):
+            self.log.warning(
+                "%s has continuous segments in the database that are dropped: --csegs was not given"
+                % fileId
+            )
 
     def _storeOutput(self, documents):
         """
@@ -869,6 +673,7 @@ class WFCatalogCollector:
                     documents["daily"]["fileId"]
                 ):
                     mongo_id = document["_id"]
+                    self._warnAboutDroppedParts(document)
                     self.mongo.removeDocumentsById(mongo_id)
                     self.log.info(
                         "Succesfully removed document related to id %s." % mongo_id
@@ -889,7 +694,10 @@ class WFCatalogCollector:
 
         # Store the daily output and get the parentID
         try:
-            qc_metadata_daily = self._getDatabaseKeyMap(documents["daily"], None)
+            qc_metadata_daily = mapping.getDatabaseKeyMap(
+                documents["daily"], None, self.args["flags"]
+            )
+            qc_metadata_daily.update(self._getFileChecksums(documents["daily"]["files"]))
             id = self.mongo._storeGranule(qc_metadata_daily, "daily")
             self.log.info("Succesfully stored daily granule %s" % id.inserted_id)
         except Exception as ex:
@@ -901,7 +709,10 @@ class WFCatalogCollector:
         if self.args["hourly"]:
             for i, granule in enumerate(documents["hourly"]):
                 try:
-                    qc_metadata = self._getDatabaseKeyMap(granule, id.inserted_id)
+                    qc_metadata = mapping.getDatabaseKeyMap(
+                        granule, id.inserted_id, self.args["flags"]
+                    )
+                    qc_metadata.update(self._getFileChecksums(granule["files"]))
                     self.mongo._storeGranule(qc_metadata, "hourly")
                     self.log.info(
                         "[%d/%d] Succesfully stored hourly granule"
@@ -917,111 +728,16 @@ class WFCatalogCollector:
         if self.args["csegs"] and not qc_metadata_daily["cont"]:
             for segment in documents["daily"]["c_segments"]:
                 try:
-                    qc_metadata = self._getDatabaseKeyMapContinuous(
+                    qc_metadata = mapping.getDatabaseKeyMapContinuous(
                         segment, id.inserted_id
                     )
                     self.mongo.storeContinuousSegment(qc_metadata)
-                except Exception as ex:
+                except Exception:
                     self.log.exception("Could not store continuous segment to database")
             self.log.info(
                 "Succesfully stored %d continuous segment(s) to database"
                 % len(documents["daily"]["c_segments"])
             )
-
-    def _getDatabaseKeyMapContinuous(self, trace, id):
-        """
-        WFCatalogCollector._getDatabaseKeyMapContinuous
-        > Document parser for continuous segments
-        """
-
-        # Source object for a continuous segment
-        source = {
-            "streamId": id,
-            "smin": int(trace["sample_min"]),
-            "smax": int(trace["sample_max"]),
-            "smean": float(trace["sample_mean"]),
-            "smedian": float(trace["sample_median"]),
-            "stdev": float(trace["sample_stdev"]),
-            "rms": float(trace["sample_rms"]),
-            "supper": float(trace["sample_upper_quartile"]),
-            "slower": float(trace["sample_lower_quartile"]),
-            "nsam": int(trace["num_samples"]),
-            "srate": float(trace["sample_rate"]),
-            "ts": trace["start_time"].datetime,
-            "te": trace["end_time"].datetime,
-            "slen": float(trace["segment_length"]),
-        }
-
-        return source
-
-    def _getDatabaseKeyMap(self, trace, id):
-        """
-        WFCatalogCollector._getDatabaseKeyMap
-        > document parser for daily and hourly granules
-        """
-
-        nSegments = len(trace.get("c_segments") or [])
-
-        # Source document for granules
-        source = {
-            "created": datetime.datetime.now(),
-            "collector": importlib.metadata.version("wfcatalog-collector"),
-            "warnings": trace["warnings"],
-            "status": "open",
-            "format": "mSEED",
-            "fileId": trace["fileId"],
-            "type": "seismic",
-            "nseg": nSegments,
-            "cont": trace["num_gaps"] == 0,
-            "net": trace["network"],
-            "sta": trace["station"],
-            "cha": trace["channel"],
-            "loc": trace["location"],
-            "qlt": trace["quality"],
-            "ts": trace["start_time"].datetime,
-            "te": trace["end_time"].datetime,
-            "enc": trace["encoding"],
-            "srate": trace["sample_rate"],
-            "rlen": trace["record_length"],
-            "nrec": int(trace["num_records"])
-            if trace["num_records"] is not None
-            else None,
-            "nsam": int(trace["num_samples"]),
-            "smin": int(trace["sample_min"]),
-            "smax": int(trace["sample_max"]),
-            "smean": float(trace["sample_mean"]),
-            "smedian": float(trace["sample_median"]),
-            "supper": float(trace["sample_upper_quartile"]),
-            "slower": float(trace["sample_lower_quartile"]),
-            "rms": float(trace["sample_rms"]),
-            "stdev": float(trace["sample_stdev"]),
-            "ngaps": int(trace["num_gaps"]),
-            "glen": float(trace["sum_gaps"]),
-            "nover": int(trace["num_overlaps"]),
-            "olen": float(trace["sum_overlaps"]),
-            "gmax": float(trace["max_gap"]) if trace["max_gap"] is not None else None,
-            "omax": float(trace["max_overlap"])
-            if trace["max_overlap"] is not None
-            else None,
-            "avail": float(trace["percent_availability"]),
-            "sgap": trace["start_gap"] is not None,
-            "egap": trace["end_gap"] is not None,
-        }
-
-        # Add parent streamId if it is given, this links
-        # the daily stream to hourly granules
-        if id is not None:
-            source.update({"streamId": id})
-
-        # Add the miniseed header percentages and timing quality
-        if self.args["flags"]:
-            source.update(self._getTimingQuality(trace))
-            source.update(self._getFlags(trace))
-
-        # Add file list and checksums
-        source.update(self._getFileChecksums(trace["files"]))
-
-        return source
 
     def _getFileChecksums(self, files):
         """
@@ -1089,111 +805,6 @@ class WFCatalogCollector:
 
         return document
 
-    def _getTimingQuality(self, trace):
-        """
-        WFCatalogCollector._getTimingQuality
-        writes timing quality parameters and correction to source document
-        """
-
-        trace = trace["miniseed_header_percentages"]
-
-        # Add the timing correction
-        source = {"tcorr": float(trace["timing_correction"])}
-
-        # Check if the minimum is None, so is the rest
-        # otherwise convert to floats
-        if trace["timing_quality_min"] is None:
-            source.update(
-                {
-                    "tqmin": None,
-                    "tqmax": None,
-                    "tqmean": None,
-                    "tqmedian": None,
-                    "tqupper": None,
-                    "tqlower": None,
-                }
-            )
-
-        else:
-            source.update(
-                {
-                    "tqmin": float(trace["timing_quality_min"]),
-                    "tqmax": float(trace["timing_quality_max"]),
-                    "tqmean": float(trace["timing_quality_mean"]),
-                    "tqmedian": float(trace["timing_quality_median"]),
-                    "tqupper": float(trace["timing_quality_upper_quartile"]),
-                    "tqlower": float(trace["timing_quality_lower_quartile"]),
-                }
-            )
-
-        return source
-
-    def _getFlags(self, trace):
-        """
-        WFCatalogCollector._getFlags
-        writes mSEED header flag percentages to source document
-        """
-
-        header = trace["miniseed_header_percentages"]
-
-        source = {
-            "io_flags": self._getFlagKeys(header, "io_and_clock_flags"),
-            "dq_flags": self._getFlagKeys(header, "data_quality_flags"),
-            "ac_flags": self._getFlagKeys(header, "activity_flags"),
-        }
-
-        return source
-
-    def _getFlagKeys(self, trace, flag_type):
-        """
-        mSEEDMetadataCollector._getFlagKeys
-        returns MongoDB document structure for miniseed header percentages
-        """
-
-        trace = trace[flag_type]
-
-        if flag_type == "activity_flags":
-            source = {
-                "cas": trace["calibration_signal"],
-                "tca": trace["time_correction_applied"],
-                "evb": trace["event_begin"],
-                "eve": trace["event_end"],
-                "eip": trace["event_in_progress"],
-                "pol": trace["positive_leap"],
-                "nel": trace["negative_leap"],
-            }
-
-        elif flag_type == "data_quality_flags":
-            source = {
-                "asa": trace["amplifier_saturation"],
-                "dic": trace["digitizer_clipping"],
-                "spi": trace["spikes"],
-                "gli": trace["glitches"],
-                "mpd": trace["missing_padded_data"],
-                "tse": trace["telemetry_sync_error"],
-                "dfc": trace["digital_filter_charging"],
-                "stt": trace["suspect_time_tag"],
-            }
-
-        elif flag_type == "io_and_clock_flags":
-            source = {
-                "svo": trace["station_volume"],
-                "lrr": trace["long_record_read"],
-                "srr": trace["short_record_read"],
-                "sts": trace["start_time_series"],
-                "ets": trace["end_time_series"],
-                "clo": trace["clock_locked"],
-            }
-
-        else:
-            raise Exception("Unknown flag type in mSEEDMetadataCollector._getFlagKeys")
-
-        # Make sure the flags are floats
-        for flag in source:
-            source[flag] = float(source[flag])
-
-        return source
-
     def _getMD5Hash(self, f):
         """
         WFCatalogCollector._getMD5Hash
@@ -1214,121 +825,6 @@ class WFCatalogCollector:
 
         return hasher.hexdigest()
 
-    def _getStatsObject(self, file):
-        """
-        WFCatalogCollector._getStatsObject
-        returns object with stream metadata depending on archive struture
-        """
-
-        statsArray = file.split(".")
-
-        if CONFIG["STRUCTURE"] == "ODC":
-            stats_object = {
-                "jday": statsArray.pop(),
-                "year": statsArray.pop(),
-                "network": statsArray.pop(),
-                "channel": statsArray.pop(),
-                "station": statsArray.pop(),
-            }
-
-        elif CONFIG["STRUCTURE"] == "SDS" or CONFIG["STRUCTURE"] == "SDSbynet":
-            stats_object = {
-                "jday": statsArray.pop(),
-                "year": statsArray.pop(),
-                "dtype": statsArray.pop(),
-                "channel": statsArray.pop(),
-                "location": statsArray.pop(),
-                "station": statsArray.pop(),
-                "network": statsArray.pop(),
-            }
-
-        else:
-            raise Exception(
-                "Unknown directory structure in mSEEDMetadataCollector._getStatsObject"
-            )
-
-        return stats_object
-
-    def _getFilename(self, stats):
-        """
-        WFCatalogCollector._getFilename
-        Returns filename based on structure ODC/SDS
-        """
-
-        if CONFIG["STRUCTURE"] == "ODC":
-            filename = ".".join(
-                [
-                    stats["station"],
-                    stats["channel"],
-                    stats["network"],
-                    stats["year"],
-                    stats["jday"],
-                ]
-            )
-
-        elif CONFIG["STRUCTURE"] == "SDS" or CONFIG["STRUCTURE"] == "SDSbynet":
-            filename = ".".join(
-                [
-                    stats["network"],
-                    stats["station"],
-                    stats["location"],
-                    stats["channel"],
-                    stats["dtype"],
-                    stats["year"],
-                    stats["jday"],
-                ]
-            )
-
-        else:
-            raise Exception(
-                "Unknown directory structure in mSEEDMetadataCollector._getFilename"
-            )
-
-        return filename
-
-    def _getFileDirectory(self, stats):
-        """
-        WFCatalogCollector._getFileDirectory
-        > Returns the directory for a stream at a given date
-        """
-
-        if CONFIG["STRUCTURE"] == "ODC":
-            filepath = os.path.join(
-                stats["year"], stats["jday"], self._getFilename(stats)
-            )
-
-        elif CONFIG["STRUCTURE"] == "SDS":
-            filepath = os.path.join(
-                stats["year"],
-                stats["network"],
-                stats["station"],
-                stats["channel"] + "." + stats["dtype"],
-                self._getFilename(stats),
-            )
-
-        # SDSbynet starts with the extended networkcode
-        elif CONFIG["STRUCTURE"] == "SDSbynet":
-            try:
-                extnet = fne.extend(stats["network"], stats["year"])
-            except Error as e:
-                logging.error("Unable to extend network code")
-                logging.error(e)
-                raise e
-            filepath = os.path.join(
-                extnet,
-                stats["year"],
-                stats["station"],
-                stats["channel"] + "." + stats["dtype"],
-                self._getFilename(stats),
-            )
-
-        else:
-            raise Exception(
-                "Unknown directory structure in CONFIG (expected ODC or SDS or SDSbynet)"
-            )
-
-        return os.path.join(CONFIG["ARCHIVE_ROOT"], filepath)
-
     def _setGranularity(self):
         """
         WFCatalogCollector._setGranularity
@@ -1338,32 +834,6 @@ class WFCatalogCollector:
         # For daily granularity take steps of 24h
         self.gran = 1 if self.args["hourly"] else 24
 
-    def _getNextFile(self, file, direction):
-        """
-        WFCatalogCollector._getNextFile
-        > gets previous or next dayfile depending on direction (-1, +1)
-        """
-
-        stats = self._getStatsObject(os.path.basename(file))
-        current_date = datetime.datetime.strptime(
-            stats["year"] + " " + stats["jday"], "%Y %j"
-        )
-        new_date = current_date + datetime.timedelta(days=direction)
-
-        stats["year"] = new_date.strftime("%Y")
-        stats["jday"] = new_date.strftime("%j")
-
-        return self._getFileDirectory(stats)
-
-    def _getDateFromFile(self, file):
-        """
-        WFCatalogCollector._getDateFromFile
-        > returns datetime object of the day a file based on jday/year
-        """
-
-        stats = self._getStatsObject(os.path.basename(file))
-        return datetime.datetime.strptime(stats["year"] + " " + stats["jday"], "%Y %j")
-
     def _getFileSegments(self, file):
         """
         WFCatalogCollector._getFileSegments
@@ -1372,7 +842,7 @@ class WFCatalogCollector:
         """
 
         # Get the daily segment
-        start_time = self._getDateFromFile(file)
+        start_time = archive.getDateFromFile(file)
         end_time = start_time + datetime.timedelta(days=1)
 
         daily = {"start": start_time, "end": end_time}
@@ -1406,7 +876,7 @@ class WFCatalogCollector:
 
         # Append three files to array in order [yesterday, today, tomorrow]
         # Get yesterdays file
-        previous_file = self._getNextFile(file, -1)
+        previous_file = archive.getNextFile(file, -1)
         if os.path.isfile(previous_file):
             day_files.append(previous_file)
 
@@ -1414,7 +884,7 @@ class WFCatalogCollector:
         day_files.append(file)
 
         # Get tomorrows file
-        next_file = self._getNextFile(file, 1)
+        next_file = archive.getNextFile(file, 1)
         if os.path.isfile(next_file):
             day_files.append(next_file)
 
@@ -1430,113 +900,6 @@ class WFCatalogCollector:
 
         return {"files": day_files, "segments": self._getFileSegments(file)}
 
-
-class MongoDatabase:
-    """
-    MongoDatabase
-    > Main class for interaction with MongoDB
-    """
-
-    def __init__(self):
-        """
-        MongoDatabase.__init__
-        > sets the configured host
-        """
-        self.host = CONFIG["MONGO"]["DB_HOST"]
-        self._connected = False
-
-    def _connect(self):
-        """
-        MongoDatabase._connect
-        > Sets up connection to the MongoDB
-        """
-
-        if self._connected:
-            return
-
-        # Document DB deployments need a different set of arguments
-        db_kwargs = {
-            "username": CONFIG["MONGO"]["DB_USER"],
-            "password": CONFIG["MONGO"]["DB_PASS"]
-        }
-        if CONFIG["MONGO"].get("ENGINE", "mongodb") == "docdb":
-            db_kwargs |= {
-                "tls": True,
-                "tlsCAFile": "global-bundle.pem",
-                "replicaSet": "rs0",
-                "readPreference": "secondaryPreferred",
-                "retryWrites": False
-            }
-        else:  # Just default to mongodb
-            db_kwargs |= {"authSource": CONFIG["MONGO"]["DB_NAME"]}
-
-        self.db = MongoClient(
-            CONFIG["MONGO"]["DB_HOST"],
-            CONFIG["MONGO"]["DB_PORT"],
-            **db_kwargs
-        ).get_database(CONFIG["MONGO"]["DB_NAME"])
-
-        self._connected = True
-
-    def getFileDataObject(self, file):
-        """
-        MongoDatabase.getFileDataObject
-        """
-        return self.db.wf_do.find({"fileId": os.path.basename(file)})
-
-    def _storeFileDataObject(self, obj):
-        """
-        MongoDatabase._storeFileDataObject
-        stored data object to wf_do collection
-        """
-        return self.db.wf_do.insert_one(obj)
-
-    def _storeGranule(self, stream, granule):
-        """
-        MongoDatabase._storeGranule
-        > stores daily and hourly granules to collections
-        """
-
-        if granule == "daily":
-            return self.db.daily_streams.insert_one(stream)
-        elif granule == "hourly":
-            return self.db.hourly_streams.insert_one(stream)
-
-    def removeDocumentsById(self, id):
-        """
-        MongoDatabase.removeDocumentsById
-        > removes documents all related to ObjectId
-        """
-        # We could also use delete_one here
-        self.db.daily_streams.delete_many({"_id": id})
-        self.db.hourly_streams.delete_many({"streamId": id})
-        self.db.c_segments.delete_many({"streamId": id})
-
-    def storeContinuousSegment(self, segment):
-        """
-        MongoDatabase.storeContinuousSegment
-        > Saves a continuous segment to collection
-        """
-        self.db.c_segments.insert_one(segment)
-
-    def getDailyFilesById(self, file):
-        """
-        MongoDatabase.getDailyFilesById
-        returns all documents that include this file in the metadata calculation
-        """
-        return self.db.daily_streams.find(
-            {"files.name": os.path.basename(file)}, {"files": 1, "fileId": 1, "_id": 1}
-        )
-
-    def getDocumentByFilename(self, file):
-        """
-        MongoDatabase.getDocumentByFilename
-        balbal
-        """
-        return self.db.daily_streams.find({"fileId": os.path.basename(file)})
-
-    def countDocumentsByFilename(self, file):
-        return self.db.daily_streams.count_documents({"fileId": os.path.basename(file)})
 
 
 if __name__ == "__main__":
@@ -1572,7 +935,11 @@ if __name__ == "__main__":
         action="store_true",
         default=False,
     )
-    parser.add_argument("--version", action="version", version="undefined")
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=importlib.metadata.version("wfcatalog-collector"),
+    )
 
     # Add flags and continuous segments
     parser.add_argument(
